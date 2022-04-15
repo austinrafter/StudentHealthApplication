@@ -20,6 +20,12 @@ public class Student {
     @OneToMany(mappedBy = "user")
     Set<UserExercising> exercises;
 
+    @OneToMany(mappedBy = "user")
+    Set<UserMeditating> meditations;
+
+    @OneToMany(mappedBy = "user")
+    Set<UserHavingHealthCondition> healthConditions;
+
 
     public String getUserName(){
         return userName;
