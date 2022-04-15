@@ -1,10 +1,10 @@
-package com.example.exerciseandmeditation;
+package com.example.mentalmicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExerciseAndMeditationApplicationTests {
+class MentalMicroServiceApplicationTests {
 
     @Test
     void contextLoads() {
