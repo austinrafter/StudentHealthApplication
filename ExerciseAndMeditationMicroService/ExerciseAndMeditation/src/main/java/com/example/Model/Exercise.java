@@ -10,9 +10,7 @@ import javax.persistence.*;
 public class Exercise {
     private @Id @GeneratedValue Long exerciseId;
     @Column(unique=true, nullable=false) private String exerciseName;
-    @Column(unique=true, nullable=false) private String email;
     @Column(nullable=true) private int metabolicEquivalentScore;
-    @Column(nullable=false) private boolean authenticatedUser;
 
     public String getExerciseName(){
         return exerciseName;
