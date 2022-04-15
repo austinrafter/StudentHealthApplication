@@ -16,6 +16,9 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
 
+    @OneToMany(mappedBy = "exercise")
+    Set<HealthConditionPreventsExercise> healthConditionPreventsExerciseSet;
+
     public String getExerciseName(){
         return exerciseName;
     }
