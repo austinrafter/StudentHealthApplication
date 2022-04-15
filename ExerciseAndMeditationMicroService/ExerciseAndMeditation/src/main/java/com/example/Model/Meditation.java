@@ -5,28 +5,20 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "exercise")
+@Table(name = "meditation")
 @DataAmount @RequiredArgsConstructor
-public class Exercise {
-    private @Id @GeneratedValue Long exerciseId;
-    @Column(unique=true, nullable=false) private String exerciseName;
-    @Column(nullable=false) private String exerciseType;
+public class Meditation {
+    private @Id @GeneratedValue Long meditationId;
+    @Column(unique=true, nullable=false) private String meditationName;
+    @Column(nullable=false) private String meditationType;
     @Column(nullable=true) private int metabolicEquivalentScore;
 
     public String getExerciseName(){
         return exerciseName;
     }
-    
+
     public void setExerciseName(String exerciseName){
         this.exerciseName = exerciseName;
-    }
-
-    public String getExerciseType(){
-        return exerciseType;
-    }
-
-    public void setExerciseType(String exerciseType){
-        this.exerciseType = exerciseType;
     }
 
     public Long getExerciseId(){
