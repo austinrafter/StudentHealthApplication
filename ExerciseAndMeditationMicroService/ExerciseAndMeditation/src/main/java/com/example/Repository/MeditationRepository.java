@@ -1,5 +1,5 @@
-package com.example.repository;
-import com.example.model.Meditation;
+package com.example.Repository;
+import com.example.Model.Meditation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MeditationRepository extends JpaRepository{
