@@ -1,0 +1,69 @@
+# MongoDB
+mongo-compose:
+    docker-compose -f docker-compose.yaml up
+
+# Gradle
+clean:
+	gradle clean
+
+compile:
+	gradle build
+
+test:
+	gradle test
+
+jar:
+	gradle build -x test
+	gradle bootJar
+
+run: jar
+	echo Starting Spring at:  http://localhost:8080
+	java -jar build/libs/StudyHabitsMicroService-1.0.jar
+
+# Docker
+
+docker-build: jar
+	docker build -t studyhabits .
+	docker images
+
+docker-run: docker-build
+	docker run --network gumball -e "MYSQL_HOST=mysql" --name spring-gumball -td -p 80:8080 spring-gumball
+	docker ps
+
+docker-clean:
+	docker stop spring-gumball
+	docker rm spring-gumball
+	docker rmi spring-gumball
+
+docker-shell:
+	docker exec -it spring-gumball bash
+
+docker-push:
+	docker login
+	docker build -t --platform linux/amd64,linux/arm64 lee71559/spring-gumball:v3 -t lee71559/spring-gumball:v3 .
+	docker push lee71559/spring-gumball:v3
+
+docker-push-amd64:
+	docker buildx ls
+	docker buildx create --use
+	docker buildx build --platform linux/amd64,linux/arm64 --push -t lee71559/spring-gumball:v3 .
+
+docker-mysql:
+	docker run --platform linux/x86_64 -d --network gumball --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe172 mysql:8.0
+
+# Compose
+
+network-ls:
+	docker network ls
+
+network-create:
+	docker network create --driver bridge spring-gumball-v2_network
+
+network-prune:
+	docker network prune
+
+compose-up:
+	docker-compose up --scale gumball=2 -d
+
+compose-down:
+	docker-compose down
