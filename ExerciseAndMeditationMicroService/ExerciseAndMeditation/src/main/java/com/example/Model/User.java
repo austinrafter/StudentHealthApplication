@@ -12,6 +12,8 @@ public class User {
     @Column(unique=true, nullable=false) private String userName;
     @Column(unique=true, nullable=false) private String email;
     @Column(nullable=false) private String passWord;
+    @Column(nullable=false) private String school;
+    @Column(nullable=false) private int weight;
     @Column(nullable=false) private boolean authenticatedUser;
 
     @OneToMany(mappedBy = "user")
@@ -36,6 +38,22 @@ public class User {
 
     public boolean isAuthenticatedUser() {
         return authenticatedUser;
+    }
+    
+    public String getSchool(){
+        return school;
+    }
+    
+    public void setSchool(String school){
+        this.school = school;
+    }
+    
+    public int getWeight(){
+        return weight;
+    }
+    
+    public void setWeight(int weight){
+        this.weight = weight;
     }
 
     public void setAuthenticatedUser(Boolean authenticatedUser){
