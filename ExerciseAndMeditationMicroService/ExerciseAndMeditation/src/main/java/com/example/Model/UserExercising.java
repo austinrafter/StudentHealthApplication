@@ -1,9 +1,9 @@
-import com.example.model.User;
-import com.example.model.Exercise;
+package com.example.Model;
 import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 class UserExercising {
@@ -12,8 +12,8 @@ class UserExercising {
     Long userExercisingId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "student_id")
+    Student student;
 
     @ManyToOne
     @JoinColumn(name = "exercise_id")
@@ -28,7 +28,7 @@ class UserExercising {
     // standard constructors, getters, and setters
 
     public int getCaloriesBurned(){
-        return userName;
+        return caloriesBurned;
     }
 
     public LocalDateTime getStartedAt() {
@@ -43,7 +43,7 @@ class UserExercising {
         return endedAt;
     }
 
-    public void setEndedAt(endedAt){
+    public void setEndedAt(LocalDateTime endedAt){
         this.endedAt = endedAt;
     }
 

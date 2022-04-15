@@ -1,8 +1,8 @@
-package com.example.model;
+package com.example.Model;
 import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "healthcondition")
