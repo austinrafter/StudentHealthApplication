@@ -13,6 +13,9 @@ public class Exercise {
     @Column(nullable=false) private String exerciseType;
     @Column(nullable=true) private int metabolicEquivalentScore;
 
+    @OneToMany(mappedBy = "exercise")
+    Set<UserExercising> exercises;
+
     public String getExerciseName(){
         return exerciseName;
     }
