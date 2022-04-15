@@ -1,13 +1,13 @@
-package com.example.mentalhealth;
+package com.example.mentalmicroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MentalHealthApplication {
+public class MentalMicroServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ExerciseAndMeditationApplication.class, args);
+        SpringApplication.run(MentalMicroServiceApplication.class, args);
     }
 
 }
