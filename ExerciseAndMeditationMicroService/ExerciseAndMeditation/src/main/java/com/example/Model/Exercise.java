@@ -1,8 +1,8 @@
-package com.example.model;
+package com.example.Model;
 import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "exercise")
@@ -33,6 +33,14 @@ public class Exercise {
 
     public void setExerciseType(String exerciseType){
         this.exerciseType = exerciseType;
+    }
+    
+    public int getMetabolicEquivalentScore(){
+        return metabolicEquivalentScore;
+    }
+    
+    public void setMetabolicEquivalentScore(int metabolicEquivalentScore){
+        this.metabolicEquivalentScore = metabolicEquivalentScore;
     }
 
     public Long getExerciseId(){

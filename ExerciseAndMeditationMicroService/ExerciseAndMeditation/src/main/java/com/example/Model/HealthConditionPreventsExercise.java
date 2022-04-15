@@ -1,5 +1,6 @@
-import com.example.model.User;
-import com.example.model.Exercise;
+package com.example.Model;
+import com.example.Model.Exercise;
+import com.example.Model.HealthCondition;
 import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
 

@@ -1,7 +1,6 @@
-package com.example.model;
+package com.example.Model;
 import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
