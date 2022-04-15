@@ -13,7 +13,7 @@ public class User {
     @Column(unique=true, nullable=false) private String email;
     @Column(nullable=false) private String passWord;
     @Column(nullable=false) private String school;
-    @Column(nullable=false) private int weight;
+    @Column(nullable=false) private double weight;
     @Column(nullable=false) private boolean authenticatedUser;
 
     @OneToMany(mappedBy = "user")
@@ -48,11 +48,11 @@ public class User {
         this.school = school;
     }
     
-    public int getWeight(){
+    public double getWeight(){
         return weight;
     }
     
-    public void setWeight(int weight){
+    public void setWeight(double weight){
         this.weight = weight;
     }
 
