@@ -9,7 +9,7 @@ import java.util.*;
 @Table(name = "student")
 @DataAmount @RequiredArgsConstructor
 public class Student {
-    private @Id @GeneratedValue Long userId;
+    private @Id @GeneratedValue Long studentId;
     @Column(unique=true, nullable=false) private String userName;
     @Column(unique=true, nullable=false) private String email;
     @Column(nullable=false) private String passWord;
@@ -39,8 +39,8 @@ public class Student {
         this.passWord = passWord;
     }
 
-    public Long getUserId(){
-        return userId;
+    public Long getStudentId(){
+        return studentId;
     }
 
     public boolean isAuthenticatedUser() {
