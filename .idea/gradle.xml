@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/ExerciseAndMeditationMicroService/ExerciseAndMeditation" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/ExerciseAndMeditationMicroService/ExerciseAndMeditation" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MentalhealthMicroService/MentalHealth" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/MentalhealthMicroService/MentalHealth" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/StudyHabitsMicroService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/StudyHabitsMicroService" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
