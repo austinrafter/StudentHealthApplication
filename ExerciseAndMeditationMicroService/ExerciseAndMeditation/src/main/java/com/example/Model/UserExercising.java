@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-class UserExercising {
+public class UserExercising {
 
     @Id
     Long userExercisingId;
