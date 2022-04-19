@@ -12,5 +12,4 @@ public interface UserMeditatingRepository extends JpaRepository<UserMeditating, 
     List<UserMeditating> getByStudent(Student student);
     List<UserMeditating> getByStudent(Meditation meditation);
 
-
 }
