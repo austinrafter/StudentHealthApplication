@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface StudentRepository extends JpaRepository{
+public interface StudentRepository extends JpaRepository<Student, Long>{
     List<Student> findByUsername(String userName);
     List<Student> findByEmail(String email);
+    Student getByStudentId(long studentId);
 }
