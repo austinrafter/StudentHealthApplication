@@ -7,11 +7,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "userexercise")
+@Table(name = "userexercising")
 public class UserExercising {
 
-    @Id
-    Long userExercisingId;
+    private @Id @GeneratedValue Long userExercisingId;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
@@ -21,15 +20,33 @@ public class UserExercising {
     @JoinColumn(name = "exercise_id")
     Exercise exercise;
 
+    @Column
     LocalDateTime startedAt;
+    @Column
     LocalDateTime endedAt;
+    @Column
+    double caloriesBurned;
 
-    int caloriesBurned;
+    public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt){
+        this.exercise = exercise;
+        this.student = student;
+        this.startedAt = startedAt;
+        this.endedAt = endedAt;
+    }
 
-    // additional properties
-    // standard constructors, getters, and setters
+    public UserExercising() {
 
-    public int getCaloriesBurned(){
+    }
+
+    public Exercise getExercise(){
+        return exercise;
+    }
+
+    public Student getStudent(){
+        return student;
+    }
+
+    public double getCaloriesBurned(){
         return caloriesBurned;
     }
 
@@ -51,5 +68,9 @@ public class UserExercising {
 
     public Long getUserExercisingId(){
         return userExercisingId;
+    }
+
+    public void setCaloriesBurned(double caloriesBurned){
+        this.caloriesBurned = caloriesBurned;
     }
 }

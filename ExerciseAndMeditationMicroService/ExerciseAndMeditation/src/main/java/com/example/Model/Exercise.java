@@ -12,7 +12,7 @@ public class Exercise {
     private @Id @GeneratedValue Long exerciseId;
     @Column(unique=true, nullable=false) private String exerciseName;
     @Column(nullable=false) private String exerciseType;
-    @Column(nullable=true) private int metabolicEquivalentScore;
+    @Column(nullable=true) private double metabolicEquivalentScore;
 
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
@@ -36,7 +36,7 @@ public class Exercise {
         this.exerciseType = exerciseType;
     }
     
-    public int getMetabolicEquivalentScore(){
+    public double getMetabolicEquivalentScore(){
         return metabolicEquivalentScore;
     }
     
