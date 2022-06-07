@@ -4,9 +4,9 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "usermeditating")
 public class UserMeditating {
-    @Id
-    Long userMeditatingId;
+    private @Id @GeneratedValue Long userMeditatingId;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
@@ -16,8 +16,22 @@ public class UserMeditating {
     @JoinColumn(name = "meditation_id")
     Meditation meditation;
 
+    @Column
     LocalDateTime startedAt;
+
+    @Column
     LocalDateTime endedAt;
+
+    public UserMeditating(Meditation meditation, Student student, LocalDateTime started, LocalDateTime ended){
+        this.meditation = meditation;
+        this.student = student;
+        this.startedAt = started;
+        this.endedAt = ended;
+    }
+
+    public UserMeditating() {
+
+    }
 
     public LocalDateTime getStartedAt() {
         return startedAt;

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ExerciseController {
 
     @PostMapping("/addtouser")
     public UserExercising addUserExercise(@RequestBody Exercise exercise, @RequestBody Student student, @RequestBody LocalDateTime start){
-        return userExercisingRepository.save(exercise, student, start, start);
+        return userExercisingRepository.save(new UserExercising(exercise, student, start, start));
     }
 
     @PutMapping("/update/{id}")
@@ -48,9 +49,17 @@ public class ExerciseController {
         boolean exist = userExercisingRepository.existsById(id);
         if(exist){
             UserExercising userExercising = userExercisingRepository.getById(id);
+            Exercise exercise = userExercising.getExercise();
+            Student student = userExercising.getStudent();
+            double metabolicEquivalentScore = exercise.getMetabolicEquivalentScore();
+            double studentWeight = student.getWeight();
+            double weightInKilograms = studentWeight * 0.453592;
+            double caloriesBurned = (metabolicEquivalentScore * 3.5 * weightInKilograms) / 200;
+            userExercising.setCaloriesBurned(caloriesBurned);
             userExercising.setEndedAt(ended);
             userExercisingRepository.save(userExercising);
-            return new ResponseEntity<>("Finished the exercise", HttpStatus.OK);
+            Duration totalTime = Duration.between(userExercising.getStartedAt(),userExercising.getEndedAt());
+            return new ResponseEntity<>("Calories burned for " + totalTime + " minutes exercised: " + caloriesBurned, HttpStatus.OK);
         }
         return new ResponseEntity<>("Did not begin an exercise", HttpStatus.BAD_REQUEST);
     }
