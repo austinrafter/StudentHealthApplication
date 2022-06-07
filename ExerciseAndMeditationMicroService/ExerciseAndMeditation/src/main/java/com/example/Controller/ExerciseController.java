@@ -1,8 +1,7 @@
 package com.example.Controller;
-package com.example.Model;
-package com.example.Repository;
 
 import com.example.Model.Exercise;
+import com.example.Model.Student;
 import com.example.Model.UserExercising;
 import com.example.Repository.ExerciseRepository;
 import com.example.Repository.UserExercisingRepository;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,25 +34,23 @@ public class ExerciseController {
     }
 
     @PostMapping("/add")
-    public Exercise addExercise(@Valid @RequestBody Exercise exercise){
+    public Exercise addExercise(@RequestBody Exercise exercise){
         return exerciseRepository.save(exercise);
     }
 
     @PostMapping("/addtouser")
-    public UserExercising addUserExercise(@Valid @RequestBody Exercise exercise, @Valid @RequestBody Student student, @Valid @RequestBody LocalDateTime start){
-        return exerciseRepository.save(exercise, student, start);
+    public UserExercising addUserExercise(@RequestBody Exercise exercise, @RequestBody Student student, @RequestBody LocalDateTime start){
+        return userExercisingRepository.save(exercise, student, start, start);
     }
 
-
-
     @PutMapping("/update/{id}")
-    public ResponseEntity updateTask(@PathVariable Long id, @PathVariable LocalDateTime ended){
+    public ResponseEntity updateExerciseForUser(@PathVariable Long id, @PathVariable LocalDateTime ended){
         boolean exist = userExercisingRepository.existsById(id);
         if(exist){
             UserExercising userExercising = userExercisingRepository.getById(id);
             userExercising.setEndedAt(ended);
             userExercisingRepository.save(userExercising);
-            return new ResponseEntity<>("Finished the exercise, HttpStatus.OK);
+            return new ResponseEntity<>("Finished the exercise", HttpStatus.OK);
         }
         return new ResponseEntity<>("Did not begin an exercise", HttpStatus.BAD_REQUEST);
     }

@@ -11,7 +11,7 @@ sourceCompatibility = '17'
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
-        //'javax.persistence:javax.persistence-api:2.2'
+        'javax.persistence:javax.persistence-api:2.2'
     }
 }
 
