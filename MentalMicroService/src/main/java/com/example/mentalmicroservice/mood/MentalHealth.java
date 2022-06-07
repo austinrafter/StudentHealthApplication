@@ -3,21 +3,20 @@ package com.example.mentalmicroservice;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @RequiredArgsConstructor
 @Entity
+@Table(name = "MENTAL_HEALTH")
 public class MentalHealth {
 
-    /**
-     *
-     */
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Long id;
+
+    private String mood;
+    private String date;
+
 
 }
