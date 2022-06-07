@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserExercisingRepository extends JpaRepository<UserExercising, Long> {
 
-    UserExercising getByUserExercisingId(long userExercsisingId);
+    UserExercising getByUserExercisingId(long userExercisingId);
 
     List<UserExercising> getByStudent(Student student);
 
