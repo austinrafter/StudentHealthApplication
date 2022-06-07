@@ -1,11 +1,13 @@
 package com.example.Model;
+
 import jdk.jfr.DataAmount;
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "userexercise")
 public class UserExercising {
 
     @Id

@@ -1,12 +1,13 @@
 package com.example.Model;
 import jdk.jfr.DataAmount;
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "exercise")
-@DataAmount @RequiredArgsConstructor
+@DataAmount
+//@RequiredArgsConstructor
 public class Exercise {
     private @Id @GeneratedValue Long exerciseId;
     @Column(unique=true, nullable=false) private String exerciseName;
