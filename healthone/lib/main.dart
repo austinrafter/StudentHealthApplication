@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/mental_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,105 +12,118 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'HealthOne',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.deepPurple,
+      primarySwatch: Colors.teal,
       ),
-      home: const MyHomePage(title: 'Test Home Page'),
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class HomePage extends StatefulWidget{
+  
+ HomePage({Key? key}) : super(key: key);
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomePageState extends State<HomePage>{
+int currentIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+final screens = [
+  Center(child: Text('Physical', style: TextStyle(fontSize:50))),
+  MentalPage(),
+  Center(child: Text('Study', style: TextStyle(fontSize:50))),
+  Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
+  Center(child: Text('Profile', style: TextStyle(fontSize:50))),
+];
+final HomeBG bg = new HomeBG();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      backgroundColor: Colors.teal[900],
+
+      //Can't figure out how to add gradient, need to use body for bottom nav bar
+      
+    //Code tutorial for gradient bg credit: https://www.digitalocean.com/community/tutorials/flutter-flutter-gradient
+    //https://api.flutter.dev/flutter/painting/LinearGradient-class.html
+
+      // appBar: AppBar(
+        // backgroundColor: Colors.teal,
+        // title: Center(
+        //   child: Text('HealthOne'),
+        //   ),
+      // ),
+
+      // body: Container(
+        // child: Container(
+        //   decoration: BoxDecoration(
+        //     gradient: LinearGradient(
+        //       begin: Alignment(-1, -1),
+        //       end: Alignment(0.8, 1),
+        //       colors: [
+        //         Colors.teal[900]!,
+        //         Colors.green[300]!,
+        //       ],
+        //       tileMode: TileMode.mirror,
+        //     )
+        //   ),
+        // ),
+      // ),
+
+      body: screens[currentIndex],
+      //Code tutorial for navbar selection: https://www.youtube.com/watch?v=xoKqQjSDZ60&ab_channel=JohannesMilke
+      //https://www.youtube.com/watch?v=elLkVWt7gRM&ab_channel=ProgrammingAddict
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
+        items: const[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Physical",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.balance_outlined),
+            label: "Mental",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Study",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books_outlined),
+            label: "Analysis",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: "Profile",
+          ),
+        ],
+      ),
+    );
   }
+}
+
+class HomeBG extends StatelessWidget{
+    const HomeBG({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        begin: Alignment(-1, -1),
+        end: Alignment(0.8, 1),
+        colors: [
+          Colors.teal[900]!,
+          Colors.green[300]!,
+        ],
+        tileMode: TileMode.mirror,
+        )
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -31,10 +31,11 @@ public class MentalController {
             mental.setDay(mentalHealth.getDay());
             mental.setMonth(mentalHealth.getMonth());
             mental.setMood(mentalHealth.getMood());
+            mental.setCause(mentalHealth.getCause());
             repo.save(mental);
             return "Updated Mood";
         }
-        return "Updated";
+        return "Not updated";
     }
 
     @DeleteMapping("/delete/{id}")
@@ -44,6 +45,6 @@ public class MentalController {
             repo.deleteById(id);
             return "Mood Deleted";
         }
-        return "Deleted";
+        return "Not deleted";
     }
 }
