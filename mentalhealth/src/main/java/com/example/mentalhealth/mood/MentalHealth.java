@@ -15,7 +15,10 @@ public class MentalHealth {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String userName;
+
+    //Values: Sad, Neutral, Happy
     private String mood;
+    
     private String month;
     private String year;
     private String day;
