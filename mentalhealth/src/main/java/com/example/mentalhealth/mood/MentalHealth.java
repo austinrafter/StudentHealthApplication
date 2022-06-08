@@ -19,5 +19,4 @@ public class MentalHealth {
     private String month;
     private String year;
     private String day;
-    private String cause;
 }
