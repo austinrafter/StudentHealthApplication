@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class MeditationController {
             UserMeditating userMeditating = userMeditatingRepository.getById(id);
             userMeditating.setEndedAt(ended);
             userMeditatingRepository.save(userMeditating);
-            return new ResponseEntity<>("Finished the exercise", HttpStatus.OK);
+            Duration totalTime = Duration.between(userMeditating.getStartedAt(),userMeditating.getEndedAt());
+            return new ResponseEntity<>("Finished meditating for " + totalTime + " minutes.", HttpStatus.OK);
         }
         return new ResponseEntity<>("Did not begin an exercise", HttpStatus.BAD_REQUEST);
     }
