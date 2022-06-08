@@ -11,7 +11,7 @@ class PhysicalPage extends StatelessWidget{
 
       appBar: AppBar(
         title: const Text("Physical Health Page"),
-      ),
+      ),  
 
       body: Container(
     padding: EdgeInsets.fromLTRB(10,10,10,0),
