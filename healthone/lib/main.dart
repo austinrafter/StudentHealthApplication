@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/mental_page.dart';
+import 'pages/physical_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage>{
 int currentIndex = 0;
 
 final screens = [
-  Center(child: Text('Physical', style: TextStyle(fontSize:50))),
+  PhysicalPage(),
   MentalPage(),
   Center(child: Text('Study', style: TextStyle(fontSize:50))),
   Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
@@ -82,7 +83,7 @@ final HomeBG bg = new HomeBG();
         onTap: (index) => setState(() => currentIndex = index),
         items: const[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.accessibility),
             label: "Physical",
           ),
           BottomNavigationBarItem(
