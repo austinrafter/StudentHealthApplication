@@ -34,6 +34,11 @@ public class ExerciseController {
         return userExercisingRepository.findAll();
     }
 
+    @GetMapping("/getTest")
+    public String getTest(){
+        return "Connected";
+    }
+
     @PostMapping("/add")
     public Exercise addExercise(@RequestBody Exercise exercise){
         return exerciseRepository.save(exercise);
