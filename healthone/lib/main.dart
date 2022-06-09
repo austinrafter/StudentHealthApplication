@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/mental_page.dart';
+import 'mentalhealth_folder/mental_page.dart';
 import 'pages/physical_page.dart';
 
 void main() {
@@ -39,7 +39,7 @@ final screens = [
   Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
   Center(child: Text('Profile', style: TextStyle(fontSize:50))),
 ];
-final HomeBG bg = new HomeBG();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,23 +108,23 @@ final HomeBG bg = new HomeBG();
   }
 }
 
-class HomeBG extends StatelessWidget{
-    const HomeBG({Key? key}) : super(key: key);
+// class HomeBG extends StatelessWidget{
+//     const HomeBG({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-        gradient: LinearGradient(
-        begin: Alignment(-1, -1),
-        end: Alignment(0.8, 1),
-        colors: [
-          Colors.teal[900]!,
-          Colors.green[300]!,
-        ],
-        tileMode: TileMode.mirror,
-        )
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         decoration: BoxDecoration(
+//         gradient: LinearGradient(
+//         begin: Alignment(-1, -1),
+//         end: Alignment(0.8, 1),
+//         colors: [
+//           Colors.teal[900]!,
+//           Colors.green[300]!,
+//         ],
+//         tileMode: TileMode.mirror,
+//         )
+//       ),
+//     );
+//   }
+// }

@@ -1,4 +1,4 @@
-# CMPE195A/E: Senior Project Health One Code Citation
+# CMPE195A/E: Senior Project HealthOne Code Citation
 
 ## Sophia Yuan
 ### Main.dart

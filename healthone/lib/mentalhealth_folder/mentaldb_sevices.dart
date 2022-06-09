@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:healthone/mentalhealth_folder/mood.dart';
 
-import 'global.dart';
+import 'mentalglobal.dart';
 
 class DBServices{
   static Future<Mood> addMood(String userName, String mood, String month, String day, String year) async{
