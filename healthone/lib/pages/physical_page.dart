@@ -169,7 +169,7 @@ Widget PhysicalItemPageName(data) {
       text: TextSpan(
         text: '${data['name']}',
         style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 40),
       ),
     ),
   );
