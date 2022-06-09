@@ -104,54 +104,6 @@ class PhysicalPage extends StatelessWidget{
                 },
               ),
             ),
-            /*
-    GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ExerciseTypePage()),
-        );
-      },
-          child:Card(
-            color: Colors.teal[700],
-              child: Stack(
-                children: <Widget>[
-                  Center(
-                  child: Container(
-                    width: 200,
-                    height: 500,
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.topCenter,
-                        colors: <Color>[
-                          Colors.black.withAlpha(0),
-                          Colors.black12,
-                          Colors.black45
-                        ],
-                      ),
-                    ),
-                    child: const Text(
-                      'Exercise',
-                      style: TextStyle(color: Colors.white, fontSize: 40.0),
-                    ),
-
-
-                  ),
-      ),
-                ],
-              ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 5,
-      margin: EdgeInsets.all(10),
-      ),
-    ),
-
-             */
             ],
       ),
 

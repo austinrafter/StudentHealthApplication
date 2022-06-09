@@ -24,12 +24,12 @@ public class ExerciseController {
     @Autowired
     private UserExercisingRepository userExercisingRepository;
 
-    @GetMapping
+    @GetMapping("/getExercises")
     public List<Exercise> getExercises(){
         return exerciseRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/getUserExercises")
     public List<UserExercising> getUserExercises(){
         return userExercisingRepository.findAll();
     }
