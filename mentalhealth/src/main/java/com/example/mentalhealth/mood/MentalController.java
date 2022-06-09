@@ -12,17 +12,17 @@ public class MentalController {
     @Autowired
     private MentalRepository repo;
 
-    @PostMapping("/update")
-    public MentalHealth updateMood(@RequestBody MentalHealth mentalHealth){
+    @PostMapping("/updatemood")
+    public MentalHealth addMood(@RequestBody MentalHealth mentalHealth){
         return repo.save(mentalHealth);
     }
 
-    @GetMapping("/data")
-    public List<MentalHealth> getMental(){
+    @GetMapping("/datamood")
+    public List<MentalHealth> getMood(){
         return repo.findAll();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/updatemood/{id}")
     public String updateMood(@PathVariable int id, @RequestBody MentalHealth mentalHealth){
         boolean exist = repo.existsById(id);
         if(exist){
@@ -37,7 +37,7 @@ public class MentalController {
         return "Not updated";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deletemood/{id}")
     public String deleteMood(@PathVariable int id){
         boolean exist = repo.existsById(id);
         if(exist){
