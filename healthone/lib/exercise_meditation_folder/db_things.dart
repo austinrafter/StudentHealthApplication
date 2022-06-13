@@ -6,11 +6,11 @@ import 'meditation.dart';
 
 
 class DbThings{
-  static Future<Exercise> addExercise(String exerciseName, String exerciseType, double metabolicEquivalentScore) async{
+  static Future<Exercise> addExercise(String exercise_name, String exercise_type, double metabolic_equivalent_score) async{
     Map data = {
-      "exerciseName" : exerciseName,
-      "exerciseType" : exerciseType,
-      "metabolicEquivalentScore" : metabolicEquivalentScore,
+      "exercise_name" : exercise_name,
+      "exercise_type" : exercise_type,
+      "metabolic_equivalent_score" : metabolic_equivalent_score,
     };
 
     var body = json.encode(data);
