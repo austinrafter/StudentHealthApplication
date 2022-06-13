@@ -6,6 +6,30 @@
       <excludeFolder url="file://$MODULE_DIR$/healthone/build" />
       <excludeFolder url="file://$MODULE_DIR$/healthone/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/healthone/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/.dart_tool" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
