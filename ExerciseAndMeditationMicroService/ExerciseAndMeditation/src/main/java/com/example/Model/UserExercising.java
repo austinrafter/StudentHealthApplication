@@ -1,6 +1,5 @@
 package com.example.Model;
 
-import jdk.jfr.DataAmount;
 //import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -21,17 +20,17 @@ public class UserExercising {
     Exercise exercise;
 
     @Column
-    LocalDateTime startedAt;
+    LocalDateTime started_at;
     @Column
-    LocalDateTime endedAt;
+    LocalDateTime ended_at;
     @Column
-    double caloriesBurned;
+    double calories_burned;
 
     public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt){
         this.exercise = exercise;
         this.student = student;
-        this.startedAt = startedAt;
-        this.endedAt = endedAt;
+        this.started_at = startedAt;
+        this.ended_at = endedAt;
     }
 
     public UserExercising() {
@@ -46,31 +45,31 @@ public class UserExercising {
         return student;
     }
 
-    public double getCaloriesBurned(){
-        return caloriesBurned;
+    public double getCalories_burned(){
+        return calories_burned;
     }
 
-    public LocalDateTime getStartedAt() {
-        return startedAt;
+    public LocalDateTime getStarted_at() {
+        return started_at;
     }
 
-    public void setStartedAt(LocalDateTime startedAt){
-        this.startedAt = startedAt;
+    public void setStarted_at(LocalDateTime startedAt){
+        this.started_at = startedAt;
     }
 
-    public LocalDateTime getEndedAt() {
-        return endedAt;
+    public LocalDateTime getEnded_at() {
+        return ended_at;
     }
 
-    public void setEndedAt(LocalDateTime endedAt){
-        this.endedAt = endedAt;
+    public void setEnded_at(LocalDateTime endedAt){
+        this.ended_at = endedAt;
     }
 
     public Long getUserExercisingId(){
         return userExercisingId;
     }
 
-    public void setCaloriesBurned(double caloriesBurned){
-        this.caloriesBurned = caloriesBurned;
+    public void setCalories_burned(double caloriesBurned){
+        this.calories_burned = caloriesBurned;
     }
 }

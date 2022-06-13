@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface UserExercisingRepository extends JpaRepository<UserExercising, Long> {
 
-    UserExercising getByUserExercisingId(long userExercisingId);
+    //UserExercising getByUserExercisingId(long userExercisingId);
 
-    List<UserExercising> getByStudent(Student student);
+    //List<UserExercising> getByStudent(Student student);
 
-    List<UserExercising> getByExercise(Exercise exercise);
+    //List<UserExercising> getByExercise(Exercise exercise);
 }

@@ -10,42 +10,37 @@ import java.util.*;
 @DataAmount
 //@RequiredArgsConstructor
 public class Student {
-    private @Id @GeneratedValue Long studentId;
-    @Column(unique=true, nullable=false) private String userName;
+    private @Id @GeneratedValue Long student_id;
+    @Column(unique=true, nullable=false) private String user_name;
     @Column(unique=true, nullable=false) private String email;
-    @Column(nullable=false) private String passWord;
+    @Column(nullable=false) private String pass_word;
     @Column(nullable=false) private String school;
     @Column(nullable=false) private double weight;
-    @Column(nullable=false) private boolean authenticatedUser;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "student")
     Set<UserExercising> exercises;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "student")
     Set<UserMeditating> meditations;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "student")
     Set<UserHavingHealthCondition> healthConditions;
 
 
-    public String getUserName(){
-        return userName;
+    public String getUser_name(){
+        return user_name;
     }
 
-    public String getPassWord(){
-        return passWord;
+    public String getPass_word(){
+        return pass_word;
     }
 
-    public void setPassWord(String passWord){
-        this.passWord = passWord;
+    public void setPass_word(String passWord){
+        this.pass_word = passWord;
     }
 
-    public Long getStudentId(){
-        return studentId;
-    }
-
-    public boolean isAuthenticatedUser() {
-        return authenticatedUser;
+    public Long getStudent_id(){
+        return student_id;
     }
 
     public String getSchool(){
@@ -64,7 +59,4 @@ public class Student {
         this.weight = weight;
     }
 
-    public void setAuthenticatedUser(Boolean authenticatedUser){
-        this.authenticatedUser = authenticatedUser;
-    }
 }

@@ -56,14 +56,14 @@ public class ExerciseController {
             UserExercising userExercising = userExercisingRepository.getById(id);
             Exercise exercise = userExercising.getExercise();
             Student student = userExercising.getStudent();
-            double metabolicEquivalentScore = exercise.getMetabolicEquivalentScore();
+            double metabolicEquivalentScore = exercise.getMetabolic_equivalent_score();
             double studentWeight = student.getWeight();
             double weightInKilograms = studentWeight * 0.453592;
             double caloriesBurned = (metabolicEquivalentScore * 3.5 * weightInKilograms) / 200;
-            userExercising.setCaloriesBurned(caloriesBurned);
-            userExercising.setEndedAt(ended);
+            userExercising.setCalories_burned(caloriesBurned);
+            userExercising.setEnded_at(ended);
             userExercisingRepository.save(userExercising);
-            Duration totalTime = Duration.between(userExercising.getStartedAt(),userExercising.getEndedAt());
+            Duration totalTime = Duration.between(userExercising.getStarted_at(),userExercising.getEnded_at());
             return new ResponseEntity<>("Calories burned for " + totalTime + " minutes exercised: " + caloriesBurned, HttpStatus.OK);
         }
         return new ResponseEntity<>("Did not begin an exercise", HttpStatus.BAD_REQUEST);

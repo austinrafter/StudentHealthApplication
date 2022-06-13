@@ -13,10 +13,10 @@ class ExerciseTile extends StatelessWidget{
   return Card(
       child: ListTile(
       title: Text(
-      exercise.exerciseName,
+      exercise.exercise_name,
       ),
       trailing: Text(
-      exercise.exerciseType,
+      exercise.exercise_type,
       ),
       ),
       );

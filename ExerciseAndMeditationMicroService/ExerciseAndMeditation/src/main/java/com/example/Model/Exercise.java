@@ -5,14 +5,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "exercise")
+@Table(name = "exercise", schema ="StudentHealth")
 @DataAmount
 //@RequiredArgsConstructor
 public class Exercise {
-    private @Id @GeneratedValue Long exerciseId;
-    @Column(unique=true, nullable=false) private String exerciseName;
-    @Column(nullable=false) private String exerciseType;
-    @Column(nullable=true) private double metabolicEquivalentScore;
+    @Id @GeneratedValue @Column(name = "exercise_id")private Long exercise_id;
+    @Column(name = "exercise_name",unique=true, nullable=false) private String exercise_name;
+    @Column(name = "exercise_type",nullable=false) private String exercise_type;
+    @Column(name = "metabolic_equivalent_score",nullable=false) private double metabolic_equivalent_score;
 
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
@@ -20,32 +20,32 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     Set<HealthConditionPreventsExercise> healthConditionPreventsExerciseSet;
 
-    public String getExerciseName(){
-        return exerciseName;
+    public String getExercise_name(){
+        return exercise_name;
     }
     
-    public void setExerciseName(String exerciseName){
-        this.exerciseName = exerciseName;
+    public void setExercise_name(String exerciseName){
+        this.exercise_name = exerciseName;
     }
 
-    public String getExerciseType(){
-        return exerciseType;
+    public String getExercise_type(){
+        return exercise_type;
     }
 
-    public void setExerciseType(String exerciseType){
-        this.exerciseType = exerciseType;
+    public void setExercise_type(String exerciseType){
+        this.exercise_type = exerciseType;
     }
     
-    public double getMetabolicEquivalentScore(){
-        return metabolicEquivalentScore;
+    public double getMetabolic_equivalent_score(){
+        return metabolic_equivalent_score;
     }
     
-    public void setMetabolicEquivalentScore(int metabolicEquivalentScore){
-        this.metabolicEquivalentScore = metabolicEquivalentScore;
+    public void setMetabolic_equivalent_score(int metabolicEquivalentScore){
+        this.metabolic_equivalent_score = metabolicEquivalentScore;
     }
 
-    public Long getExerciseId(){
-        return exerciseId;
+    public Long getExercise_id(){
+        return exercise_id;
     }
 
 }

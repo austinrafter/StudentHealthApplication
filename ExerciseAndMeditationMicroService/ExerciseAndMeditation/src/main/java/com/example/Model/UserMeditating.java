@@ -17,36 +17,36 @@ public class UserMeditating {
     Meditation meditation;
 
     @Column
-    LocalDateTime startedAt;
+    LocalDateTime started_at;
 
     @Column
-    LocalDateTime endedAt;
+    LocalDateTime ended_at;
 
     public UserMeditating(Meditation meditation, Student student, LocalDateTime started, LocalDateTime ended){
         this.meditation = meditation;
         this.student = student;
-        this.startedAt = started;
-        this.endedAt = ended;
+        this.started_at = started;
+        this.ended_at = ended;
     }
 
     public UserMeditating() {
 
     }
 
-    public LocalDateTime getStartedAt() {
-        return startedAt;
+    public LocalDateTime getStarted_at() {
+        return started_at;
     }
 
-    public void setStartedAt(LocalDateTime startedAt){
-        this.startedAt = startedAt;
+    public void setStarted_at(LocalDateTime startedAt){
+        this.started_at = startedAt;
     }
 
-    public LocalDateTime getEndedAt() {
-        return endedAt;
+    public LocalDateTime getEnded_at() {
+        return ended_at;
     }
 
-    public void setEndedAt(LocalDateTime endedAt){
-        this.endedAt = endedAt;
+    public void setEnded_at(LocalDateTime endedAt){
+        this.ended_at = endedAt;
     }
 
     public Long getUserMeditatingId(){

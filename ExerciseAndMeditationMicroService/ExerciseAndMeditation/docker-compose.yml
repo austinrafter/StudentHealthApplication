@@ -1,9 +1,25 @@
-version: '3'
-
+version: "3"
 services:
-  docker-mysql:
-    image: mysql:latest
+  exerciseandmeditation:
+    image: exerciseandmeditation
+    ports:
+      - "8080:8080"
+    networks:
+      - exerciseandmeditation-mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=test
-      - MYSQL_PASSWORD=root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/StudentHealth?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:latest
+    networks:
+      - exerciseandmeditation-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=thisismypassword
+      - MYSQL_DATABASE=StudentHealth
+    volumes:
+      - "./init:/docker-entrypoint-initdb.d"
+
+networks:
+  exerciseandmeditation-mysql:

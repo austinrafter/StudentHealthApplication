@@ -22,12 +22,12 @@ public class MeditationController {
     @Autowired
     private UserMeditatingRepository userMeditatingRepository;
 
-    @GetMapping
+    @GetMapping("/getMeditations")
     public List<Meditation> getMeditations(){
         return meditationRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/getUserMeditations")
     public List<UserMeditating> getUserMeditations(){
         return userMeditatingRepository.findAll();
     }
@@ -47,9 +47,9 @@ public class MeditationController {
         boolean exist = userMeditatingRepository.existsById(id);
         if(exist){
             UserMeditating userMeditating = userMeditatingRepository.getById(id);
-            userMeditating.setEndedAt(ended);
+            userMeditating.setEnded_at(ended);
             userMeditatingRepository.save(userMeditating);
-            Duration totalTime = Duration.between(userMeditating.getStartedAt(),userMeditating.getEndedAt());
+            Duration totalTime = Duration.between(userMeditating.getStarted_at(),userMeditating.getEnded_at());
             return new ResponseEntity<>("Finished meditating for " + totalTime + " minutes.", HttpStatus.OK);
         }
         return new ResponseEntity<>("Did not begin an exercise", HttpStatus.BAD_REQUEST);
