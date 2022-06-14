@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'exercise_type_page.dart';
+import 'nutrition_page.dart';
+import 'sleep_page.dart';
+import 'meditation_type_page.dart';
 
 import 'physical_page_data.dart';
 
 class PhysicalPage extends StatelessWidget{
  var physicalData = PhysicalData.getData;
   //const PhysicalPage({Key? key}) : super(key: key);
+
+ final pages = [
+   ExerciseTypePage(),
+   MeditationTypePage(),
+   SleepPage(),
+   NutritionPage(),
+ ];
 
   // This widget is the root of your application.
   @override
@@ -49,7 +59,7 @@ class PhysicalPage extends StatelessWidget{
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  const ExerciseTypePage()),
+                              MaterialPageRoute(builder: (context) =>  pages[index]),
                             );
                           },
                           child:Card(

@@ -46,4 +46,45 @@ class DbThings{
     }
     return exercises;
   }
+
+  static Future<List<Meditation>> getMeditations() async{
+    var getMeditationsUrl = Uri.parse(meditationUrl + '/getMeditations');
+
+    http.Response response = await http.get(
+      getMeditationsUrl,
+      headers: headers,
+    );
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<Meditation> meditations = [];
+    for(Map meditationMap in responseList){
+      Meditation meditation = Meditation.fromMap(meditationMap);
+      meditations.add(meditation);
+    }
+    return meditations;
+  }
+
+  static Future<Meditation> addMeditation(String meditation_name, String meditation_type) async{
+    Map data = {
+      "meditation_name" : meditation_name,
+      "meditation_type" : meditation_type,
+    };
+
+    var body = json.encode(data);
+    var addMeditationUrl = Uri.parse(meditationUrl + '/addmeditation');
+
+    http.Response response = await http.post(
+        addMeditationUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    Meditation meditation = Meditation.fromMap(responseMap);
+
+    return meditation;
+  }
+
 }
