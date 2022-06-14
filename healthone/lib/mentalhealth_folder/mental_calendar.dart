@@ -131,7 +131,7 @@ class _CalendarState extends State<Calendar> {
                 child: Text("Ok"),
                 onPressed: () {
                   print("==========ADD HERE============");
-                  MentalData().addMood('userName', 'mood', 'month', 'year', 'day');
+                  MentalData().addMood('tempUserName', _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
                   print("==========FINISHED ADDING============");
                   if (_eventController.text.isEmpty) {
 
