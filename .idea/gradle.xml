@@ -4,6 +4,7 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/ExerciseAndMeditationMicroService/ExerciseAndMeditation" />
         <option name="modules">
@@ -13,6 +14,7 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/MentalhealthMicroService/MentalHealth" />
         <option name="modules">
@@ -22,6 +24,7 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/StudyHabitsMicroService" />
         <option name="modules">

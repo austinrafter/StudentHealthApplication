@@ -12,11 +12,12 @@ class ExerciseTile extends StatelessWidget{
   Widget build(BuildContext context){
   return Card(
       child: ListTile(
+        leading: Text(exercise.exercise_type,),
       title: Text(
       exercise.exercise_name,
       ),
       trailing: Text(
-      exercise.exercise_type,
+      exercise.metabolic_equivalent_score.toString(),
       ),
       ),
       );

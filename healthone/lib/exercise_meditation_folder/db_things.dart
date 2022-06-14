@@ -34,10 +34,11 @@ class DbThings{
 
     http.Response response = await http.get(
       getExerciseUrl,
-      headers: headers
+      headers: headers,
     );
 
     List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
     List<Exercise> exercises = [];
     for(Map exerciseMap in responseList){
       Exercise exercise = Exercise.fromMap(exerciseMap);
