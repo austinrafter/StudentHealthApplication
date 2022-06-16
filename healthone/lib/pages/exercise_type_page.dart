@@ -4,6 +4,7 @@ import '../exercise_meditation_folder/print_exercises.dart';
 import '../exercise_meditation_folder/exercise_tile.dart';
 import '../exercise_meditation_folder/exercise.dart';
 import '../exercise_meditation_folder/exercise_data.dart';
+import '../exercise_meditation_folder/exercise_for_given_time.dart';
 
 
 
@@ -21,7 +22,7 @@ class ExerciseTypePage extends StatelessWidget {
           primaryColor: Colors.teal[400],
         ),
         debugShowCheckedModeBanner: false,
-        home: PrintExercises(),
+        home: ExerciseCountdown(),
       ),
 
     );

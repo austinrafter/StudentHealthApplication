@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'dart:async';
+import 'dart:io';
 
 
 class PerformMeditation extends StatefulWidget{
@@ -20,6 +22,8 @@ class _PerformMeditationState extends State<PerformMeditation>{
   void initState(){
     super.initState();
 
+    setAudio();
+
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState((){
         isPlaying = state == PlayerState.PLAYING;
@@ -31,6 +35,17 @@ class _PerformMeditationState extends State<PerformMeditation>{
         duration = newDuration;
       });
     });
+  }
+
+  Future setAudio() async{
+    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+
+    //String url = 'https://soundcloud.com/futureisnow/future-feat-drake-tems-wait?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
+    final url = File('../exercise_meditation_folder/assets/Moria - Suffer.mp3');
+    //audioPlayer.setUrl(url);
+    //final player = AudioCache(prefix:'../healthone/lib/exercise_meditation_folder/assets');
+    //final url = await player.load('Moria - Suffer.mp3');
+    audioPlayer.setUrl(url.path, isLocal: true);
   }
 
   @override
@@ -49,7 +64,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                  'https://unsplash.com/s/photos/meditation',
+                  'https://neurosciencenews.com/files/2021/11/organsmic-meditation-brain-function-neuroscineces-public.jpg',
               width: double.infinity,
               height: 350,
               //fit: Boxfit.cover
@@ -75,7 +90,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
       final position = Duration(seconds: value.toInt());
       await audioPlayer.seek(position);
 
-      await audioPlayer.resume();
+      //await audioPlayer.resume();
     },
     ),//slider
     Padding(
@@ -105,8 +120,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
         await audioPlayer.pause();
     }
       else{
-        String url = 'https://soundcloud.com/futureisnow/future-feat-drake-tems-wait?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
-        await audioPlayer.play(url);
+        await audioPlayer.resume();
     }
     },//onPressed
     ),//Iconbutton
