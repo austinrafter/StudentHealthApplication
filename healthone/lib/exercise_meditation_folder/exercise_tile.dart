@@ -14,19 +14,15 @@ class ExerciseTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-  return ElevatedButton(
+  return Container(
+    child: ElevatedButton(
       onPressed: () {
         // When the user taps the button, navigate
         // to a named route and provide the arguments
         // as an optional parameter.
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          ExerciseTimerPage.routeName,
-          arguments: CountdownArguments(
-            exercise,
-            exercise.exercise_name,
-            exercise.exercise_type,
-          ),
+          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercise_name:exercise.exercise_name, exercise_type:exercise.exercise_type),),
         );
       },
     child: Card(
@@ -41,7 +37,8 @@ class ExerciseTile extends StatelessWidget{
       ),//Text
       ),//ListTile
       ),//Card
-  );//ElevatedButton
+  ),//ElevatedButton
+  );//Container
   }
 }
 

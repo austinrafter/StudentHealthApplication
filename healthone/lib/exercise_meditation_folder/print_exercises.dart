@@ -39,7 +39,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
         :Scaffold(
       appBar: AppBar(
         title: Text(
-          '(${Provider.of<ExerciseData>(context).exercises.length}) exercises to choose from',
+          '${Provider.of<ExerciseData>(context).exercises.length} exercises to choose from',
         ),
         centerTitle: true,
       ),
