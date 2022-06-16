@@ -68,8 +68,8 @@ class _ExerciseTypePageState extends State<PrintExercises>{
 
                 context: context,
                 builder: (ctx) => AlertDialog(
-                  title: Text("Metabolic Equivalent Score"),
-                  content: Text("We use this to determine the calories you burn with each exercise. The higher the MES the more calories you burn per minute."),
+                  title: Text("Metabolic Equivalent"),
+                  content: Text("Metabolic Equivalent is the oxygyen consumed in your body while performing an exercise. We use this to determine the calories you burn with each exercise. The higher the MET's the more calories you burn per minute."),
                   actions: <Widget>[
                     FlatButton(
                       onPressed: () {
@@ -80,7 +80,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                   ],//actions
                 ),//AlertDialog
               ),//onPressed
-              child: const Text('What is MES?', style: TextStyle(fontSize: 20)),
+              child: const Text('What is MET?', style: TextStyle(fontSize: 20)),
               color: Colors.blue,
               textColor: Colors.white,
               elevation: 5,

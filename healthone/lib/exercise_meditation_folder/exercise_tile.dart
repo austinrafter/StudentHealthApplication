@@ -40,10 +40,11 @@ class ExerciseTile extends StatelessWidget{
       ),//Text
         subtitle: Text(exercise.exercise_type,),
       trailing: Text(
-      'MES\n${exercise.metabolic_equivalent_score.toString()}',
+      'MET\n${exercise.metabolic_equivalent_score.toString()}',
         style: const TextStyle(
             fontStyle: FontStyle.italic,
-            fontSize: 18),
+            fontSize: 18
+        ),//TextStyle
       ),//Text
       ),//ListTile
       ),//Card
@@ -51,9 +52,9 @@ class ExerciseTile extends StatelessWidget{
     ),//Stack
   ),//ElevatedButton
   );//Container
-  }
+  }//build
 
-}
+}//class
 
 
 class CountdownArguments{
