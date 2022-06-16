@@ -88,46 +88,47 @@ class PhysicalPage extends StatelessWidget{
                                         Row(
                                           children: <Widget>[
                                             PhysicalItemPageName(physicalData[index]),
-                                          ]
-                                        )
-                                      ]
+                                          ]//children
+                                        )//Row
+                                      ]//children
 
 
-                                    ),
+                                    ),//Column
 
 
-                                  ),
-                                ),
-                              ],
-                            ),
+                                  ),//Container
+                                ),//Center
+                              ],//children
+                            ),//Stack
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
-                            ),
+                            ),//RoundedRectandleBorder
                             elevation: 5,
                             margin: EdgeInsets.all(10),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  );
-                },
-              ),
-            ),
-            ],
-      ),
+                          ),//child: Card
+                        ),//child: GestureDetector
+                      ),// child: Padding
+                    ),//child: Container
+                  ),//child: Card
+                  );//Container
+                },//itemBuilder
+              ),//child: ListView.builder
+            ),//Expanded
+            ],//children: <Widget>
+      ),//child: Column
 
-      ),
+      ),//body: Container
 
-    );
-  }
-}
+    );//Scaffold
+  }//Widget build
+}//class
 
 
 Widget PhysicalItemPageName(data) {
   return Align(
     alignment: Alignment.center,
     child: RichText(
+      textAlign: TextAlign.center,
       text: TextSpan(
         text: '${data['name']}',
         style: TextStyle(

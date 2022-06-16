@@ -66,7 +66,10 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.teal[400],
+    appBar: AppBar(
+      backgroundColor: Colors.teal[900],
+  ),
+  backgroundColor: Colors.teal[400],
     body: Center(
       child:Column(
         mainAxisAlignment: MainAxisAlignment.center,
