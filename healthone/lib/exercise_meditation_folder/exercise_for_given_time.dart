@@ -7,13 +7,14 @@ class ExerciseCountdown extends StatefulWidget{
   final Exercise exercise;
   final String exercise_name;
   final String exercise_type;
+  //final int timerDuration;
 
   @override
   _ExerciseCountdownState createState() => _ExerciseCountdownState();
 }
 
 class _ExerciseCountdownState extends State<ExerciseCountdown>{
-  static const countDownDuration = Duration(minutes: 1);
+  static const countDownDuration = Duration(minutes: 10);
   Duration duration = Duration.zero;
   Timer? timer;
 

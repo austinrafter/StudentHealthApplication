@@ -43,7 +43,8 @@ class _ExerciseTypePageState extends State<PrintExercises>{
         ),
         centerTitle: true,
       ),
-      body: Container(
+      body: Stack(
+        children: [Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Consumer<ExerciseData>(
           builder: (context, exerciseData, child){
@@ -54,12 +55,39 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                   return ExerciseTile(
                       exercise: exercise,
                       exerciseData: exerciseData
-                  );
-                });
+                  );//ExerciseTile
+                });//itemBuilder
 
-          },
-        ),
-      ),
-    );
-  }
-}
+          },//builder
+        ),//Consumer
+      ),//Container
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: RaisedButton(
+              onPressed: () => showDialog<String> (
+
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text("Metabolic Equivalent Score"),
+                  content: Text("We use this to determine the calories you burn with each exercise. The higher the MES the more calories you burn per minute."),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },//onPressed
+                      child: Text("Ok"),
+                    ),//FlatButton
+                  ],//actions
+                ),//AlertDialog
+              ),//onPressed
+              child: const Text('What is MES?', style: TextStyle(fontSize: 20)),
+              color: Colors.blue,
+              textColor: Colors.white,
+              elevation: 5,
+            ),//RaisedButton
+          ),//Align
+    ],//children
+    ),//Stack
+    );//Scaffold
+  }//build
+}//class

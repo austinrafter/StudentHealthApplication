@@ -25,21 +25,34 @@ class ExerciseTile extends StatelessWidget{
           MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercise_name:exercise.exercise_name, exercise_type:exercise.exercise_type),),
         );
       },
-    child: Card(
-
+    child: Stack(
+      children: [
+        Card(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
       child: ListTile(
-        leading: Text(exercise.exercise_type,),
       title: Text(
       exercise.exercise_name,
       ),//Text
+        subtitle: Text(exercise.exercise_type,),
       trailing: Text(
-      exercise.metabolic_equivalent_score.toString(),
+      'MES\n${exercise.metabolic_equivalent_score.toString()}',
+        style: const TextStyle(
+            fontStyle: FontStyle.italic,
+            fontSize: 18),
       ),//Text
       ),//ListTile
       ),//Card
+    ],//stack children
+    ),//Stack
   ),//ElevatedButton
   );//Container
   }
+
 }
 
 

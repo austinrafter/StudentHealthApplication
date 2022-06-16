@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'exercise.dart';
 import 'global_vars.dart';
 import 'meditation.dart';
+import '../student.dart';
+import 'student_exercising.dart';
 
 
 class DbThings{
@@ -85,6 +87,40 @@ class DbThings{
     Meditation meditation = Meditation.fromMap(responseMap);
 
     return meditation;
+  }
+
+  static Future<StudentExercising> addStudentExercising(Exercise exercise, Student student, DateTime started_at, DateTime ended_at) async{
+    Map data = {
+      "exercise" : exercise,
+      "student" : student,
+      "started_at" : started_at,
+      "ended_at": ended_at
+    };
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(exerciseUrl + '/addtouser');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    StudentExercising studentExercising = StudentExercising.fromMap(responseMap);
+
+    return studentExercising;
+  }
+
+  static Future<http.Response> updateStudentExercising(int id) async {
+    var url = Uri.parse(exerciseUrl + '/update/$id');
+    http.Response response = await http.put(
+      url,
+      headers: headers,
+    );
+    print(response.body);
+    return response;
   }
 
 }
