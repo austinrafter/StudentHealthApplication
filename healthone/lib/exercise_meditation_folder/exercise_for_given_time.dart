@@ -1,7 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'exercise.dart';
+
 class ExerciseCountdown extends StatefulWidget{
-  //const PrintExercises({Key? key}) : super(key : key);
+  const ExerciseCountdown({Key? key, required this.exercise, required this.exercise_name, required this.exercise_type}) : super(key : key);
+  final Exercise exercise;
+  final String exercise_name;
+  final String exercise_type;
 
   @override
   _ExerciseCountdownState createState() => _ExerciseCountdownState();
@@ -81,7 +86,29 @@ Widget buildTime(){
   final seconds = twoDigits((duration.inSeconds.remainder(60)));
 
 
-  return Row(
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Text('${widget.exercise_name}',
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+              fontSize: 25,),
+        ),
+          const SizedBox(height: 24,),
+        Text('${widget.exercise_type}',
+          style: const TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: 25),
+        ),
+          const SizedBox(height: 24),
+        ],
+
+      ),//Column
+      const SizedBox(height: 48,),
+      Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children:[
       buildTimeCard(time: hours, header: 'HOURS'),
@@ -92,7 +119,9 @@ Widget buildTime(){
 
     ],
 
-  );//Row
+  ),//Row
+  ],
+  );//Column
 }
 
 Widget buildTimeCard({required String time, required String header}) =>

@@ -8,9 +8,12 @@ import '../exercise_meditation_folder/exercise_for_given_time.dart';
 
 
 
-class ExerciseTypePage extends StatelessWidget {
-  const ExerciseTypePage({Key? key}) : super(key: key);
-
+class ExerciseTimerPage extends StatelessWidget {
+  final Exercise exercise;
+  final String exercise_name;
+  final String exercise_type;
+  const ExerciseTimerPage({Key? key,required this.exercise, required this.exercise_name, required this.exercise_type}) : super(key: key);
+  static const routeName = '/passArguments';
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ExerciseData>(
@@ -22,7 +25,7 @@ class ExerciseTypePage extends StatelessWidget {
           primaryColor: Colors.teal[400],
         ),
         debugShowCheckedModeBanner: false,
-        home: PrintExercises(),
+        home: ExerciseCountdown(exercise: exercise, exercise_name: exercise_name, exercise_type: exercise_type),
       ),
 
     );
