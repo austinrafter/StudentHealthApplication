@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'exercise.dart';
+import 'dart:convert';
 
 class ExerciseCountdown extends StatefulWidget{
   const ExerciseCountdown({Key? key, required this.exercise, required this.exercise_name, required this.exercise_type}) : super(key : key);
@@ -14,11 +15,12 @@ class ExerciseCountdown extends StatefulWidget{
 }
 
 class _ExerciseCountdownState extends State<ExerciseCountdown>{
-  static const countDownDuration = Duration(minutes: 10);
+  var countDownDuration;
   Duration duration = Duration.zero;
   Timer? timer;
+  late TextEditingController _controller;
 
-  bool isCountdown = true;
+  bool isCountdown = false;
 
   @override
   void initState(){
@@ -26,15 +28,21 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
 
     //startTimer();
     reset();
+    _controller = TextEditingController();
 
   }
 
   void reset(){
     if(isCountdown){
-      setState(() => duration = countDownDuration);
+        setState(() => duration = countDownDuration);
     }else {
       setState(() => duration = Duration());
     }
+  }
+
+  void cancel(){
+      setState(() => duration = Duration());
+      setState(() => timer?.cancel());
   }
 
   void addTime(){
@@ -55,7 +63,7 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
       reset();
     }
     timer = Timer.periodic(Duration(seconds: 1), (_) => addTime() );
-  }
+  }//startTimer
 
   void stopTimer({bool resets = true}){
     if(resets){
@@ -63,13 +71,13 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
     }
 
     setState(() => timer?.cancel());
-  }
+  }//stopTimer
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.teal[900],
-  ),
+  ),//appBar
   backgroundColor: Colors.teal[400],
     body: Center(
       child:Column(
@@ -192,13 +200,15 @@ Widget buildButtons(){
           primary: Colors.white,
           textStyle: const TextStyle(fontSize: 20),
         ),
-        onPressed: stopTimer,
+        onPressed: cancel,
         child: const Text('CANCEL'),
       ),//ButtonWidget
     ],//children
 
   )://Row
-  TextButton(
+  Column(
+    children: [
+      TextButton(
     style: TextButton.styleFrom(
       padding: const EdgeInsets.all(16.0),
       primary: Colors.white,
@@ -208,7 +218,42 @@ Widget buildButtons(){
       startTimer();
       },
     child: const Text('START TIME'),
-  );//ButtonWidget
+  ),//TextButton
+      const SizedBox(width: 12),
+    TextField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: 'Enter the number of minutes to exercise here',
+      ),
+          onSubmitted: (String value) async {
+            await showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Thanks!'),
+                  content: Text(
+                      'You will ${widget.exercise_name} for "$value" minutes.'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        var minutes = int.parse(value);
+                        countDownDuration = Duration(minutes: minutes);
+                        print(countDownDuration);
+                        isCountdown = true;
+                        Navigator.pop(context);
+                      },
+                      child: const Text('OK'),
+                    ),//TextButton
+                  ],//actions
+                );//AlertDialog
+              },//builder
+            );//await
+          },//onsubmitted
+          obscureText: false,
+
+        ),//TextField
+  ],
+  );//Row
 }
 
 }
