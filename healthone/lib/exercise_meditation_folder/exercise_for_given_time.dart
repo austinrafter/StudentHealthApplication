@@ -19,6 +19,7 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   Duration duration = Duration.zero;
   Timer? timer;
   late TextEditingController _controller;
+  var totalTime = 0;
 
   bool isCountdown = false;
 
@@ -49,6 +50,7 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
     final addSeconds = isCountdown ? -1 : 1;
     setState((){
       final seconds = duration.inSeconds + addSeconds;
+      totalTime = totalTime + 1;
 
       if(seconds < 0 ){
         timer?.cancel();
@@ -104,6 +106,34 @@ Widget buildTime(){
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Align(
+              alignment: Alignment.topLeft,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  textStyle: const TextStyle(fontSize: 18),
+                ),
+                onPressed: () {
+                  if(!isCountdown){
+                    isCountdown = true;
+                  }else{
+                    isCountdown = false;
+                  }
+                },//onPressed
+                child: Text(
+                    (
+                            () {
+                          if(!isCountdown){
+                            return "COUNTUP";}
+                          else {
+                            return "COUNTDOWN";
+                          }
+                        }
+                    )()
+                ),//Text
+              ),//ButtonWidget
+          ),//Align
         Text('${widget.exercise_name}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,

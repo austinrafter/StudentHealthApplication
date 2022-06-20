@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'exercise.dart';
 import 'global_vars.dart';
 import 'meditation.dart';
-import '../student.dart';
+import '../profile/student.dart';
 import 'student_exercising.dart';
 
 

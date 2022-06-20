@@ -1,4 +1,4 @@
-import '../student.dart';
+import '../profile/student.dart';
 import 'exercise.dart';
 
 class StudentExercising {

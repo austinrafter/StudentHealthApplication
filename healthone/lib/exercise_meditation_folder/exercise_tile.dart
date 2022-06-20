@@ -28,6 +28,7 @@ class ExerciseTile extends StatelessWidget{
     child: Stack(
       children: [
         Card(
+          color: Colors.teal[400],
       shape: RoundedRectangleBorder(
         side: BorderSide(
           color: Theme.of(context).colorScheme.outline,

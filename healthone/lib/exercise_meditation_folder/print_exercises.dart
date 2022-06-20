@@ -38,6 +38,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
     )
         :Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal[900],
         title: Text(
           '${Provider.of<ExerciseData>(context).exercises.length} exercises to choose from',
         ),
@@ -45,6 +46,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
       ),
       body: Stack(
         children: [Container(
+        color: Colors.teal[900],
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Consumer<ExerciseData>(
           builder: (context, exerciseData, child){
@@ -81,7 +83,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                 ),//AlertDialog
               ),//onPressed
               child: const Text('What is MET?', style: TextStyle(fontSize: 20)),
-              color: Colors.blue,
+              color: Colors.teal[400],
               textColor: Colors.white,
               elevation: 5,
             ),//RaisedButton

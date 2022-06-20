@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'exercise.dart';
 import 'db_things.dart';
 import 'student_exercising.dart';
-import '../student.dart';
+import '../profile/student.dart';
 
 class ExerciseData extends ChangeNotifier{
   List<Exercise> exercises = [];

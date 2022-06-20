@@ -22,7 +22,10 @@ public class ExerciseController {
     private ExerciseRepository exerciseRepository;
 
     @Autowired
-    private UserExercisingRepository userExercisingRepository;
+    private UserExercisingRepositroy userExercisingRepositroy;
+
+    @Autowired
+    private StudentRepositroy studentRepositroy;
 
     @GetMapping("/getExercises")
     public List<Exercise> getExercises(){
@@ -43,6 +46,17 @@ public class ExerciseController {
     public Exercise addExercise(@RequestBody Exercise exercise){
         return exerciseRepository.save(exercise);
     }
+
+    @PostMapping("/addStudent")
+    public Student addStudent(@RequestBody Student student){
+        return studentRepository.save(student);
+    }
+
+    @GetMapping("/getStudents")
+    public List<Student> getStudents(){
+        return studentRepository.findAll();
+    }
+
 
     @PostMapping("/addtouser")
     public UserExercising addUserExercise(@RequestBody Exercise exercise, @RequestBody Student student, @RequestBody LocalDateTime start){
@@ -70,7 +84,7 @@ public class ExerciseController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteTask(@PathVariable Long id){
+    public ResponseEntity deleteExerciseForUser(@PathVariable Long id){
         boolean exist = userExercisingRepository.existsById(id);
         if(exist){
             userExercisingRepository.deleteById(id);

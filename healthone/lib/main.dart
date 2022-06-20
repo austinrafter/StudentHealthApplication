@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mentalhealth_folder/mental_page.dart';
 import 'pages/physical_page.dart';
+import 'pages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ final screens = [
   MentalPage(),
   Center(child: Text('Study', style: TextStyle(fontSize:50))),
   Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
-  Center(child: Text('Profile', style: TextStyle(fontSize:50))),
+  ProfilePage(),
 ];
 
   @override
