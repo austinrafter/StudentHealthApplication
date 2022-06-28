@@ -4,6 +4,7 @@ import 'profile_db_services.dart';
 import 'profile_tile.dart';
 import 'student.dart';
 import 'profile_data.dart';
+import 'dart:io';
 
 
 class PrintProfiles extends StatefulWidget{
@@ -14,10 +15,11 @@ class PrintProfiles extends StatefulWidget{
 }
 
 class _ProfileState extends State<PrintProfiles>{
+  final TextEditingController _controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String userName = '';
-  String userEmail = '';
-  String userSchool = '';
+  String userName = "";
+  String userEmail = "";
+  String userSchool = "";
   double userWeight = 0;
   List<Student>? students;
 
@@ -25,6 +27,11 @@ class _ProfileState extends State<PrintProfiles>{
     students = await ProfileDb.getStudents();
     Provider.of<ProfileData>(context, listen: false).students = students!;
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
   }
 
   bool isNumeric(String s) {
@@ -42,13 +49,14 @@ class _ProfileState extends State<PrintProfiles>{
 
   @override
   Widget build(BuildContext context){
+    //if students is empty display the form for student input otherwise print the student info
     return students == null?
      Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           title: Text(
           'Enter your user information',
-          ),
+          ),//Text
           centerTitle: true,
         ),//AppBar
 
@@ -65,6 +73,7 @@ class _ProfileState extends State<PrintProfiles>{
                   // This optional block of code can be used to run
                   // code when the user saves the form.
                   userName = value;
+                  print(userName);
                 },//onSaved
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -82,6 +91,7 @@ class _ProfileState extends State<PrintProfiles>{
                 onChanged: (String value) {
                   // This optional block of code can be used to run
                   // code when the user saves the form.
+                  print(value);
                   userEmail = value;
                 },
                 validator: (String? value) {
@@ -101,6 +111,7 @@ class _ProfileState extends State<PrintProfiles>{
                   // This optional block of code can be used to run
                   // code when the user saves the form.
                   userSchool = value;
+                  print(userSchool);
                 },
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -119,6 +130,7 @@ class _ProfileState extends State<PrintProfiles>{
                   // This optional block of code can be used to run
                   // code when the user saves the form.
                   var enteredWeight = double.parse(value);
+                  print(enteredWeight);
                   userWeight = enteredWeight;
                 },//onChanged
                 validator: (String? value) {
@@ -142,6 +154,7 @@ class _ProfileState extends State<PrintProfiles>{
                     Provider.of<ProfileData>(context, listen: false)
                         .addStudent(userName,userEmail,userSchool,userWeight);
                   }
+                  sleep(Duration(seconds:1));
                   setState(() => getStudents());
 
                 },//onPressed

@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "student")
+@Table(name = "student", schema ="StudentHealth")
 @DataAmount
 //@RequiredArgsConstructor
 public class Student {
-    private @Id @GeneratedValue Long student_id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "student_id")private Long student_id;
     @Column(unique=true, nullable=false) private String user_name;
     @Column(unique=true, nullable=false) private String email;
     //@Column(nullable=false) private String pass_word;

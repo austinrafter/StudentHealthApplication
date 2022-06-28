@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "meditation")
 @DataAmount @RequiredArgsConstructor
 public class Meditation {
-    private @Id @GeneratedValue Long mediation_id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long mediation_id;
     @Column(unique=true, nullable=false) private String meditation_name;
     @Column(nullable=false) private String meditation_type;
 

@@ -6,20 +6,21 @@ CREATE TABLE IF NOT EXISTS exercise (
     exercise_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     exercise_name VARCHAR(256) UNIQUE,
     exercise_type VARCHAR(128),
-    metabolic_equivalent_score DOUBLE
+    metabolic_equivalent_score DOUBLE,
+    exercise_video_link VARCHAR(256) UNIQUE
     );
 
 CREATE TABLE IF NOT EXISTS meditation (
     meditation_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     meditation_name VARCHAR(256) UNIQUE,
-    meditation_type VARCHAR(128)
+    meditation_type VARCHAR(128),
+    meditation_sound_link VARCHAR(256) UNIQUE
     );
 
 CREATE TABLE IF NOT EXISTS student (
     student_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(256) UNIQUE,
     email VARCHAR(256) UNIQUE,
-    pass_word VARCHAR(256),
     school VARCHAR(256),
     weight DOUBLE
     );

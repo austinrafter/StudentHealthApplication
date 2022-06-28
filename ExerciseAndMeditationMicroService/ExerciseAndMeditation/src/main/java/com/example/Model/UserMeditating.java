@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "usermeditating")
 public class UserMeditating {
-    private @Id @GeneratedValue Long userMeditatingId;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long userMeditatingId;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

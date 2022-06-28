@@ -9,7 +9,7 @@ import java.util.Set;
 @DataAmount
 //@RequiredArgsConstructor
 public class Exercise {
-    @Id @GeneratedValue @Column(name = "exercise_id")private Long exercise_id;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "exercise_id")private Long exercise_id;
     @Column(name = "exercise_name",unique=true, nullable=false) private String exercise_name;
     @Column(name = "exercise_type",nullable=false) private String exercise_type;
     @Column(name = "metabolic_equivalent_score",nullable=false) private double metabolic_equivalent_score;
