@@ -46,4 +46,9 @@ public class MentalController {
         }
         return "Not deleted";
     }
+    @DeleteMapping("/deletemoodall")
+    public String deleteMoodAll(){
+        repo.deleteAll();
+        return "Deleted All";
+    }
 }
