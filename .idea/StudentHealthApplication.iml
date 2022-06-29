@@ -30,6 +30,12 @@
       <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/build" />
       <excludeFolder url="file://$MODULE_DIR$/healthone/linux/flutter/ephemeral 3/.plugin_symlinks/path_provider_linux 2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/healthone/windows/flutter/ephemeral 3/.plugin_symlinks/path_provider_windows 3/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

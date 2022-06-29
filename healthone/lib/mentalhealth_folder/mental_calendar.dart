@@ -128,11 +128,70 @@ class _CalendarState extends State<Calendar> {
                 onPressed: () => Navigator.pop(context),
               ),
               TextButton(
-                child: Text("Ok"),
+                child: Text("Negative",
+                style: TextStyle(color: Colors.red[700])),
                 onPressed: () {
+                  _eventController.text = "Negative";
                   print("==========ADD HERE============");
                   MentalData().addMood('tempUserName', _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
                   print("==========FINISHED ADDING============");
+                  if (_eventController.text.isEmpty) {
+
+                  } else {
+                    if (selectedEvents[selectedDay] != null) {
+                      selectedEvents[selectedDay]!.add(
+                        Event(title: _eventController.text),
+                      );
+                    } else {
+                      selectedEvents[selectedDay] = [
+                        Event(title: _eventController.text)
+                      ];
+                    }
+
+                  }
+                  Navigator.pop(context);
+                  _eventController.clear();
+                  setState((){});
+                  return;
+                },
+              ),
+              TextButton(
+                child: Text("Neutral",
+                style: TextStyle(color: Colors.yellow[800])),
+                onPressed: () {
+                  _eventController.text = "Neutral";
+                  print("==========ADD HERE============");
+                  MentalData().addMood('tempUserName', _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
+                  print("==========FINISHED ADDING============");
+                  if (_eventController.text.isEmpty) {
+
+                  } else {
+                    if (selectedEvents[selectedDay] != null) {
+                      selectedEvents[selectedDay]!.add(
+                        Event(title: _eventController.text),
+                      );
+                    } else {
+                      selectedEvents[selectedDay] = [
+                        Event(title: _eventController.text)
+                      ];
+                    }
+
+                  }
+                  Navigator.pop(context);
+                  _eventController.clear();
+                  setState((){});
+                  return;
+                },
+              ),
+              TextButton(
+                child: Text("Positive",
+                style: TextStyle(color: Colors.green[800])),
+                onPressed: () {
+                  _eventController.text = 'Positive';
+                  print("==========ADD HERE============");
+                  MentalData().addMood('tempUserName', _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
+                  print("==========FINISHED ADDING============");
+                  
                   if (_eventController.text.isEmpty) {
 
                   } else {
