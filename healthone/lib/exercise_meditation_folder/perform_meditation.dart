@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
 
 class PerformMeditation extends StatelessWidget{
   const PerformMeditation({Key? key}) : super(key: key);
@@ -26,7 +24,6 @@ class PerformMeditation extends StatelessWidget{
 
 
 /*import 'package:flutter/material.dart';
->>>>>>> master
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
@@ -40,11 +37,8 @@ class PerformMeditation extends StatefulWidget{
   _PerformMeditationState createState() => _PerformMeditationState();
 }
 
-<<<<<<< HEAD
-=======
  */
 /*
->>>>>>> master
 class _PerformMeditationState extends State<PerformMeditation>{
   final audioPlayer = AudioPlayer();
   bool isPlaying = false;
