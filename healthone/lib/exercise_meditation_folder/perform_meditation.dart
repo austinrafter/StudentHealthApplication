@@ -158,8 +158,5 @@ class _PerformMeditationState extends State<PerformMeditation>{
     );//scaffold
   }
 
-<<<<<<< HEAD
-=======
 
  */
->>>>>>> master
