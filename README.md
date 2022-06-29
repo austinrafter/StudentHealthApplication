@@ -1,5 +1,9 @@
 # CMPE195A/E: Senior Project HealthOne Code Citation
 
+
+###General Components
+[Alert Dialog Box](https://api.flutter.dev/flutter/material/AlertDialog-class.html) <br />
+
 ## Sophia Yuan
 ### Main.dart
 [Gradient BG](https://www.digitalocean.com/community/tutorials/flutter-flutter-gradient) <br />

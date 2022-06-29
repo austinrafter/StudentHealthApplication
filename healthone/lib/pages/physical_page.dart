@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'exercise_type_page.dart';
+import 'nutrition_page.dart';
+import 'sleep_page.dart';
+import 'meditation_type_page.dart';
 
 import 'physical_page_data.dart';
 
 class PhysicalPage extends StatelessWidget{
  var physicalData = PhysicalData.getData;
   //const PhysicalPage({Key? key}) : super(key: key);
+
+ final pages = [
+   ExerciseTypePage(),
+   MeditationTypePage(),
+   SleepPage(),
+   NutritionPage(),
+ ];
 
   // This widget is the root of your application.
   @override
@@ -49,7 +59,7 @@ class PhysicalPage extends StatelessWidget{
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  const ExerciseTypePage()),
+                              MaterialPageRoute(builder: (context) =>  pages[index]),
                             );
                           },
                           child:Card(
@@ -78,46 +88,48 @@ class PhysicalPage extends StatelessWidget{
                                         Row(
                                           children: <Widget>[
                                             PhysicalItemPageName(physicalData[index]),
-                                          ]
-                                        )
-                                      ]
+                                          ]//children
+                                        )//Row
+                                      ]//children
 
 
-                                    ),
+                                    ),//Column
 
 
-                                  ),
-                                ),
-                              ],
-                            ),
+                                  ),//Container
+                                ),//Center
+                              ],//children
+                            ),//Stack
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
-                            ),
+                            ),//RoundedRectandleBorder
                             elevation: 5,
                             margin: EdgeInsets.all(10),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  );
-                },
-              ),
-            ),
-            ],
-      ),
+                          ),//child: Card
+                        ),//child: GestureDetector
+                      ),// child: Padding
+                    ),//child: Container
+                  ),//child: Card
+                  );//Container
+                },//itemBuilder
+              ),//child: ListView.builder
+            ),//Expanded
 
-      ),
+            ],//children: <Widget>
+      ),//child: Column
 
-    );
-  }
-}
+      ),//body: Container
+
+    );//Scaffold
+  }//Widget build
+}//class
 
 
 Widget PhysicalItemPageName(data) {
   return Align(
     alignment: Alignment.center,
     child: RichText(
+      textAlign: TextAlign.center,
       text: TextSpan(
         text: '${data['name']}',
         style: TextStyle(

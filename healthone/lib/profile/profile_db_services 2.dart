@@ -5,8 +5,7 @@ import '../exercise_meditation_folder/global_vars.dart';
 
 
 class ProfileDb{
-  static
-  addStudent(String user_name, String email, String school, double weight) async{
+  static Future<Student> addStudent(String user_name, String email, String school, double weight) async{
     Map data = {
       "user_name" : user_name,
       "email" : email,
@@ -20,7 +19,7 @@ class ProfileDb{
     http.Response response = await http.post(
         addStudentUrl,
         headers: headers,
-        body: body,
+        body: body
     );
     print(response.body);
 

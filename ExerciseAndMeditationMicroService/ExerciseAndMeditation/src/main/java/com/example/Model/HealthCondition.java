@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "healthcondition")
 @DataAmount @RequiredArgsConstructor
 public class HealthCondition {
-    private @Id @GeneratedValue Long health_condition_id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long health_condition_id;
     @Column(unique=true, nullable=false) private String health_condition_name;
 
     @OneToMany(mappedBy = "healthCondition")

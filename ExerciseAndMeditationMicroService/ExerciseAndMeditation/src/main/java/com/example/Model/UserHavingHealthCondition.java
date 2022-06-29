@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 public class UserHavingHealthCondition {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     Long userHavingHealthConditionId;
 
     @ManyToOne
