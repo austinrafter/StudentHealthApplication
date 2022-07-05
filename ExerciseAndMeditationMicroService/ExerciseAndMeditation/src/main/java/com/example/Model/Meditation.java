@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "meditation")
 @DataAmount @RequiredArgsConstructor
 public class Meditation {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long mediation_id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long meditation_id;
     @Column(unique=true, nullable=false) private String meditation_name;
     @Column(nullable=false) private String meditation_type;
 
@@ -31,8 +31,8 @@ public class Meditation {
         this.meditation_type = meditationType;
     }
 
-    public Long getMediation_id(){
-        return mediation_id;
+    public Long getMeditation_id(){
+        return meditation_id;
     }
 
 }

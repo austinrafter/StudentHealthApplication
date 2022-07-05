@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "userexercising")
 public class UserExercising {
 
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int userExercisingId;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int user_exercising_id;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
@@ -64,8 +64,8 @@ public class UserExercising {
         this.ended_at = endedAt;
     }
 
-    public int getUserExercisingId(){
-        return userExercisingId;
+    public int getUser_exercising_id(){
+        return user_exercising_id;
     }
 
     public void setCalories_burned(double caloriesBurned){

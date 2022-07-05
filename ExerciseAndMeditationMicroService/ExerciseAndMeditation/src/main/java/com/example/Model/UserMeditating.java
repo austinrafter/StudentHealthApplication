@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "usermeditating")
 public class UserMeditating {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long userMeditatingId;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int user_meditating_id;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
@@ -49,8 +49,8 @@ public class UserMeditating {
         this.ended_at = endedAt;
     }
 
-    public Long getUserMeditatingId(){
-        return userMeditatingId;
+    public int getUserMeditatingId(){
+        return user_meditating_id;
     }
 
 

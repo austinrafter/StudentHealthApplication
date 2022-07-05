@@ -6,9 +6,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.*;
 
+@Data
 @Entity
 @Table(name = "student", schema ="StudentHealth")
-@Data
 @RequiredArgsConstructor
 public class Student {
 

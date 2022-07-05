@@ -26,7 +26,6 @@ class _ProfileState extends State<PrintProfiles>{
   getStudents()async{
     students = await ProfileDb.getStudents();
     Provider.of<ProfileData>(context, listen: false).students = students!;
-
     setState(() {});
   }
 
@@ -53,6 +52,7 @@ class _ProfileState extends State<PrintProfiles>{
   Widget build(BuildContext context){
     //if students is empty display the form for student input otherwise print the student info
     return students == null?
+        /*
      Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
@@ -166,10 +166,17 @@ class _ProfileState extends State<PrintProfiles>{
           ),//Column
         ),//Container
     )//Scaffold
+
+         */
+    const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        )
+    )
         :Scaffold(
       appBar: AppBar(
         title: Text(
-          '${Provider.of<ProfileData>(context).students.length} profiles to choose from',
+          '${Provider.of<ProfileData>(context).students.length} profiles set up',
         ),
         centerTitle: true,
       ),

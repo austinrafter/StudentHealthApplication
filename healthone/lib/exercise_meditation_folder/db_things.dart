@@ -6,7 +6,6 @@ import 'meditation.dart';
 import '../profile/student.dart';
 import 'student_exercising.dart';
 
-
 class DbThings{
   static Future<Exercise> addExercise(String exercise_name, String exercise_type, double metabolic_equivalent_score) async{
     Map data = {
