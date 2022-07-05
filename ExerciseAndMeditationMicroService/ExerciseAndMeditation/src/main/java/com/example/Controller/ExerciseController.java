@@ -5,6 +5,7 @@ import com.example.Model.Student;
 import com.example.Model.UserExercising;
 import com.example.Repository.ExerciseRepository;
 import com.example.Repository.UserExercisingRepository;
+import com.example.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,10 @@ public class ExerciseController {
     private ExerciseRepository exerciseRepository;
 
     @Autowired
-    private UserExercisingRepositroy userExercisingRepositroy;
+    private UserExercisingRepository userExercisingRepository;
 
     @Autowired
-    private StudentRepositroy studentRepositroy;
+    private StudentRepository studentRepository;
 
     @GetMapping("/getExercises")
     public List<Exercise> getExercises(){

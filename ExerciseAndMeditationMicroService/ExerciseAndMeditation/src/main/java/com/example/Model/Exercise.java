@@ -3,22 +3,21 @@ import jdk.jfr.DataAmount;
 //import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+@Data
 @Entity
 @Table(name = "exercise", schema ="StudentHealth")
-@DataAmount
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class Exercise {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "exercise_id")private Long exercise_id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "exercise_id")private int exercise_id;
     @Column(name = "exercise_name",unique=true, nullable=false) private String exercise_name;
     @Column(name = "exercise_type",nullable=false) private String exercise_type;
     @Column(name = "metabolic_equivalent_score",nullable=false) private double metabolic_equivalent_score;
 
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
-
-    @OneToMany(mappedBy = "exercise")
-    Set<HealthConditionPreventsExercise> healthConditionPreventsExerciseSet;
 
     public String getExercise_name(){
         return exercise_name;
@@ -44,7 +43,7 @@ public class Exercise {
         this.metabolic_equivalent_score = metabolicEquivalentScore;
     }
 
-    public Long getExercise_id(){
+    public int getExercise_id(){
         return exercise_id;
     }
 

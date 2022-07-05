@@ -182,7 +182,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                                 .addExercise(exercise_name,exercise_type,metabolic_equivalent_score);
                           }
                           sleep(Duration(seconds:1));
-                          //setState(() => getExercises());
+                          setState(() => {});
                           Navigator.of(ctx).pop();
 
                         },//onPressed

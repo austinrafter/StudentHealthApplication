@@ -26,6 +26,8 @@ class DbThings{
     print(response.body);
 
     Map responseMap = jsonDecode(response.body);
+    print("gets here");
+    print(responseMap);
     Exercise exercise = Exercise.fromMap(responseMap);
 
     return exercise;

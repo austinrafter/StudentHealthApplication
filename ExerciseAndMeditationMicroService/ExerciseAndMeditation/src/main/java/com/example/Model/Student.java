@@ -1,31 +1,35 @@
 package com.example.Model;
 import jdk.jfr.DataAmount;
-//import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "student", schema ="StudentHealth")
-@DataAmount
-//@RequiredArgsConstructor
+@Data
+@RequiredArgsConstructor
 public class Student {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "student_id")private Long student_id;
-    @Column(unique=true, nullable=false) private String user_name;
-    @Column(unique=true, nullable=false) private String email;
-    //@Column(nullable=false) private String pass_word;
-    @Column(nullable=false) private String school;
-    @Column(nullable=false) private double weight;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "student_id")
+    private int student_id;
+    @Column(name = "user_name",unique=true, nullable=false)
+    private String user_name;
+    @Column(name = "email",unique=true, nullable=false)
+    private String email;
+    @Column(name = "school", nullable=false)
+    private String school;
+    @Column(name = "weight", nullable=false)
+    private double weight;
 
     @OneToMany(mappedBy = "student")
     Set<UserExercising> exercises;
 
     @OneToMany(mappedBy = "student")
     Set<UserMeditating> meditations;
-
-    @OneToMany(mappedBy = "student")
-    Set<UserHavingHealthCondition> healthConditions;
-
 
     public String getUser_name(){
         return user_name;
@@ -39,7 +43,7 @@ public class Student {
        // this.pass_word = passWord;
     //}
 
-    public Long getStudent_id(){
+    public int getStudent_id(){
         return student_id;
     }
 
