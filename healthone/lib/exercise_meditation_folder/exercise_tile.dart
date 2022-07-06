@@ -22,7 +22,7 @@ class ExerciseTile extends StatelessWidget{
         // as an optional parameter.
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercise_name:exercise.exercise_name, exercise_type:exercise.exercise_type),),
+          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercise_name:exercise.exercise_name, exercise_type:exercise.exercise_type, metabolic_equivalent_score:exercise.metabolic_equivalent_score),),
         );
       },
     child: Stack(

@@ -19,15 +19,21 @@ public class UserExercising {
     @JoinColumn(name = "exercise_id")
     Exercise exercise;
 
+    LocalDateTime started_at;
+
+    LocalDateTime ended_at;
+
     int total_time;
 
     double calories_burned;
 
-    public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt){
+    public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt, int totalTime, double caloriesBurned){
         this.exercise = exercise;
         this.student = student;
         this.started_at = startedAt;
         this.ended_at = endedAt;
+        this.total_time = totalTime;
+        this.calories_burned = caloriesBurned;
     }
 
     public UserExercising() {

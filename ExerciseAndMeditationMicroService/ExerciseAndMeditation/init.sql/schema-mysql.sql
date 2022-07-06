@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS userexercising (
     FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id),
 	started_at DATETIME,
 	ended_at DATETIME,
+	total_time int,
 	calories_burned DOUBLE
 );
 

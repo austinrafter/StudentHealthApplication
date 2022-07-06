@@ -90,12 +90,14 @@ class DbThings{
     return meditation;
   }
 
-  static Future<StudentExercising> addStudentExercising(Exercise exercise, Student student, DateTime started_at, DateTime ended_at) async{
+  static Future<StudentExercising> addStudentExercising(Exercise exercise, Student student, DateTime started_at, DateTime ended_at, int total_time, double calories_burned) async{
     Map data = {
       "exercise" : exercise,
       "student" : student,
       "started_at" : started_at,
-      "ended_at": ended_at
+      "ended_at": ended_at,
+      "total_time": total_time,
+      "calories_burned" : calories_burned
     };
 
     var body = json.encode(data);
@@ -122,6 +124,24 @@ class DbThings{
     );
     print(response.body);
     return response;
+  }
+
+  static Future<List<Student>> getStudents() async{
+    var getStudentsUrl = Uri.parse(exerciseUrl + '/getStudents');
+
+    http.Response response = await http.get(
+      getStudentsUrl,
+      headers: headers,
+    );
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<Student> students = [];
+    for(Map studentMap in responseList){
+      Student student = Student.fromMap(studentMap);
+      students.add(student);
+    }
+    return students;
   }
 
 }

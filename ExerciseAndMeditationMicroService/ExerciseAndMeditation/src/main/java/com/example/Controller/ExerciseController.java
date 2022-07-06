@@ -60,8 +60,8 @@ public class ExerciseController {
 
 
     @PostMapping("/addtouser")
-    public UserExercising addUserExercise(@RequestBody Exercise exercise, @RequestBody Student student, @RequestBody LocalDateTime start){
-        return userExercisingRepository.save(new UserExercising(exercise, student, start, start));
+    public UserExercising addUserExercise(@RequestBody UserExercising userExercising){
+        return userExercisingRepository.save(userExercising);
     }
 
     @PutMapping("/update/{id}")

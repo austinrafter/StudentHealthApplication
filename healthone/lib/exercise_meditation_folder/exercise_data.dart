@@ -8,6 +8,7 @@ import '../profile/student.dart';
 class ExerciseData extends ChangeNotifier{
   List<Exercise> exercises = [];
   List<StudentExercising> studentExercises = [];
+  List<Student> students = [];
 
   void addExercise(String exercise_name, String exercise_type,double metabolic_equivalent_score) async {
     Exercise exercise = await DbThings.addExercise(exercise_name,exercise_type,metabolic_equivalent_score);
@@ -15,8 +16,8 @@ class ExerciseData extends ChangeNotifier{
     notifyListeners();
   }
 
-  void addStudentExercising(Exercise exercise, Student student,DateTime started_at, DateTime ended_at) async {
-    StudentExercising studentExercising = await DbThings.addStudentExercising(exercise,student,started_at,ended_at);
+  void addStudentExercising(Exercise exercise, Student student,DateTime started_at, DateTime ended_at, int total_time, double calories_burned) async {
+    StudentExercising studentExercising = await DbThings.addStudentExercising(exercise,student,started_at,ended_at, total_time, calories_burned);
     studentExercises.add(studentExercising);
     notifyListeners();
   }
@@ -26,6 +27,8 @@ class ExerciseData extends ChangeNotifier{
     DbThings.updateStudentExercising(studentExercising.student_exercising_id);
     notifyListeners();
   }
+
+
   
 
 }
