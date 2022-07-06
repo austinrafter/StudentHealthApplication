@@ -19,9 +19,7 @@ public class UserExercising {
     @JoinColumn(name = "exercise_id")
     Exercise exercise;
 
-    LocalDateTime started_at;
-
-    LocalDateTime ended_at;
+    int total_time;
 
     double calories_burned;
 

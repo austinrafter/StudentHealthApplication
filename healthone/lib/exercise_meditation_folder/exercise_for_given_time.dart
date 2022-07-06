@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'exercise.dart';
 import 'dart:convert';
+import '../profile/student.dart';
+import '../profile/profile_data.dart';
+import '../profile/profile_db_services.dart';
 
 class ExerciseCountdown extends StatefulWidget{
   const ExerciseCountdown({Key? key, required this.exercise, required this.exercise_name, required this.exercise_type}) : super(key : key);
@@ -20,13 +24,19 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   Timer? timer;
   late TextEditingController _controller;
   var totalTime = 0;
+  List<Student>? students;
+
+  getStudents()async{
+    students = await ProfileDb.getStudents();
+    Provider.of<ProfileData>(context, listen: false).students = students!;
+  }
 
   bool isCountdown = false;
 
   @override
   void initState(){
     super.initState();
-
+    getStudents();
     //startTimer();
     reset();
     _controller = TextEditingController();
@@ -79,6 +89,14 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.teal[900],
+      title: Text(""),
+      leading: GestureDetector(
+        onTap: (
+            ) { Navigator.pop(context); },
+        child: Icon(
+          Icons.arrow_circle_left,  // add custom icons also
+        ),
+      ),
   ),//appBar
   backgroundColor: Colors.teal[400],
     body: Center(

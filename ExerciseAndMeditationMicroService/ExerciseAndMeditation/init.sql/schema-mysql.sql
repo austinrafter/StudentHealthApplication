@@ -3,27 +3,25 @@ create database if not exists StudentHealth;
 use StudentHealth;
 
 CREATE TABLE IF NOT EXISTS exercise (
-    exercise_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    exercise_name VARCHAR(256) UNIQUE,
-    exercise_type VARCHAR(128),
-    metabolic_equivalent_score DOUBLE,
-    exercise_video_link VARCHAR(256) UNIQUE
-    );
+	exercise_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	exercise_name VARCHAR(256) UNIQUE,
+	exercise_type VARCHAR(128),
+	metabolic_equivalent_score DOUBLE
+);
 
 CREATE TABLE IF NOT EXISTS meditation (
-    meditation_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    meditation_name VARCHAR(256) UNIQUE,
-    meditation_type VARCHAR(128),
-    meditation_sound_link VARCHAR(256) UNIQUE
-    );
+	meditation_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	meditation_name VARCHAR(256) UNIQUE,
+	meditation_type VARCHAR(128)
+);
 
 CREATE TABLE IF NOT EXISTS student (
-    student_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(256) UNIQUE,
-    email VARCHAR(256) UNIQUE,
-    school VARCHAR(256),
-    weight DOUBLE
-    );
+	student_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	user_name VARCHAR(256) UNIQUE,
+	email VARCHAR(256) UNIQUE,
+	school VARCHAR(256),
+	weight DOUBLE
+);
 
 
 INSERT INTO exercise (exercise_name, exercise_type, metabolic_equivalent_score)
@@ -47,37 +45,23 @@ VALUES ('Heavy Weight Lifting', 'Anaerobic', 5);
 INSERT INTO exercise (exercise_name, exercise_type, metabolic_equivalent_score)
 VALUES ('Soccer', 'Aerobic', 10);
 
-CREATE TABLE IF NOT EXISTS userExercising (
-    user_exercising_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    student_id int,
+CREATE TABLE IF NOT EXISTS userexercising (
+	user_exercising_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	student_id int,
     FOREIGN KEY (student_id) REFERENCES student(student_id),
-    exercise_id int,
+	exercise_id int,
     FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id),
-    started_ DATETIME,
-    ended_at DATETIME,
-    calories_burned DOUBLE
-    );
+	started_at DATETIME,
+	ended_at DATETIME,
+	calories_burned DOUBLE
+);
 
-CREATE TABLE IF NOT EXISTS userMeditating (
-    user_exercising_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    student_id int,
+CREATE TABLE IF NOT EXISTS usermeditating (
+	user_meditating_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	student_id int,
     FOREIGN KEY (student_id) REFERENCES student(student_id),
-    meditation_id int,
+	meditation_id int,
     FOREIGN KEY (meditation_id) REFERENCES meditation(meditation_id),
-    started_at DATETIME,
-    ended_at DATETIME
-    );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	started_at DATETIME,
+	ended_at DATETIME
+);

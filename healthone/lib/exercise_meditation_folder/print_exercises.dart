@@ -5,6 +5,9 @@ import 'exercise_tile.dart';
 import 'exercise.dart';
 import 'exercise_data.dart';
 import 'dart:io';
+import '../profile/student.dart';
+import '../profile/profile_data.dart';
+import '../profile/profile_db_services.dart';
 
 
 class PrintExercises extends StatefulWidget{
