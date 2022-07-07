@@ -7,11 +7,11 @@ import '../profile/student.dart';
 import 'student_exercising.dart';
 
 class DbThings{
-  static Future<Exercise> addExercise(String exercise_name, String exercise_type, double metabolic_equivalent_score) async{
+  static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore) async{
     Map data = {
-      "exercise_name" : exercise_name,
-      "exercise_type" : exercise_type,
-      "metabolic_equivalent_score" : metabolic_equivalent_score,
+      "exercisename" : exercisename,
+      "exercisetype" : exercisetype,
+      "metabolicequivalentscore" : metabolicequivalentscore,
     };
 
     var body = json.encode(data);
@@ -68,10 +68,10 @@ class DbThings{
     return meditations;
   }
 
-  static Future<Meditation> addMeditation(String meditation_name, String meditation_type) async{
+  static Future<Meditation> addMeditation(String meditationname, String meditationtype) async{
     Map data = {
-      "meditation_name" : meditation_name,
-      "meditation_type" : meditation_type,
+      "meditationname" : meditationname,
+      "meditationtype" : meditationtype,
     };
 
     var body = json.encode(data);
@@ -90,14 +90,14 @@ class DbThings{
     return meditation;
   }
 
-  static Future<StudentExercising> addStudentExercising(Exercise exercise, Student student, DateTime started_at, DateTime ended_at, int total_time, double calories_burned) async{
+  static Future<StudentExercising> addStudentExercising(String exercisename, String username, DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async{
     Map data = {
-      "exercise" : exercise,
-      "student" : student,
-      "started_at" : started_at,
-      "ended_at": ended_at,
-      "total_time": total_time,
-      "calories_burned" : calories_burned
+      "exercisename" : exercisename,
+      "username" : username,
+      "startedat" : startedat,
+      "endedat": endedat,
+      "totaltime": totaltime,
+      "caloriesburned" : caloriesburned
     };
 
     var body = json.encode(data);

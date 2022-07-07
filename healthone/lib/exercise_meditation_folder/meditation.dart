@@ -1,19 +1,19 @@
 class Meditation {
-  final int meditation_id;
-  final String meditation_name;
-  final String meditation_type;
+  final int meditationid;
+  final String meditationname;
+  final String meditationtype;
 
   Meditation({
-    required this.meditation_id,
-    required this.meditation_name,
-    required this.meditation_type,
+    required this.meditationid,
+    required this.meditationname,
+    required this.meditationtype,
   });
 
   factory Meditation.fromMap(Map exerciseMap){
     return Meditation(
-      meditation_id: exerciseMap['meditation_id'],
-      meditation_name: exerciseMap['meditation_name'],
-      meditation_type: exerciseMap['meditation_type'],
+      meditationid: exerciseMap['meditationid'],
+      meditationname: exerciseMap['meditationname'],
+      meditationtype: exerciseMap['meditationtype'],
     );
   }
 }

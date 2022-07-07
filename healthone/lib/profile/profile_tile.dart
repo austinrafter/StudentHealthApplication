@@ -24,7 +24,7 @@ class ProfileTile extends StatelessWidget{
               ),
               child: ListTile(
                 title: Text(
-                  student.user_name,
+                  student.username,
                 ),//Text
                 subtitle: Text(student.school,),
                 trailing: Text(

@@ -38,8 +38,8 @@ public class MeditationController {
     }
 
     @PostMapping("/addmeditationtouser")
-    public UserMeditating addUserMeditation(@RequestBody Meditation meditation,@RequestBody Student student,@RequestBody LocalDateTime start){
-        return userMeditatingRepository.save(new UserMeditating(meditation, student, start, start));
+    public UserMeditating addUserMeditation(@RequestBody Meditation meditation,@RequestBody Student student,@RequestBody LocalDateTime start, @RequestBody LocalDateTime end,@RequestBody int totaltime){
+        return userMeditatingRepository.save(new UserMeditating(meditation, student, start, end, totaltime));
     }
 
     @PutMapping("/update/{id}")

@@ -5,9 +5,9 @@ import '../exercise_meditation_folder/global_vars.dart';
 
 
 class ProfileDb{
-  static Future<Student> addStudent(String user_name, String email, String school, double weight) async{
+  static Future<Student> addStudent(String username, String email, String school, double weight) async{
     Map data = {
-      "user_name" : user_name,
+      "username" : username,
       "email" : email,
       "school" : school,
       "weight" : weight,

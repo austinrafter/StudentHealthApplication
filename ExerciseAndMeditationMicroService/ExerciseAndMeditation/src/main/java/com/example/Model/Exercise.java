@@ -11,40 +11,40 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "exercise", schema ="StudentHealth")
 @RequiredArgsConstructor
 public class Exercise {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "exercise_id")private int exercise_id;
-    @Column(name = "exercise_name",unique=true, nullable=false) private String exercise_name;
-    @Column(name = "exercise_type",nullable=false) private String exercise_type;
-    @Column(name = "metabolic_equivalent_score",nullable=false) private double metabolic_equivalent_score;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "exerciseid")private int exerciseid;
+    @Column(name = "exercisename",unique=true, nullable=false) private String exercisename;
+    @Column(name = "exercisetype",nullable=false) private String exercisetype;
+    @Column(name = "metabolicequivalentscore",nullable=false) private double metabolicequivalentscore;
 
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
 
     public String getExercise_name(){
-        return exercise_name;
+        return exercisename;
     }
     
     public void setExercise_name(String exerciseName){
-        this.exercise_name = exerciseName;
+        this.exercisename = exerciseName;
     }
 
     public String getExercise_type(){
-        return exercise_type;
+        return exercisetype;
     }
 
     public void setExercise_type(String exerciseType){
-        this.exercise_type = exerciseType;
+        this.exercisetype = exerciseType;
     }
     
     public double getMetabolic_equivalent_score(){
-        return metabolic_equivalent_score;
+        return metabolicequivalentscore;
     }
     
     public void setMetabolic_equivalent_score(int metabolicEquivalentScore){
-        this.metabolic_equivalent_score = metabolicEquivalentScore;
+        this.metabolicequivalentscore = metabolicEquivalentScore;
     }
 
     public int getExercise_id(){
-        return exercise_id;
+        return exerciseid;
     }
 
 }

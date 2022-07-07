@@ -1,22 +1,22 @@
 class Exercise {
-  final int exercise_id;
-  final String exercise_name;
-  final String exercise_type;
-  final double metabolic_equivalent_score;
+  final int exerciseid;
+  final String exercisename;
+  final String exercisetype;
+  final double metabolicequivalentscore;
 
   Exercise({
-    required this.exercise_id,
-    required this.exercise_name,
-    required this.exercise_type,
-    required this.metabolic_equivalent_score,
+    required this.exerciseid,
+    required this.exercisename,
+    required this.exercisetype,
+    required this.metabolicequivalentscore,
   });
 
   factory Exercise.fromMap(Map exerciseMap){
     return Exercise(
-      exercise_id: exerciseMap['exercise_id'],
-      exercise_name: exerciseMap['exercise_name'],
-      exercise_type: exerciseMap['exercise_type'],
-      metabolic_equivalent_score: exerciseMap['metabolic_equivalent_score'],
+      exerciseid: exerciseMap['exerciseid'],
+      exercisename: exerciseMap['exercisename'],
+      exercisetype: exerciseMap['exercisetype'],
+      metabolicequivalentscore: exerciseMap['metabolicequivalentscore'],
     );
   }
 }

@@ -2,34 +2,34 @@ import '../profile/student.dart';
 import 'exercise.dart';
 
 class StudentExercising {
-  final int student_exercising_id;
+  final int studentexercisingid;
   final Exercise exercise;
   final Student student;
-  final DateTime started_at;
-  DateTime ended_at;
-  final double calories_burned;
+  final DateTime startedat;
+  DateTime endedat;
+  final double caloriesburned;
 
   StudentExercising({
-    required this.student_exercising_id,
+    required this.studentexercisingid,
     required this.exercise,
     required this.student,
-    required this.started_at,
-    required this.ended_at,
-    required this.calories_burned,
+    required this.startedat,
+    required this.endedat,
+    required this.caloriesburned,
   });
 
   factory StudentExercising.fromMap(Map studentExercisingMap){
     return StudentExercising(
-      student_exercising_id: studentExercisingMap['student_exercising_id'],
+      studentexercisingid: studentExercisingMap['studentexercisingid'],
       exercise: studentExercisingMap['exercise'],
       student: studentExercisingMap['student'],
-      started_at: studentExercisingMap['started_at'],
-      ended_at: studentExercisingMap['ended_at'],
-      calories_burned: studentExercisingMap['calories_burned'],
+      startedat: studentExercisingMap['startedat'],
+      endedat: studentExercisingMap['endedat'],
+      caloriesburned: studentExercisingMap['caloriesburned'],
     );
   }
 
   void updateEndTime(){
-    ended_at = DateTime.now();
+    endedat = DateTime.now();
   }
 }

@@ -14,10 +14,10 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
-    private int student_id;
-    @Column(name = "user_name",unique=true, nullable=false)
-    private String user_name;
+    @Column(name = "studentid")
+    private int studentid;
+    @Column(name = "username",unique=true, nullable=false)
+    private String username;
     @Column(name = "email",unique=true, nullable=false)
     private String email;
     @Column(name = "school", nullable=false)
@@ -32,7 +32,7 @@ public class Student {
     Set<UserMeditating> meditations;
 
     public String getUser_name(){
-        return user_name;
+        return username;
     }
 
     //public String getPass_word(){
@@ -44,7 +44,7 @@ public class Student {
     //}
 
     public int getStudent_id(){
-        return student_id;
+        return studentid;
     }
 
     public String getSchool(){

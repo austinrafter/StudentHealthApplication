@@ -8,8 +8,8 @@ import java.util.Set;
 @Table(name = "healthcondition")
 @DataAmount @RequiredArgsConstructor
 public class HealthCondition {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long health_condition_id;
-    @Column(unique=true, nullable=false) private String health_condition_name;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int healthconditionid;
+    @Column(unique=true, nullable=false) private String healthconditionname;
 
     @OneToMany(mappedBy = "healthCondition")
     Set<HealthConditionPreventsExercise> healthConditionPreventsExerciseSet;
@@ -18,11 +18,11 @@ public class HealthCondition {
     Set<UserHavingHealthCondition> healthConditions;
 
     public String getHealth_condition_name(){
-        return health_condition_name;
+        return healthconditionname;
     }
 
     public void setHealth_condition_name(String healthConditionName){
-        this.health_condition_name = healthConditionName;
+        this.healthconditionname = healthConditionName;
     }
 
 

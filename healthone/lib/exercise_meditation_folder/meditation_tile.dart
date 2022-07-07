@@ -12,9 +12,9 @@ class MeditationTile extends StatelessWidget{
   Widget build(BuildContext context){
     return Card(
       child: ListTile(
-        leading: Text(meditation.meditation_type,),
+        leading: Text(meditation.meditationtype,),
         title: Text(
-          meditation.meditation_name,
+          meditation.meditationname,
         ),
 
       ),

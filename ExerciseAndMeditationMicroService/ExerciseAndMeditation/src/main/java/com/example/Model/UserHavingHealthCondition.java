@@ -12,10 +12,10 @@ public class UserHavingHealthCondition {
     Long userHavingHealthConditionId;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "studentid")
     Student student;
 
     @ManyToOne
-    @JoinColumn(name = "healthcondition_id")
+    @JoinColumn(name = "healthconditionid")
     HealthCondition healthCondition;
 }

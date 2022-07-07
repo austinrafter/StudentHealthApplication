@@ -60,7 +60,10 @@ public class ExerciseController {
 
 
     @PostMapping("/addtouser")
-    public UserExercising addUserExercise(@RequestBody UserExercising userExercising){
+    public UserExercising addUserExercise(@RequestBody String exercisename, @RequestBody String username, LocalDateTime start, LocalDateTime end, int total_time, double calories_burned){
+        List<Exercise> exercises = exerciseRepository.findByExercisename(exercisename);
+        List<Student> students = studentRepository.findByUsername(username);
+        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), start, end, total_time, calories_burned);
         return userExercisingRepository.save(userExercising);
     }
 

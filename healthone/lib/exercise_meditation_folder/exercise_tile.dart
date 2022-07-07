@@ -22,7 +22,7 @@ class ExerciseTile extends StatelessWidget{
         // as an optional parameter.
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercise_name:exercise.exercise_name, exercise_type:exercise.exercise_type, metabolic_equivalent_score:exercise.metabolic_equivalent_score),),
+          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercisename:exercise.exercisename, exercisetype:exercise.exercisetype, metabolicequivalentscore:exercise.metabolicequivalentscore),),
         );
       },
     child: Stack(
@@ -37,11 +37,11 @@ class ExerciseTile extends StatelessWidget{
       ),
       child: ListTile(
       title: Text(
-      exercise.exercise_name,
+      exercise.exercisename,
       ),//Text
-        subtitle: Text(exercise.exercise_type,),
+        subtitle: Text(exercise.exercisetype,),
       trailing: Text(
-      'MET\n${exercise.metabolic_equivalent_score.toString()}',
+      'MET\n${exercise.metabolicequivalentscore.toString()}',
         style: const TextStyle(
             fontStyle: FontStyle.italic,
             fontSize: 18
@@ -60,8 +60,8 @@ class ExerciseTile extends StatelessWidget{
 
 class CountdownArguments{
   final Exercise exercise;
-  final String exercise_name;
-  final String exercise_type;
+  final String exercisename;
+  final String exercisetype;
 
-  CountdownArguments(this.exercise, this.exercise_name, this.exercise_type);
+  CountdownArguments(this.exercise, this.exercisename, this.exercisetype);
 }

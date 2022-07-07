@@ -10,11 +10,11 @@ import '../profile/profile_data.dart';
 import '../profile/profile_db_services.dart';
 
 class ExerciseCountdown extends StatefulWidget{
-  const ExerciseCountdown({Key? key, required this.exercise, required this.exercise_name, required this.exercise_type, required this.metabolic_equivalent_score}) : super(key : key);
+  const ExerciseCountdown({Key? key, required this.exercise, required this.exercisename, required this.exercisetype, required this.metabolicequivalentscore}) : super(key : key);
   final Exercise exercise;
-  final String exercise_name;
-  final String exercise_type;
-  final double metabolic_equivalent_score;
+  final String exercisename;
+  final String exercisetype;
+  final double metabolicequivalentscore;
   //final int timerDuration;
 
   @override
@@ -105,12 +105,14 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
                 end = DateTime.now();
                 print(start);
                 print(end);
-                print(widget.metabolic_equivalent_score);
+                print(widget.metabolicequivalentscore);
                 if(students?.length != 0){
                   var kiloWeight = Provider.of<ExerciseData>(context, listen: false).students[0].weight * 0.453592;
-                  caloriesBurnedPerMinute = (kiloWeight * 3.5 * widget.metabolic_equivalent_score) / 200;
+                  caloriesBurnedPerMinute = (kiloWeight * 3.5 * widget.metabolicequivalentscore) / 200;
                   totalCaloriesBurned = caloriesBurnedPerMinute * (totalTime.toDouble() / 60);
                   print(totalCaloriesBurned);
+                  Provider.of<ExerciseData>(context, listen: false)
+                      .addStudentExercising(widget.exercisename, Provider.of<ExerciseData>(context, listen: false).students[0].username, start, end, totalTime, totalCaloriesBurned);
                 }
                 },
         child: Icon(
@@ -172,13 +174,13 @@ Widget buildTime(){
                 ),//Text
               ),//ButtonWidget
           ),//Align
-        Text('${widget.exercise_name}',
+        Text('${widget.exercisename}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
               fontSize: 25,),
         ),
           const SizedBox(height: 24,),
-        Text('${widget.exercise_type}',
+        Text('${widget.exercisetype}',
           style: const TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 25),
@@ -300,7 +302,7 @@ Widget buildButtons(){
                 return AlertDialog(
                   title: const Text('Thanks!'),
                   content: Text(
-                      'You will ${widget.exercise_name} for "$value" minutes.'),
+                      'You will ${widget.exercisename} for "$value" minutes.'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {

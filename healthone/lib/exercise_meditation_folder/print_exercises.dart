@@ -19,9 +19,9 @@ class PrintExercises extends StatefulWidget{
 
 class _ExerciseTypePageState extends State<PrintExercises>{
   List<Exercise>? exercises;
-  String exercise_name = "";
-  String exercise_type = "";
-  double metabolic_equivalent_score = 0;
+  String exercisename = "";
+  String exercisetype = "";
+  double metabolicequivalentscore = 0;
 
   getExercises()async{
     exercises = await DbThings.getExercises();
@@ -121,8 +121,8 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                         onChanged: (String value) {
                           // This optional block of code can be used to run
                           // code when the user saves the form.
-                          exercise_name = value;
-                          print(exercise_name);
+                          exercisename = value;
+                          print(exercisename);
                         },//onSaved
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -141,7 +141,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                           // This optional block of code can be used to run
                           // code when the user saves the form.
                           print(value);
-                          exercise_type = value;
+                          exercisetype = value;
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -161,7 +161,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                           // code when the user saves the form.
                           var enteredWeight = double.parse(value);
                           print(enteredWeight);
-                          metabolic_equivalent_score = enteredWeight;
+                          metabolicequivalentscore = enteredWeight;
                         },//onChanged
                         validator: (String? value) {
                           if (value == null || value.isEmpty || !isNumeric(value)) {
@@ -180,9 +180,9 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                         textColor: Colors.white,
                         color: Colors.teal[400],
                         onPressed: () {
-                          if (exercise_name.isNotEmpty && exercise_type.isNotEmpty && (metabolic_equivalent_score > 0)) {
+                          if (exercisename.isNotEmpty && exercisetype.isNotEmpty && (metabolicequivalentscore > 0)) {
                             Provider.of<ExerciseData>(context, listen: false)
-                                .addExercise(exercise_name,exercise_type,metabolic_equivalent_score);
+                                .addExercise(exercisename,exercisetype,metabolicequivalentscore);
                           }
                           sleep(Duration(seconds:1));
                           setState(() => {});
