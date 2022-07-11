@@ -13,11 +13,11 @@ class HealthConditionPreventsExercise {
     Long healthConditionPreventsExerciseId;
 
     @ManyToOne
-    @JoinColumn(name = "exercise_id")
+    @JoinColumn(name = "exerciseid")
     Exercise exercise;
 
     @ManyToOne
-    @JoinColumn(name = "healthcondition_id")
+    @JoinColumn(name = "healthconditionid")
     HealthCondition healthCondition;
 
 

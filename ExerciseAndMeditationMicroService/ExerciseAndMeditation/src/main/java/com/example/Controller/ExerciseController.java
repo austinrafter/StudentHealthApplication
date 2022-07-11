@@ -1,9 +1,11 @@
 package com.example.Controller;
 
 import com.example.Model.Exercise;
+import com.example.Model.PassExercise;
 import com.example.Model.Student;
 import com.example.Model.UserExercising;
 import com.example.Repository.ExerciseRepository;
+import com.example.Repository.PassExerciseRepository;
 import com.example.Repository.UserExercisingRepository;
 import com.example.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ExerciseController {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private PassExerciseRepository passExerciseRepository;
 
     @GetMapping("/getExercises")
     public List<Exercise> getExercises(){
@@ -60,11 +65,15 @@ public class ExerciseController {
 
 
     @PostMapping("/addtouser")
-    public UserExercising addUserExercise(@RequestBody String exercisename, @RequestBody String username, LocalDateTime start, LocalDateTime end, int total_time, double calories_burned){
-        List<Exercise> exercises = exerciseRepository.findByExercisename(exercisename);
-        List<Student> students = studentRepository.findByUsername(username);
-        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), start, end, total_time, calories_burned);
-        return userExercisingRepository.save(userExercising);
+    public PassExercise addUserExercise(@RequestBody PassExercise passExercise){
+        List<Exercise> exercises = exerciseRepository.findByExercisename(passExercise.getExerciseName());
+        List<Student> students = studentRepository.findByUsername(passExercise.getUserName());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTimeStarted = LocalDateTime.parse(passExercise.getStartedAt(), formatter);
+        LocalDateTime dateTimeEnded = LocalDateTime.parse(passExercise.getEndedAt(), formatter);
+        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passExercise.getTotalTime(), passExercise.getCaloriesBurned());
+        userExercisingRepository.save(userExercising);
+       return passExerciseRepository.save(passExercise);
     }
 
     @PutMapping("/update/{id}")

@@ -5,6 +5,7 @@ import 'global_vars.dart';
 import 'meditation.dart';
 import '../profile/student.dart';
 import 'student_exercising.dart';
+import 'pass_exercise.dart';
 
 class DbThings{
   static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore) async{
@@ -90,12 +91,12 @@ class DbThings{
     return meditation;
   }
 
-  static Future<StudentExercising> addStudentExercising(String exercisename, String username, DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async{
+  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async{
     Map data = {
       "exercisename" : exercisename,
       "username" : username,
-      "startedat" : startedat,
-      "endedat": endedat,
+      "startedat" : startedat.toIso8601String(),
+      "endedat": endedat.toIso8601String(),
       "totaltime": totaltime,
       "caloriesburned" : caloriesburned
     };
@@ -111,7 +112,7 @@ class DbThings{
     print(response.body);
 
     Map responseMap = jsonDecode(response.body);
-    StudentExercising studentExercising = StudentExercising.fromMap(responseMap);
+    PassExercise studentExercising = PassExercise.fromMap(responseMap);
 
     return studentExercising;
   }

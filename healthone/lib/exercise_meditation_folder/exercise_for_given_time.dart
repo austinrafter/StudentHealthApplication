@@ -111,6 +111,8 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
                   caloriesBurnedPerMinute = (kiloWeight * 3.5 * widget.metabolicequivalentscore) / 200;
                   totalCaloriesBurned = caloriesBurnedPerMinute * (totalTime.toDouble() / 60);
                   print(totalCaloriesBurned);
+                  print(Provider.of<ExerciseData>(context, listen: false).students[0].username);
+                  print(widget.exercisename);
                   Provider.of<ExerciseData>(context, listen: false)
                       .addStudentExercising(widget.exercisename, Provider.of<ExerciseData>(context, listen: false).students[0].username, start, end, totalTime, totalCaloriesBurned);
                 }

@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 public class UserMeditating {
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) int usermeditatingid;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentid")
     Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "meditationid")
     Meditation meditation;
 

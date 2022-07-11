@@ -11,20 +11,24 @@ public class UserExercising {
 
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) int userexercisingid;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentid")
     Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "exerciseid")
     Exercise exercise;
 
+    @Column(name = "startedat", nullable=false)
     LocalDateTime startedat;
 
+    @Column(name = "endedat", nullable=false)
     LocalDateTime endedat;
 
+    @Column(name = "totaltime", nullable=false)
     int totaltime;
 
+    @Column(name = "caloriesburned", nullable=false)
     double caloriesburned;
 
     public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt, int totalTime, double caloriesBurned){

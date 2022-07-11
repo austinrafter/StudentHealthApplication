@@ -7,6 +7,7 @@ class StudentExercising {
   final Student student;
   final DateTime startedat;
   DateTime endedat;
+  final int totaltime;
   final double caloriesburned;
 
   StudentExercising({
@@ -15,6 +16,7 @@ class StudentExercising {
     required this.student,
     required this.startedat,
     required this.endedat,
+    required this.totaltime,
     required this.caloriesburned,
   });
 
@@ -25,6 +27,7 @@ class StudentExercising {
       student: studentExercisingMap['student'],
       startedat: studentExercisingMap['startedat'],
       endedat: studentExercisingMap['endedat'],
+      totaltime: studentExercisingMap['totaltime'],
       caloriesburned: studentExercisingMap['caloriesburned'],
     );
   }
