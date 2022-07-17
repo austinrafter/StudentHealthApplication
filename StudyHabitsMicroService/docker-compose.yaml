@@ -1,30 +1,23 @@
 version: "3"
 
 services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - 27017:27017
+  mysql:
+    image: mysql:8.0
     volumes:
-      - data:/data
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=password
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
+      - /tmp:/tmp
+    networks:
+      - network
     ports:
-      - 8081:8081
+      - 3306
+    networks:
+      - network
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+      MYSQL_ROOT_PASSWORD: "root"
+    restart: always
   studyhabits:
     image: studyhabits
     depends_on:
-      - mongodb
+      - mysql
     volumes:
       - /tmp:/tmp
     networks:
@@ -34,10 +27,26 @@ services:
     environment:
       MYSQL_HOST: "mysql"
     restart: always
+  lb:
+    image: eeacms/haproxy
+    depends_on:
+      - studyhabits
+    ports:
+      - "80:5000"
+      - "1936:1936"
+    environment:
+      BACKENDS: "studyhabits"
+      BACKENDS_PORT: "8080"
+      DNS_ENABLED: "true"
+      COOKIES_ENABLED: "false"
+      LOG_LEVEL: "info"
+    networks:
+      - network
 
 volumes:
-  data: {}
+  schemas:
+    external: false
 
 networks:
-  default:
-    name: mongodb_network
+  network:
+    driver: bridge

@@ -1,21 +1,28 @@
 package com.example.studyhabitsmicroservice.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.RequiredArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-@Document
+@Data
+@Entity
+@RequiredArgsConstructor
+@Table(name = "StudyBlock")
 public class StudyBlock {
-    @Id
-    private String id;
 
-    @Getter @Setter
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
     private String day;
-    @Getter @Setter
     private String startTime;
-    @Getter @Setter
     private String endTime;
 
     public StudyBlock(String day, String startTime, String endTime){
