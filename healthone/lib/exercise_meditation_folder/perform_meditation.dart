@@ -1,3 +1,30 @@
+/*import 'package:flutter/material.dart';
+
+class PerformMeditation extends StatelessWidget{
+  const PerformMeditation({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Text(
+            "Perform Meditation Page",
+            style: TextStyle(fontSize:50),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+ */
+
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -26,7 +53,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
 
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState((){
-        isPlaying = state == PlayerState.PLAYING;
+        isPlaying = state == PlayerState.playing;
       });
     });
 
@@ -38,14 +65,14 @@ class _PerformMeditationState extends State<PerformMeditation>{
   }
 
   Future setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    audioPlayer.setReleaseMode(ReleaseMode.loop);
 
     //String url = 'https://soundcloud.com/futureisnow/future-feat-drake-tems-wait?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
     final url = File('../exercise_meditation_folder/assets/Moria - Suffer.mp3');
     //audioPlayer.setUrl(url);
     //final player = AudioCache(prefix:'../healthone/lib/exercise_meditation_folder/assets');
     //final url = await player.load('Moria - Suffer.mp3');
-    audioPlayer.setUrl(url.path, isLocal: true);
+    audioPlayer.setSourceUrl("https://moria831.bandcamp.com/track/of-flesh.mp3");
   }
 
   @override
@@ -130,4 +157,6 @@ class _PerformMeditationState extends State<PerformMeditation>{
       ),//padding
     );//scaffold
   }
+
+
 

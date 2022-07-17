@@ -1,13 +1,13 @@
 class Student {
-  final int student_id;
-  final String user_name;
+  final int studentid;
+  final String username;
   final String email;
   final String school;
   final double weight;
 
   Student({
-    required this.student_id,
-    required this.user_name,
+    required this.studentid,
+    required this.username,
     required this.email,
     required this.school,
     required this.weight,
@@ -15,8 +15,8 @@ class Student {
 
   factory Student.fromMap(Map studentMap){
     return Student(
-      student_id: studentMap['student_id'],
-      user_name: studentMap['user_name'],
+      studentid: studentMap['studentid'],
+      username: studentMap['username'],
       email: studentMap['email'],
       school: studentMap['school'],
       weight: studentMap['weight'],

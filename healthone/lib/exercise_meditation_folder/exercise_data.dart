@@ -4,28 +4,33 @@ import 'exercise.dart';
 import 'db_things.dart';
 import 'student_exercising.dart';
 import '../profile/student.dart';
+import 'pass_exercise.dart';
 
 class ExerciseData extends ChangeNotifier{
   List<Exercise> exercises = [];
   List<StudentExercising> studentExercises = [];
+  List<Student> students = [];
+  List<PassExercise> passExercises = [];
 
-  void addExercise(String exercise_name, String exercise_type,double metabolic_equivalent_score) async {
-    Exercise exercise = await DbThings.addExercise(exercise_name,exercise_type,metabolic_equivalent_score);
+  void addExercise(String exercisename, String exercisetype,double metabolicequivalentscore) async {
+    Exercise exercise = await DbThings.addExercise(exercisename,exercisetype,metabolicequivalentscore);
     exercises.add(exercise);
     notifyListeners();
   }
 
-  void addStudentExercising(Exercise exercise, Student student,DateTime started_at, DateTime ended_at) async {
-    StudentExercising studentExercising = await DbThings.addStudentExercising(exercise,student,started_at,ended_at);
-    studentExercises.add(studentExercising);
+  void addStudentExercising(String exercisename, String username,DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async {
+    PassExercise studentExercising = await DbThings.addStudentExercising(exercisename,username,startedat,endedat, totaltime, caloriesburned);
+    passExercises.add(studentExercising);
     notifyListeners();
   }
 
   void updateStudentExercisingTime(StudentExercising studentExercising){
     studentExercising.updateEndTime();
-    DbThings.updateStudentExercising(studentExercising.student_exercising_id);
+    DbThings.updateStudentExercising(studentExercising.studentexercisingid);
     notifyListeners();
   }
 
+
+  
 
 }

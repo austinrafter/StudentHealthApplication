@@ -8,31 +8,31 @@ import java.util.Set;
 @Table(name = "meditation")
 @DataAmount @RequiredArgsConstructor
 public class Meditation {
-    private @Id @GeneratedValue Long mediation_id;
-    @Column(unique=true, nullable=false) private String meditation_name;
-    @Column(nullable=false) private String meditation_type;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int meditationid;
+    @Column(unique=true, nullable=false) private String meditationname;
+    @Column(nullable=false) private String meditationtype;
 
     @OneToMany(mappedBy = "meditation")
     Set<UserMeditating> meditations;
 
     public String getMeditation_name(){
-        return meditation_name;
+        return meditationname;
     }
 
     public void setMeditation_name(String meditationName){
-        this.meditation_name = meditationName;
+        this.meditationname = meditationName;
     }
 
     public String getMeditation_type(){
-        return meditation_type;
+        return meditationtype;
     }
 
     public void setMeditation_type(String meditationType){
-        this.meditation_type = meditationType;
+        this.meditationtype = meditationType;
     }
 
-    public Long getMediation_id(){
-        return mediation_id;
+    public int getMeditation_id(){
+        return meditationid;
     }
 
 }

@@ -5,14 +5,14 @@ import 'global_vars.dart';
 import 'meditation.dart';
 import '../profile/student.dart';
 import 'student_exercising.dart';
-
+import 'pass_exercise.dart';
 
 class DbThings{
-  static Future<Exercise> addExercise(String exercise_name, String exercise_type, double metabolic_equivalent_score) async{
+  static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore) async{
     Map data = {
-      "exercise_name" : exercise_name,
-      "exercise_type" : exercise_type,
-      "metabolic_equivalent_score" : metabolic_equivalent_score,
+      "exercisename" : exercisename,
+      "exercisetype" : exercisetype,
+      "metabolicequivalentscore" : metabolicequivalentscore,
     };
 
     var body = json.encode(data);
@@ -26,6 +26,8 @@ class DbThings{
     print(response.body);
 
     Map responseMap = jsonDecode(response.body);
+    print("gets here");
+    print(responseMap);
     Exercise exercise = Exercise.fromMap(responseMap);
 
     return exercise;
@@ -67,10 +69,10 @@ class DbThings{
     return meditations;
   }
 
-  static Future<Meditation> addMeditation(String meditation_name, String meditation_type) async{
+  static Future<Meditation> addMeditation(String meditationname, String meditationtype) async{
     Map data = {
-      "meditation_name" : meditation_name,
-      "meditation_type" : meditation_type,
+      "meditationname" : meditationname,
+      "meditationtype" : meditationtype,
     };
 
     var body = json.encode(data);
@@ -89,12 +91,14 @@ class DbThings{
     return meditation;
   }
 
-  static Future<StudentExercising> addStudentExercising(Exercise exercise, Student student, DateTime started_at, DateTime ended_at) async{
+  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async{
     Map data = {
-      "exercise" : exercise,
-      "student" : student,
-      "started_at" : started_at,
-      "ended_at": ended_at
+      "exercisename" : exercisename,
+      "username" : username,
+      "startedat" : startedat.toIso8601String(),
+      "endedat": endedat.toIso8601String(),
+      "totaltime": totaltime,
+      "caloriesburned" : caloriesburned
     };
 
     var body = json.encode(data);
@@ -108,7 +112,7 @@ class DbThings{
     print(response.body);
 
     Map responseMap = jsonDecode(response.body);
-    StudentExercising studentExercising = StudentExercising.fromMap(responseMap);
+    PassExercise studentExercising = PassExercise.fromMap(responseMap);
 
     return studentExercising;
   }
@@ -121,6 +125,24 @@ class DbThings{
     );
     print(response.body);
     return response;
+  }
+
+  static Future<List<Student>> getStudents() async{
+    var getStudentsUrl = Uri.parse(exerciseUrl + '/getStudents');
+
+    http.Response response = await http.get(
+      getStudentsUrl,
+      headers: headers,
+    );
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<Student> students = [];
+    for(Map studentMap in responseList){
+      Student student = Student.fromMap(studentMap);
+      students.add(student);
+    }
+    return students;
   }
 
 }

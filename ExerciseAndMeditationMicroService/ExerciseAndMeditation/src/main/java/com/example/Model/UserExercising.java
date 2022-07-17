@@ -9,28 +9,35 @@ import java.time.LocalDateTime;
 @Table(name = "userexercising")
 public class UserExercising {
 
-    private @Id @GeneratedValue Long userExercisingId;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int userexercisingid;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "studentid")
     Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "exercise_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "exerciseid")
     Exercise exercise;
 
-    @Column
-    LocalDateTime started_at;
-    @Column
-    LocalDateTime ended_at;
-    @Column
-    double calories_burned;
+    @Column(name = "startedat", nullable=false)
+    LocalDateTime startedat;
 
-    public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt){
+    @Column(name = "endedat", nullable=false)
+    LocalDateTime endedat;
+
+    @Column(name = "totaltime", nullable=false)
+    int totaltime;
+
+    @Column(name = "caloriesburned", nullable=false)
+    double caloriesburned;
+
+    public UserExercising(Exercise exercise, Student student, LocalDateTime startedAt, LocalDateTime endedAt, int totalTime, double caloriesBurned){
         this.exercise = exercise;
         this.student = student;
-        this.started_at = startedAt;
-        this.ended_at = endedAt;
+        this.startedat = startedAt;
+        this.endedat = endedAt;
+        this.totaltime = totalTime;
+        this.caloriesburned = caloriesBurned;
     }
 
     public UserExercising() {
@@ -46,30 +53,30 @@ public class UserExercising {
     }
 
     public double getCalories_burned(){
-        return calories_burned;
+        return caloriesburned;
     }
 
     public LocalDateTime getStarted_at() {
-        return started_at;
+        return startedat;
     }
 
     public void setStarted_at(LocalDateTime startedAt){
-        this.started_at = startedAt;
+        this.startedat = startedAt;
     }
 
     public LocalDateTime getEnded_at() {
-        return ended_at;
+        return endedat;
     }
 
     public void setEnded_at(LocalDateTime endedAt){
-        this.ended_at = endedAt;
+        this.endedat = endedAt;
     }
 
-    public Long getUserExercisingId(){
-        return userExercisingId;
+    public int getUser_exercising_id(){
+        return userexercisingid;
     }
 
     public void setCalories_burned(double caloriesBurned){
-        this.calories_burned = caloriesBurned;
+        this.caloriesburned = caloriesBurned;
     }
 }

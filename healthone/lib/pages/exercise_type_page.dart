@@ -17,14 +17,12 @@ class ExerciseTypePage extends StatelessWidget {
       create: (context) => ExerciseData(),
       child: MaterialApp(
         title: "HealthOne",
-
         theme: ThemeData(
           primaryColor: Colors.teal[400],
-        ),
+        ),//ThemeData
         debugShowCheckedModeBanner: false,
         home: PrintExercises(),
-      ),
-
-    );
-  }
-}
+      ),//MaterialApp
+    );//ChangeNotifierProvider
+  }//build
+}//class

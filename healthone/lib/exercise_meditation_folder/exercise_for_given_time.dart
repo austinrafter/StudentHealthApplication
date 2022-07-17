@@ -1,13 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'exercise.dart';
 import 'dart:convert';
+import 'exercise_data.dart';
+import 'db_things.dart';
+import '../profile/student.dart';
+import '../profile/profile_data.dart';
+import '../profile/profile_db_services.dart';
 
 class ExerciseCountdown extends StatefulWidget{
-  const ExerciseCountdown({Key? key, required this.exercise, required this.exercise_name, required this.exercise_type}) : super(key : key);
+  const ExerciseCountdown({Key? key, required this.exercise, required this.exercisename, required this.exercisetype, required this.metabolicequivalentscore}) : super(key : key);
   final Exercise exercise;
-  final String exercise_name;
-  final String exercise_type;
+  final String exercisename;
+  final String exercisetype;
+  final double metabolicequivalentscore;
   //final int timerDuration;
 
   @override
@@ -16,20 +23,31 @@ class ExerciseCountdown extends StatefulWidget{
 
 class _ExerciseCountdownState extends State<ExerciseCountdown>{
   var countDownDuration;
+  List<Student>? students;
   Duration duration = Duration.zero;
   Timer? timer;
   late TextEditingController _controller;
   var totalTime = 0;
+  var start;
+  var end;
+  var caloriesBurnedPerMinute;
+  var totalCaloriesBurned;
+
+  getStudents()async{
+    students = await DbThings.getStudents();
+    Provider.of<ExerciseData>(context, listen: false).students = students!;
+  }
 
   bool isCountdown = false;
 
   @override
   void initState(){
     super.initState();
-
+    getStudents();
     //startTimer();
     reset();
     _controller = TextEditingController();
+    start = DateTime.now();
 
   }
 
@@ -79,6 +97,30 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.teal[900],
+      title: Text(""),
+      leading: GestureDetector(
+        onTap: (
+            ) { Navigator.pop(context);
+                print(totalTime);
+                end = DateTime.now();
+                print(start);
+                print(end);
+                print(widget.metabolicequivalentscore);
+                if(students?.length != 0){
+                  var kiloWeight = Provider.of<ExerciseData>(context, listen: false).students[0].weight * 0.453592;
+                  caloriesBurnedPerMinute = (kiloWeight * 3.5 * widget.metabolicequivalentscore) / 200;
+                  totalCaloriesBurned = caloriesBurnedPerMinute * (totalTime.toDouble() / 60);
+                  print(totalCaloriesBurned);
+                  print(Provider.of<ExerciseData>(context, listen: false).students[0].username);
+                  print(widget.exercisename);
+                  Provider.of<ExerciseData>(context, listen: false)
+                      .addStudentExercising(widget.exercisename, Provider.of<ExerciseData>(context, listen: false).students[0].username, start, end, totalTime, totalCaloriesBurned);
+                }
+                },
+        child: Icon(
+          Icons.arrow_circle_left,
+        ),
+      ),
   ),//appBar
   backgroundColor: Colors.teal[400],
     body: Center(
@@ -134,13 +176,13 @@ Widget buildTime(){
                 ),//Text
               ),//ButtonWidget
           ),//Align
-        Text('${widget.exercise_name}',
+        Text('${widget.exercisename}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
               fontSize: 25,),
         ),
           const SizedBox(height: 24,),
-        Text('${widget.exercise_type}',
+        Text('${widget.exercisetype}',
           style: const TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 25),
@@ -187,8 +229,8 @@ Widget buildTimeCard({required String time, required String header}) =>
         const SizedBox(height: 24),
         Text(
           header
-        ),
-  ],
+        ),//Text
+  ],//children
   );//Column
 
 Widget buildButtons(){
@@ -262,7 +304,7 @@ Widget buildButtons(){
                 return AlertDialog(
                   title: const Text('Thanks!'),
                   content: Text(
-                      'You will ${widget.exercise_name} for "$value" minutes.'),
+                      'You will ${widget.exercisename} for "$value" minutes.'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
