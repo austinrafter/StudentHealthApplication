@@ -95,13 +95,16 @@ class _PerformMeditationState extends State<PerformMeditation>{
     final url = UrlSource('https://luan.xyz/files/audio/ambient_c_motion.mp3');
     //audioPlayer.setUrl(url);
     //final player = AudioCache(prefix:'../healthone/lib/exercise_meditation_folder/assets');
-    //final url = await player.load('Moria - Suffer.mp3');
+    //final url = await player.load('MoriaSuffer.mp3');
     print("gets here: audio player test set audio pre-play");
-    final asset = AssetSource('audio/Moria - Suffer.mp3');
+    final asset = AssetSource('audio/MoriaSuffer.mp3');
     if(Platform.isAndroid) {
-      await audioPlayer.play(asset, mode: PlayerMode.mediaPlayer);
+      await audioPlayer.play(
+          asset,
+          //mode: PlayerMode.media
+      );
     }else{
-      audioPlayer.setSource(asset);
+      audioPlayer.play(asset);
     }
     print("gets here: audio player test set audio post-play");
   }
