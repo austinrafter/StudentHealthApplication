@@ -113,8 +113,13 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
                   print(totalCaloriesBurned);
                   print(Provider.of<ExerciseData>(context, listen: false).students[0].username);
                   print(widget.exercisename);
-                  Provider.of<ExerciseData>(context, listen: false)
-                      .addStudentExercising(widget.exercisename, Provider.of<ExerciseData>(context, listen: false).students[0].username, start, end, totalTime, totalCaloriesBurned);
+                  if(totalTime > 0) {
+                    Provider.of<ExerciseData>(context, listen: false)
+                        .addStudentExercising(widget.exercisename, Provider
+                        .of<ExerciseData>(context, listen: false)
+                        .students[0].username, start, end, totalTime,
+                        totalCaloriesBurned);
+                  }
                 }
                 },
         child: Icon(

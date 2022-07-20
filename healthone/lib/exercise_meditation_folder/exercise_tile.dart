@@ -23,8 +23,8 @@ class ExerciseTile extends StatelessWidget{
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercisename:exercise.exercisename, exercisetype:exercise.exercisetype, metabolicequivalentscore:exercise.metabolicequivalentscore),),
-        );
-      },
+        );//navigator.push
+      },//onpressed
     child: Stack(
       children: [
         Card(
@@ -32,9 +32,9 @@ class ExerciseTile extends StatelessWidget{
       shape: RoundedRectangleBorder(
         side: BorderSide(
           color: Theme.of(context).colorScheme.outline,
-        ),
+        ),//borderside
         borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
+      ),//roundedrectangleborder
       child: ListTile(
       title: Text(
       exercise.exercisename,

@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "passexercise", schema ="StudentHealth")
+@Table(name = "passmeditation", schema ="StudentHealth")
 @RequiredArgsConstructor
-public class PassExercise {
+public class PassMeditation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "passexerciseid")
-    private int passexerciseid;
+    @Column(name = "passmeditationid")
+    private int passmeditationid;
     //@Column(name = "exercisename", nullable=false)
-    private String exercisename;
+    private String meditationname;
     //@Column(name = "username", nullable=false)
     private String username;
     //@Column(name = "startedat", nullable=false)
@@ -27,10 +27,10 @@ public class PassExercise {
     //@Column(name = "totaltime", nullable=false)
     private int totaltime;
     //@Column(name = "caloriesburned", nullable=false)
-    private double caloriesburned;
+    private String soundused;
 
-    public String getExercisename(){
-        return exercisename;
+    public String getMeditationname(){
+        return meditationname;
     }
 
     public String getUsername(){
@@ -49,8 +49,7 @@ public class PassExercise {
         return totaltime;
     }
 
-    public double getCaloriesburned(){
-        return caloriesburned;
+    public String getSoundused(){
+        return soundused;
     }
-
 }

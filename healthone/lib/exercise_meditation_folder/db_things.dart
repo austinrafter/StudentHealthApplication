@@ -6,6 +6,7 @@ import 'meditation.dart';
 import '../profile/student.dart';
 import 'student_exercising.dart';
 import 'pass_exercise.dart';
+import 'pass_meditation.dart';
 
 class DbThings{
   static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore) async{
@@ -69,10 +70,12 @@ class DbThings{
     return meditations;
   }
 
-  static Future<Meditation> addMeditation(String meditationname, String meditationtype) async{
+  static Future<Meditation> addMeditation(String meditationname, String meditationtype, String audiolink, String imagelink) async{
     Map data = {
       "meditationname" : meditationname,
       "meditationtype" : meditationtype,
+      "audiolink" : audiolink,
+      "imagelink" : imagelink,
     };
 
     var body = json.encode(data);
@@ -143,6 +146,32 @@ class DbThings{
       students.add(student);
     }
     return students;
+  }
+
+  static Future<PassMeditation> addStudentMeditating(String meditationname, String username, DateTime startedat, DateTime endedat, int totaltime, String soundused) async{
+    Map data = {
+      "meditationname" : meditationname,
+      "username" : username,
+      "startedat" : startedat.toIso8601String(),
+      "endedat": endedat.toIso8601String(),
+      "totaltime": totaltime,
+      "soundused" : soundused
+    };
+
+    var body = json.encode(data);
+    var addMeditationUrl = Uri.parse(meditationUrl + '/addmeditationtouser');
+
+    http.Response response = await http.post(
+        addMeditationUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    PassMeditation studentMeditating = PassMeditation.fromMap(responseMap);
+
+    return studentMeditating;
   }
 
 }

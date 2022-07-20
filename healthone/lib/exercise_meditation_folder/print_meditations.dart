@@ -35,14 +35,14 @@ class _MeditationTypePageState extends State<PrintMeditations>{
         body: Center(
           child: CircularProgressIndicator(),
         )
-    )
+    )//scaffold
         :Scaffold(
       appBar: AppBar(
         title: Text(
           '(${Provider.of<MeditationData>(context).meditations.length}) exercises to choose from',
-        ),
+        ),//title
         centerTitle: true,
-      ),
+      ),//appbar
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Consumer<MeditationData>(
@@ -54,12 +54,12 @@ class _MeditationTypePageState extends State<PrintMeditations>{
                   return MeditationTile(
                       meditation: meditation,
                       meditationData: meditationData
-                  );
-                });
+                  );//meditationtile
+                });//itembuilder
 
-          },
-        ),
-      ),
-    );
-  }
-}
+          },//builder
+        ),//consumer<meditationdata>
+      ),//container
+    );//scaffold
+  }//build
+}//class

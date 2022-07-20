@@ -30,10 +30,20 @@ import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:async';
 import 'dart:io';
+import 'meditation.dart';
+import '../profile/student.dart';
+import 'pass_meditation.dart';
+import 'meditation_data.dart';
+import 'db_things.dart';
 
 
 class PerformMeditation extends StatefulWidget{
-  const PerformMeditation({Key? key}) : super(key : key);
+  final Meditation meditation;
+  final String meditationname;
+  final String meditationtype;
+  final String audiolink;
+  final String imagelink;
+  const PerformMeditation({Key? key, required this.meditation, required this.meditationname, required this.meditationtype, required this.audiolink, required this.imagelink}) : super(key : key);
 
   @override
   _PerformMeditationState createState() => _PerformMeditationState();
@@ -58,32 +68,25 @@ class _PerformMeditationState extends State<PerformMeditation>{
   StreamSubscription? _playerCompleteSubscription;
   StreamSubscription? _playerStateChangeSubscription;
 
+  List<Student>? students;
+  var totalTime = 0;
+  var start;
+  var end;
+
   //bool isPlaying = false;
+
+  getStudents()async{
+    students = await DbThings.getStudents();
+    Provider.of<MeditationData>(context, listen: false).students = students!;
+  }
 
   @override
   void initState(){
     super.initState();
-
+    getStudents();
+    start = DateTime.now();
     setAudio();
     _initStreams();
-
-    /*
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      setState((){
-        print('Current player state: $state');
-        print("gets here: audio player test state change");
-        isPlaying = state == PlayerState.playing;
-      });
-    });
-
-    audioPlayer.onDurationChanged.listen((newDuration){
-      setState((){
-        print("max duration: $newDuration");
-        _duration = newDuration;
-      });
-    });
-
-     */
   }
 
   Future setAudio() async{
@@ -92,12 +95,12 @@ class _PerformMeditationState extends State<PerformMeditation>{
     //await AudioPlayer.global.setGlobalAudioContext(config);
     AudioPlayer.global.changeLogLevel(LogLevel.info);
     //String url = 'https://soundcloud.com/futureisnow/future-feat-drake-tems-wait?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
-    final url = UrlSource('https://luan.xyz/files/audio/ambient_c_motion.mp3');
+    final url = UrlSource('https://www.dropbox.com/home?preview=MoriaSuffer.mp3');
     //audioPlayer.setUrl(url);
     //final player = AudioCache(prefix:'../healthone/lib/exercise_meditation_folder/assets');
     //final url = await player.load('MoriaSuffer.mp3');
     print("gets here: audio player test set audio pre-play");
-    final asset = AssetSource('audio/MoriaSuffer.mp3');
+    final asset = AssetSource(widget.audiolink);
     if(Platform.isAndroid) {
       await audioPlayer.play(
           asset,
@@ -122,6 +125,30 @@ class _PerformMeditationState extends State<PerformMeditation>{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(backgroundColor: Colors.teal[900],
+      title: Text(""),
+      leading: GestureDetector(
+        onTap: (
+            ) { Navigator.pop(context);
+        print(totalTime);
+        end = DateTime.now();
+        print(start);
+        print(end);
+        print(widget.meditationname);
+        if(students?.length != 0){
+          if(totalTime > 0) {
+            Provider.of<MeditationData>(context, listen: false)
+                .addStudentMeditating(widget.meditationname, Provider
+                .of<MeditationData>(context, listen: false)
+                .students[0].username, start, end, totalTime, widget.audiolink);
+          }
+        }//if
+        },
+        child: Icon(
+          Icons.arrow_circle_left,
+        ),//Icon
+      ),//GestureDetector
+    ),//AppBar
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -130,24 +157,13 @@ class _PerformMeditationState extends State<PerformMeditation>{
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                  'https://neurosciencenews.com/files/2021/11/organsmic-meditation-brain-function-neuroscineces-public.jpg',
+                  widget.imagelink,
               width: double.infinity,
               height: 350,
               //fit: Boxfit.cover
               ),//image.network
     ),//ClipRRect
-    const SizedBox(height: 32),
-    const Text('Meditation Name',
-    style: TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    ),//TextStyle
-    ),//Text
-    const SizedBox(height: 4),
-    const Text(
-    'meditation type',
-    style: TextStyle(fontSize: 20),
-    ),//Text
+    buildName(),
     Slider(
     min: 0,
     value: (_position != null &&
@@ -212,7 +228,26 @@ class _PerformMeditationState extends State<PerformMeditation>{
           ],//children
       ),//column
       ),//padding
-    );//scaffold
+    );// widget build scaffold
+
+  Widget buildName(){
+    return Column(
+      children:[
+        const SizedBox(height: 32),
+        const Text('{widget.meditationname}',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),//TextStyle
+        ),//Text
+        const SizedBox(height: 4),
+        const Text(
+          '{widget.meditationtype}',
+          style: TextStyle(fontSize: 20),
+        ),//Text
+      ],
+    );//Column
+  }
 
   void _initStreams() {
     _durationSubscription = audioPlayer.onDurationChanged.listen((duration) {
@@ -237,7 +272,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
             _audioPlayerState = state;
           });
         });
-  }
+  }//_initStreams
 
   Future<void> _play() async {
     final position = _position;
@@ -246,12 +281,12 @@ class _PerformMeditationState extends State<PerformMeditation>{
     }
     await audioPlayer.resume();
     setState(() => _playerState = PlayerState.playing);
-  }
+  }//_play
 
   Future<void> _pause() async {
     await audioPlayer.pause();
     setState(() => _playerState = PlayerState.paused);
-  }
+  }//_pause
 
   Future<void> _stop() async {
     await audioPlayer.stop();
@@ -259,8 +294,8 @@ class _PerformMeditationState extends State<PerformMeditation>{
       _playerState = PlayerState.stopped;
       _position = Duration.zero;
     });
-  }
-  }
+  }//_stop
+  }//class
 
 
 

@@ -1,8 +1,7 @@
 package com.example.Controller;
 
 import com.example.Model.*;
-import com.example.Repository.MeditationRepository;
-import com.example.Repository.UserMeditatingRepository;
+import com.example.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping(path = "/meditations")
@@ -21,6 +21,12 @@ public class MeditationController {
 
     @Autowired
     private UserMeditatingRepository userMeditatingRepository;
+
+    @Autowired
+    private PassMeditationRepository passMeditationRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping("/getMeditations")
     public List<Meditation> getMeditations(){
@@ -38,8 +44,15 @@ public class MeditationController {
     }
 
     @PostMapping("/addmeditationtouser")
-    public UserMeditating addUserMeditation(@RequestBody Meditation meditation,@RequestBody Student student,@RequestBody LocalDateTime start, @RequestBody LocalDateTime end,@RequestBody int totaltime){
-        return userMeditatingRepository.save(new UserMeditating(meditation, student, start, end, totaltime));
+    public PassMeditation addUserMeditation(@RequestBody PassMeditation passMeditation){
+        List<Meditation> meditations = meditationRepository.findByMeditationname(passMeditation.getMeditationname());
+        List<Student> students = studentRepository.findByUsername(passMeditation.getUsername());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTimeStarted = LocalDateTime.parse(passMeditation.getStartedat(), formatter);
+        LocalDateTime dateTimeEnded = LocalDateTime.parse(passMeditation.getEndedat(), formatter);
+        UserMeditating userMeditating = new UserMeditating(meditations.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passMeditation.getTotaltime());
+        userMeditatingRepository.save(userMeditating);
+        return passMeditationRepository.save(passMeditation);
     }
 
     @PutMapping("/update/{id}")

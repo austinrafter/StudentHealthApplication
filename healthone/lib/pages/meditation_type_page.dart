@@ -22,7 +22,7 @@ class MeditationTypePage extends StatelessWidget {
           primaryColor: Colors.teal[400],
         ),
         debugShowCheckedModeBanner: false,
-        home: PerformMeditation(),
+        home: PrintMeditations(),
       ),
 
     );

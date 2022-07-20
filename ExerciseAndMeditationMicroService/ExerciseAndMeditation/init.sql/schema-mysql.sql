@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS exercise (
 CREATE TABLE IF NOT EXISTS meditation (
 	meditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	meditationname VARCHAR(256) UNIQUE,
-	meditationtype VARCHAR(128)
+	meditationtype VARCHAR(128),
+	audiolink VARCHAR(256) UNIQUE,
+	imagelink VARCHAR(256)
 );
 
 CREATE TABLE IF NOT EXISTS student (
@@ -77,3 +79,16 @@ CREATE TABLE IF NOT EXISTS passexercise (
 	totaltime int,
 	caloriesburned DOUBLE
 );
+
+CREATE TABLE IF NOT EXISTS passmeditation (
+	massmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	meditationname VARCHAR(256),
+	username VARCHAR(256),
+	startedat VARCHAR(256),
+	endedat VARCHAR(256),
+	totaltime int,
+	soundused VARCHAR(256)
+);
+
+INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
+VALUES ('Unguided metal fest', 'Unguided meditation', 'audio/MoriaSuffer.mp3', 'https://neurosciencenews.com/files/2021/11/organsmic-meditation-brain-function-neuroscineces-public.jpg');
