@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -66,12 +67,12 @@ public class ExerciseController {
 
     @PostMapping("/addtouser")
     public PassExercise addUserExercise(@RequestBody PassExercise passExercise){
-        List<Exercise> exercises = exerciseRepository.findByExercisename(passExercise.getExerciseName());
-        List<Student> students = studentRepository.findByUsername(passExercise.getUserName());
+        List<Exercise> exercises = exerciseRepository.findByExercisename(passExercise.getExercisename());
+        List<Student> students = studentRepository.findByUsername(passExercise.getUsername());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTimeStarted = LocalDateTime.parse(passExercise.getStartedAt(), formatter);
-        LocalDateTime dateTimeEnded = LocalDateTime.parse(passExercise.getEndedAt(), formatter);
-        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passExercise.getTotalTime(), passExercise.getCaloriesBurned());
+        LocalDateTime dateTimeStarted = LocalDateTime.parse(passExercise.getStartedat(), formatter);
+        LocalDateTime dateTimeEnded = LocalDateTime.parse(passExercise.getEndedat(), formatter);
+        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passExercise.getTotaltime(), passExercise.getCaloriesburned());
         userExercisingRepository.save(userExercising);
        return passExerciseRepository.save(passExercise);
     }
