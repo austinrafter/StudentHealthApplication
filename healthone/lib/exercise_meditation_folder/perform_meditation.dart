@@ -70,6 +70,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
 
   List<Student>? students;
   var totalTime = 0;
+  var timePassed = 0;
   var start;
   var end;
 
@@ -90,24 +91,42 @@ class _PerformMeditationState extends State<PerformMeditation>{
   }
 
   Future setAudio() async{
-    audioPlayer.setReleaseMode(ReleaseMode.loop);
+    audioPlayer.setReleaseMode(ReleaseMode.stop);
     audioPlayer.setPlayerMode(PlayerMode.mediaPlayer);
     //await AudioPlayer.global.setGlobalAudioContext(config);
     AudioPlayer.global.changeLogLevel(LogLevel.info);
     //String url = 'https://soundcloud.com/futureisnow/future-feat-drake-tems-wait?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
-    final url = UrlSource('https://www.dropbox.com/home?preview=MoriaSuffer.mp3');
+      final url = UrlSource(
+          widget.audiolink);
     //audioPlayer.setUrl(url);
     //final player = AudioCache(prefix:'../healthone/lib/exercise_meditation_folder/assets');
     //final url = await player.load('MoriaSuffer.mp3');
     print("gets here: audio player test set audio pre-play");
     final asset = AssetSource(widget.audiolink);
     if(Platform.isAndroid) {
-      await audioPlayer.play(
+      if(widget.audiolink.contains('https:')) {
+        await audioPlayer.play(
+          url,
+          //mode: PlayerMode.media
+        );
+      }else {
+        await audioPlayer.play(
           asset,
           //mode: PlayerMode.media
-      );
+        );
+      }
     }else{
-      audioPlayer.play(asset);
+      if(widget.audiolink.contains('https:')) {
+        await audioPlayer.play(
+          url,
+          //mode: PlayerMode.media
+        );
+      }else {
+        await audioPlayer.play(
+          asset,
+          //mode: PlayerMode.media
+        );
+      }
     }
     print("gets here: audio player test set audio post-play");
   }
@@ -130,6 +149,10 @@ class _PerformMeditationState extends State<PerformMeditation>{
       leading: GestureDetector(
         onTap: (
             ) { Navigator.pop(context);
+          _stop();
+        if(_position != _duration){
+          totalTime = totalTime + timePassed;
+        }
         print(totalTime);
         end = DateTime.now();
         print(start);
@@ -143,6 +166,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
                 .students[0].username, start, end, totalTime, widget.audiolink);
           }
         }//if
+
         },
         child: Icon(
           Icons.arrow_circle_left,
@@ -217,8 +241,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
       if(isPlaying){
         print("gets here: audio player test pause");
         _pause();
-    }
-      else{
+    }else{
         print("gets here: audio player test resume");
         _play();
     }
@@ -251,15 +274,25 @@ class _PerformMeditationState extends State<PerformMeditation>{
 
   void _initStreams() {
     _durationSubscription = audioPlayer.onDurationChanged.listen((duration) {
+      //totalTime = totalTime + 1;
       setState(() => _duration = duration);
     });
 
-    _positionSubscription = audioPlayer.onPositionChanged.listen(
-          (p) => setState(() => _position = p),
-    );
+    _positionSubscription = audioPlayer.onPositionChanged.listen((p) {
+          //print(p.inSeconds);
+          if(p.inSeconds >= timePassed) {
+            timePassed = p.inSeconds;
+          }else{
+            timePassed = timePassed + p.inSeconds;
+          }
+          setState(() => _position = p);
+
+    });
 
     _playerCompleteSubscription = audioPlayer.onPlayerComplete.listen((event) {
       audioPlayer.stop();
+      totalTime = totalTime + timePassed;
+      timePassed = 0;
       setState(() {
         _playerState = PlayerState.stopped;
         _position = _duration;
