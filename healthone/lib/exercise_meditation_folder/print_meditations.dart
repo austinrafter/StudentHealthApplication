@@ -39,7 +39,7 @@ class _MeditationTypePageState extends State<PrintMeditations>{
         :Scaffold(
       appBar: AppBar(
         title: Text(
-          '(${Provider.of<MeditationData>(context).meditations.length}) exercises to choose from',
+          '(${Provider.of<MeditationData>(context).meditations.length}) meditations to choose from',
         ),//title
         centerTitle: true,
       ),//appbar

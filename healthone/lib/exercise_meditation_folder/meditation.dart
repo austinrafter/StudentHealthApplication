@@ -13,13 +13,13 @@ class Meditation {
     required this.imagelink,
   });
 
-  factory Meditation.fromMap(Map exerciseMap){
+  factory Meditation.fromMap(Map meditationMap){
     return Meditation(
-      meditationid: exerciseMap['meditationid'],
-      meditationname: exerciseMap['meditationname'],
-      meditationtype: exerciseMap['meditationtype'],
-      audiolink: exerciseMap['audiolink'],
-      imagelink: exerciseMap['imagelink'],
+      meditationid: meditationMap['meditationid'],
+      meditationname: meditationMap['meditationname'],
+      meditationtype: meditationMap['meditationtype'],
+      audiolink: meditationMap['audiolink'],
+      imagelink: meditationMap['imagelink'],
     );
   }
 }

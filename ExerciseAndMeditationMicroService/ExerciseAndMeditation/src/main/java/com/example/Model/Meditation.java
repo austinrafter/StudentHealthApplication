@@ -3,37 +3,39 @@ import jdk.jfr.DataAmount;
 import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
+import lombok.Data;
 
+@Data
 @Entity
-@Table(name = "meditation")
-@DataAmount @RequiredArgsConstructor
+@Table(name = "meditation", schema ="StudentHealth")
+@RequiredArgsConstructor
 public class Meditation {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int meditationid;
-    @Column(unique=true, nullable=false) private String meditationname;
-    @Column(nullable=false) private String meditationtype;
-    @Column(unique=true, nullable=false) private String audiolink;
-    @Column() private String imagelink;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "meditationid") private int meditationid;
+    @Column(name = "meditationname",unique=true, nullable=false) private String meditationname;
+    @Column(name = "meditationtype",nullable=false) private String meditationtype;
+    @Column(name = "audiolink",unique=true, nullable=false) private String audiolink;
+    @Column(name = "imagelink") private String imagelink;
 
     @OneToMany(mappedBy = "meditation")
     Set<UserMeditating> meditations;
 
-    public String getMeditation_name(){
+    public String getMeditationname(){
         return meditationname;
     }
 
-    public void setMeditation_name(String meditationName){
+    public void setMeditationname(String meditationName){
         this.meditationname = meditationName;
     }
 
-    public String getMeditation_type(){
+    public String getMeditationtype(){
         return meditationtype;
     }
 
-    public void setMeditation_type(String meditationType){
+    public void setMeditationtype(String meditationType){
         this.meditationtype = meditationType;
     }
 
-    public int getMeditation_id(){
+    public int getMeditationid(){
         return meditationid;
     }
 

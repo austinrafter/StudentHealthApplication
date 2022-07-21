@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 class HealthConditionPreventsExercise {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long healthConditionPreventsExerciseId;
 
     @ManyToOne

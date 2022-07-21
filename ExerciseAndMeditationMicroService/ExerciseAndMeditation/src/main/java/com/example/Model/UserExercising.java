@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "userexercising")
 public class UserExercising {
 
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) int userexercisingid;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) int userexercisingid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentid")

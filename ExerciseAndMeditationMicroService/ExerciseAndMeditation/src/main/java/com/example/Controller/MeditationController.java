@@ -30,6 +30,7 @@ public class MeditationController {
 
     @GetMapping("/getMeditations")
     public List<Meditation> getMeditations(){
+        System.out.println("gets here: get meditations");
         return meditationRepository.findAll();
     }
 

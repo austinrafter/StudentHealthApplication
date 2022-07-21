@@ -94,6 +94,11 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   }//stopTimer
 
   @override
+  void dispose(){
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.teal[900],
