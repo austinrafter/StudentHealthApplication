@@ -65,6 +65,7 @@ flutter:
 
   assets:
     - assets/audio/MoriaSuffer.mp3
+    - assets/audio/Guided_Meditation_for_Deep_Relaxati.mp3
 
 
   # To add assets to your application, add an assets section, like this:

@@ -190,15 +190,15 @@ Widget buildTime(){
           style: const TextStyle(
             fontWeight: FontWeight.bold,
               fontSize: 25,),
-        ),
+        ),//Text
           const SizedBox(height: 24,),
         Text('${widget.exercisetype}',
           style: const TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 25),
-        ),
+        ),//Text
           const SizedBox(height: 24),
-        ],
+        ],//children
 
       ),//Column
       const SizedBox(height: 48,),
@@ -211,10 +211,10 @@ Widget buildTime(){
       const SizedBox(width: 8),
       buildTimeCard(time: seconds, header: 'SECONDS'),
 
-    ],
+    ],//children
 
   ),//Row
-  ],
+  ],//children
   );//Column
 }
 

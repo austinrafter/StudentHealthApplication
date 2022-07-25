@@ -22,7 +22,7 @@ class MeditationSoundPage extends StatelessWidget {
     return ChangeNotifierProvider<MeditationData>(
       create: (context) => MeditationData(),
       child: Container(
-        child: PerformMeditation(meditation: meditation, meditationname:meditation.meditationname, meditationtype:meditation.meditationtype, audiolink:meditation.audiolink, imagelink:meditation.imagelink),
+        child: PerformMeditation(meditation: meditation, meditationname:meditationname, meditationtype:meditationtype, audiolink:audiolink, imagelink:imagelink),
       ),//Container
 
     );//ChangeNotifierProvider

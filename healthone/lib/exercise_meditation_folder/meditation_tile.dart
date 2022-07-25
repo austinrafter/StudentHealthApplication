@@ -34,6 +34,26 @@ class MeditationTile extends StatelessWidget{
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),//roundedrectangleborder
               child: ListTile(
+                leading: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 46,
+                    minHeight: 46,
+                    maxWidth: 66,
+                    maxHeight: 66,
+                  ),
+                  child: meditation.imagelink == null ? Image.network(
+                    'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif',
+                    width: double.infinity,
+                    height: 350,
+                    //fit: Boxfit.cover
+                  )//image.network
+                      : Image.network(
+                    '${meditation.imagelink}',
+                    width: double.infinity,
+                    height: 350,
+                    //fit: Boxfit.cover
+                  ),//image.network
+                ),
                 title: Text(
                   meditation.meditationname,
                 ),//Text

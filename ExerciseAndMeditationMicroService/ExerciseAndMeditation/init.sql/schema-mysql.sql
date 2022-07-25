@@ -91,10 +91,13 @@ CREATE TABLE IF NOT EXISTS passmeditation (
 );
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
-VALUES ('Unguided metal fest', 'Unguided meditation', 'audio/MoriaSuffer.mp3', 'https://neurosciencenews.com/files/2021/11/organsmic-meditation-brain-function-neuroscineces-public.jpg');
+VALUES ('Unguided metal fest', 'Unguided meditation', 'audio/MoriaSuffer.mp3', 'https://media.giphy.com/media/1gXJ0MrlsUBSQPq2kV/giphy-downsized-large.gif');
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
-VALUES ('Unguided ambient noise', 'Unguided meditation', 'https://luan.xyz/files/audio/ambient_c_motion.mp3', 'https://cdn.pixabay.com/photo/2016/02/17/19/08/lotus-1205631_1280.jpg');
+VALUES ('Unguided ambient noise', 'Unguided meditation', 'https://luan.xyz/files/audio/ambient_c_motion.mp3', 'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif');
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
-VALUES ('Unguided nasa mission', 'Unguided meditation', 'https://luan.xyz/files/audio/nasa_on_a_mission.mp3', 'https://cdn.pixabay.com/photo/2017/02/05/15/04/stones-2040340_1280.jpg');
+VALUES ('Unguided nasa mission', 'Unguided meditation', 'https://luan.xyz/files/audio/nasa_on_a_mission.mp3', 'https://media.giphy.com/media/RT3S8fkHUxECJJpwvT/giphy.gif');
+
+INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
+VALUES ('Guided mindfulness', 'Guided meditation', 'audio/Guided_Meditation_for_Deep_Relaxati.mp3', 'https://media.giphy.com/media/9WHE2bo5Na9Gg/giphy.gif');

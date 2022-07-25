@@ -38,12 +38,12 @@ import 'db_things.dart';
 
 
 class PerformMeditation extends StatefulWidget{
+  const PerformMeditation({Key? key, required this.meditation, required this.meditationname, required this.meditationtype, required this.audiolink, required this.imagelink}) : super(key : key);
   final Meditation meditation;
   final String meditationname;
   final String meditationtype;
   final String audiolink;
   final String imagelink;
-  const PerformMeditation({Key? key, required this.meditation, required this.meditationname, required this.meditationtype, required this.audiolink, required this.imagelink}) : super(key : key);
 
   @override
   _PerformMeditationState createState() => _PerformMeditationState();
@@ -57,7 +57,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
   PlayerState _playerState = PlayerState.stopped;
   PlayerState? _audioPlayerState;
 
-  bool get isPlaying => _playerState == PlayerState.playing;
+  bool get _isPlaying => _playerState == PlayerState.playing;
   bool get _isPaused => _playerState == PlayerState.paused;
 
   String get _durationText => _duration?.toString().split('.').first ?? '';
@@ -144,20 +144,24 @@ class _PerformMeditationState extends State<PerformMeditation>{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(backgroundColor: Colors.teal[900],
+    appBar: AppBar(
+      backgroundColor: Colors.teal[900],
       title: Text(""),
       leading: GestureDetector(
         onTap: (
             ) { Navigator.pop(context);
           _stop();
         if(_position != _duration){
-          totalTime = totalTime + timePassed;
+          if(timePassed > 0) {
+            totalTime = totalTime + timePassed;
+          }
         }
         print(totalTime);
         end = DateTime.now();
         print(start);
         print(end);
         print(widget.meditationname);
+        print(widget.imagelink);
         if(students?.length != 0){
           if(totalTime > 0) {
             Provider.of<MeditationData>(context, listen: false)
@@ -180,13 +184,20 @@ class _PerformMeditationState extends State<PerformMeditation>{
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                  widget.imagelink,
+              child: widget.imagelink == null ? Image.network(
+                'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif',
               width: double.infinity,
               height: 350,
               //fit: Boxfit.cover
-              ),//image.network
+              )//image.network
+              : Image.network(
+      '${widget.imagelink}',
+      width: double.infinity,
+        height: 350,
+        //fit: Boxfit.cover
+      ),//image.network
     ),//ClipRRect
+    const SizedBox(height: 32),
     buildName(),
     Slider(
     min: 0,
@@ -234,11 +245,11 @@ class _PerformMeditationState extends State<PerformMeditation>{
     radius: 35,
     child: IconButton(
     icon: Icon(
-    isPlaying ? Icons.pause : Icons.play_arrow,
+    _isPlaying ? Icons.pause : Icons.play_arrow,
     ),//Icon
     iconSize: 50,
     onPressed: () async {
-      if(isPlaying){
+      if(_isPlaying){
         print("gets here: audio player test pause");
         _pause();
     }else{
@@ -256,16 +267,15 @@ class _PerformMeditationState extends State<PerformMeditation>{
   Widget buildName(){
     return Column(
       children:[
-        const SizedBox(height: 32),
-        const Text('{widget.meditationname}',
+        Text('${widget.meditationname}',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),//TextStyle
         ),//Text
         const SizedBox(height: 4),
-        const Text(
-          '{widget.meditationtype}',
+        Text(
+          '${widget.meditationtype}',
           style: TextStyle(fontSize: 20),
         ),//Text
       ],
@@ -328,6 +338,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
       _position = Duration.zero;
     });
   }//_stop
+
   }//class
 
 
