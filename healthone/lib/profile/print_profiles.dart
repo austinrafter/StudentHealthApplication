@@ -184,6 +184,7 @@ class _ProfileState extends State<PrintProfiles>{
         children: [
           Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          color: Colors.teal[900],
           child: Consumer<ProfileData>(
             builder: (context, profileData, child){
               return ListView.builder(

@@ -16,6 +16,9 @@ class ExerciseTile extends StatelessWidget{
   Widget build(BuildContext context){
   return Container(
     child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.teal[900],
+      ),
       onPressed: () {
         // When the user taps the button, navigate
         // to a named route and provide the arguments
@@ -28,23 +31,29 @@ class ExerciseTile extends StatelessWidget{
     child: Stack(
       children: [
         Card(
-          color: Colors.teal[400],
+          color: Colors.teal[600],
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: Theme.of(context).colorScheme.outline,
+          color: Colors.teal.shade600,
         ),//borderside
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),//roundedrectangleborder
       child: ListTile(
       title: Text(
       exercise.exercisename,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,),
       ),//Text
-        subtitle: Text(exercise.exercisetype,),
+        subtitle: Text(exercise.exercisetype,
+          style: TextStyle(fontStyle: FontStyle.italic,
+            color: Colors.white,),),
       trailing: Text(
       'MET\n${exercise.metabolicequivalentscore.toString()}',
         style: const TextStyle(
             fontStyle: FontStyle.italic,
-            fontSize: 18
+            fontSize: 18,
+            color: Colors.white,
         ),//TextStyle
       ),//Text
       ),//ListTile

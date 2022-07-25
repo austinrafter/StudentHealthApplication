@@ -129,8 +129,8 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
                 },
         child: Icon(
           Icons.arrow_circle_left,
-        ),
-      ),
+        ),//Icon
+      ),//leading
   ),//appBar
   backgroundColor: Colors.teal[400],
     body: Center(

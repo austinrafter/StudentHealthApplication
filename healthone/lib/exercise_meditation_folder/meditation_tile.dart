@@ -13,6 +13,7 @@ class MeditationTile extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Container(
+      color: Colors.teal[900],
       child: ElevatedButton(
         onPressed: () {
           // When the user taps the button, navigate
@@ -23,17 +24,21 @@ class MeditationTile extends StatelessWidget{
             MaterialPageRoute(builder: (context) =>  MeditationSoundPage(meditation: meditation, meditationname:meditation.meditationname, meditationtype:meditation.meditationtype, audiolink:meditation.audiolink, imagelink: meditation.imagelink),),
           );//navigator.push
         },//onpressed
+      style: ElevatedButton.styleFrom(
+        primary: Colors.teal[900],
+      ),
         child: Stack(
           children: [
             Card(
-              color: Colors.teal[400],
+              color: Colors.teal[600],
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: Theme.of(context).colorScheme.outline,
+                  color: Colors.teal.shade600,
                 ),//borderside
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),//roundedrectangleborder
-              child: ListTile(
+              child: Expanded(
+                child: ListTile(
                 leading: ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth: 46,
@@ -56,9 +61,15 @@ class MeditationTile extends StatelessWidget{
                 ),
                 title: Text(
                   meditation.meditationname,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,),
                 ),//Text
-                subtitle: Text(meditation.meditationtype,),
+                subtitle: Text(meditation.meditationtype,
+                  style: TextStyle(fontStyle: FontStyle.italic,
+                    color: Colors.white,),),
               ),//ListTile
+              ),
             ),//Card
           ],//stack children
         ),//Stack

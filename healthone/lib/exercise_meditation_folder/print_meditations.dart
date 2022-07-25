@@ -38,12 +38,23 @@ class _MeditationTypePageState extends State<PrintMeditations>{
     )//scaffold
         :Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal[900],
         title: Text(
-          '(${Provider.of<MeditationData>(context).meditations.length}) meditations to choose from',
+          '${Provider.of<MeditationData>(context).meditations.length} meditations to choose from',
         ),//title
         centerTitle: true,
+        leading: GestureDetector(
+          onTap: (
+              ) {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_circle_left,
+          ),//Icon
+        ),//leading
       ),//appbar
       body: Container(
+        color: Colors.teal[900],
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Consumer<MeditationData>(
           builder: (context, meditationData, child){

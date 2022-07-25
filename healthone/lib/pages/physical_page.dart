@@ -23,7 +23,8 @@ class PhysicalPage extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.teal[900],
       appBar: AppBar(
-        title: const Text("Physical Health Page"),
+        title: const Text("Physical Health"),
+        centerTitle: true,
       ),  
 
       body: Container(
@@ -39,7 +40,8 @@ class PhysicalPage extends StatelessWidget{
               child: ListView.builder(
                 itemCount: physicalData.length,
                 itemBuilder: (context, index){
-                  return Container(padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  return Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     height: 220,
                     width: double.maxFinite,
                   child: Card(
@@ -54,7 +56,7 @@ class PhysicalPage extends StatelessWidget{
 
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(7),
+                        padding: EdgeInsets.all(0),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -68,43 +70,25 @@ class PhysicalPage extends StatelessWidget{
                               children: <Widget>[
                                 Center(
                                   child: Container(
+                                    color: Colors.teal[700],
                                     width: 200,
                                     height: 500,
-                                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                     alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.topCenter,
-                                        colors: <Color>[
-                                          Colors.black.withAlpha(0),
-                                          Colors.black12,
-                                          Colors.black45
-                                        ],
-                                      ),
-                                    ),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            PhysicalItemPageName(physicalData[index]),
-                                          ]//children
-                                        )//Row
-                                      ]//children
-
-
+                                    child: Container(
+                                          child:  PhysicalItemPageName(physicalData[index]),
                                     ),//Column
-
-
                                   ),//Container
                                 ),//Center
                               ],//children
                             ),//Stack
                             shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.teal.shade900,
+                              ),
                               borderRadius: BorderRadius.circular(10.0),
                             ),//RoundedRectandleBorder
                             elevation: 5,
-                            margin: EdgeInsets.all(10),
+                            margin: EdgeInsets.all(4.0),
                           ),//child: Card
                         ),//child: GestureDetector
                       ),// child: Padding

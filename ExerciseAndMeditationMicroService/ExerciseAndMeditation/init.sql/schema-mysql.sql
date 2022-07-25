@@ -1,5 +1,11 @@
 create database if not exists StudentHealth;
 
+drop user 'root'@'%';
+
+create user 'root'@'%' identified by 'thisismypassword';
+
+grant all on StudentHealth.* to 'root'@'%';
+
 use StudentHealth;
 
 CREATE TABLE IF NOT EXISTS exercise (

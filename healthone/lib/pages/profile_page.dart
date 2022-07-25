@@ -14,14 +14,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ProfileData>(
       create: (context) => ProfileData(),
-      child: MaterialApp(
-        title: "HealthOne",
-
-        theme: ThemeData(
-          primaryColor: Colors.teal[400],
-        ),
-        debugShowCheckedModeBanner: false,
-        home: PrintProfiles(),
+      child: Container(
+        child: PrintProfiles(),
       ),
 
     );
