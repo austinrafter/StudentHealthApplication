@@ -57,14 +57,6 @@ class _ExerciseTypePageState extends State<PrintExercises>{
           '${Provider.of<ExerciseData>(context).exercises.length} exercises to choose from',
         ),
         centerTitle: true,
-        leading: GestureDetector(
-          onTap: (
-              ) { Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_circle_left,
-          ),//Icon
-        ),//leading
       ),
       body: Stack(
         children: [Container(

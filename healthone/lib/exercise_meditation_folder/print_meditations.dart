@@ -43,15 +43,6 @@ class _MeditationTypePageState extends State<PrintMeditations>{
           '${Provider.of<MeditationData>(context).meditations.length} meditations to choose from',
         ),//title
         centerTitle: true,
-        leading: GestureDetector(
-          onTap: (
-              ) {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_circle_left,
-          ),//Icon
-        ),//leading
       ),//appbar
       body: Container(
         color: Colors.teal[900],
