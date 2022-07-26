@@ -122,7 +122,7 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
                     Provider.of<ExerciseData>(context, listen: false)
                         .addStudentExercising(widget.exercisename, Provider
                         .of<ExerciseData>(context, listen: false)
-                        .students[0].username, start, end, totalTime,
+                        .students[0].username, end, totalTime,
                         totalCaloriesBurned);
                   }
                 }

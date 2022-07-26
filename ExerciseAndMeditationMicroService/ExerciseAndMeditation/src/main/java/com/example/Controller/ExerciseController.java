@@ -67,13 +67,12 @@ public class ExerciseController {
 
     @PostMapping("/addtouser")
     public PassExercise addUserExercise(@RequestBody PassExercise passExercise){
-        List<Exercise> exercises = exerciseRepository.findByExercisename(passExercise.getExercisename());
-        List<Student> students = studentRepository.findByUsername(passExercise.getUsername());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTimeStarted = LocalDateTime.parse(passExercise.getStartedat(), formatter);
-        LocalDateTime dateTimeEnded = LocalDateTime.parse(passExercise.getEndedat(), formatter);
-        UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passExercise.getTotaltime(), passExercise.getCaloriesburned());
-        userExercisingRepository.save(userExercising);
+        //List<Exercise> exercises = exerciseRepository.findByExercisename(passExercise.getExercisename());
+        //List<Student> students = studentRepository.findByUsername(passExercise.getUsername());
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        //LocalDateTime dateTimeEnded = LocalDateTime.parse(passExercise.getDateof(), formatter);
+        //UserExercising userExercising = new UserExercising(exercises.get(0), students.get(0), dateTimeEnded, dateTimeEnded, passExercise.getTotaltime(), passExercise.getCaloriesburned());
+        //userExercisingRepository.save(userExercising);
        return passExerciseRepository.save(passExercise);
     }
 

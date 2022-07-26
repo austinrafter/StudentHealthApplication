@@ -17,8 +17,8 @@ class MeditationData extends ChangeNotifier{
     notifyListeners();
   }
 
-  void addStudentMeditating(String meditationname, String username,DateTime startedat, DateTime endedat, int totaltime, String soundused) async {
-    PassMeditation studentMeditating = await DbThings.addStudentMeditating(meditationname,username,startedat,endedat, totaltime, soundused);
+  void addStudentMeditating(String meditationname, String username,DateTime dateof, int totaltime, String soundused) async {
+    PassMeditation studentMeditating = await DbThings.addStudentMeditating(meditationname,username,dateof, totaltime, soundused);
     passMeditations.add(studentMeditating);
     notifyListeners();
   }

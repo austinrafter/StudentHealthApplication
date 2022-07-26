@@ -94,12 +94,11 @@ class DbThings{
     return meditation;
   }
 
-  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async{
+  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime dateof, int totaltime, double caloriesburned) async{
     Map data = {
       "exercisename" : exercisename,
       "username" : username,
-      "startedat" : startedat.toIso8601String(),
-      "endedat": endedat.toIso8601String(),
+      "dateof" : dateof.toIso8601String(),
       "totaltime": totaltime,
       "caloriesburned" : caloriesburned
     };
@@ -148,12 +147,11 @@ class DbThings{
     return students;
   }
 
-  static Future<PassMeditation> addStudentMeditating(String meditationname, String username, DateTime startedat, DateTime endedat, int totaltime, String soundused) async{
+  static Future<PassMeditation> addStudentMeditating(String meditationname, String username, DateTime dateof, int totaltime, String soundused) async{
     Map data = {
       "meditationname" : meditationname,
       "username" : username,
-      "startedat" : startedat.toIso8601String(),
-      "endedat": endedat.toIso8601String(),
+      "dateof" : dateof.toIso8601String(),
       "totaltime": totaltime,
       "soundused" : soundused
     };

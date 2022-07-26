@@ -46,13 +46,12 @@ public class MeditationController {
 
     @PostMapping("/addmeditationtouser")
     public PassMeditation addUserMeditation(@RequestBody PassMeditation passMeditation){
-        List<Meditation> meditations = meditationRepository.findByMeditationname(passMeditation.getMeditationname());
-        List<Student> students = studentRepository.findByUsername(passMeditation.getUsername());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTimeStarted = LocalDateTime.parse(passMeditation.getStartedat(), formatter);
-        LocalDateTime dateTimeEnded = LocalDateTime.parse(passMeditation.getEndedat(), formatter);
-        UserMeditating userMeditating = new UserMeditating(meditations.get(0), students.get(0), dateTimeStarted, dateTimeEnded, passMeditation.getTotaltime());
-        userMeditatingRepository.save(userMeditating);
+        //List<Meditation> meditations = meditationRepository.findByMeditationname(passMeditation.getMeditationname());
+       // List<Student> students = studentRepository.findByUsername(passMeditation.getUsername());
+       // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+       // LocalDateTime dateTimeEnded = LocalDateTime.parse(passMeditation.getDateof(), formatter);
+        //UserMeditating userMeditating = new UserMeditating(meditations.get(0), students.get(0), dateTimeEnded, dateTimeEnded, passMeditation.getTotaltime());
+        //userMeditatingRepository.save(userMeditating);
         return passMeditationRepository.save(passMeditation);
     }
 

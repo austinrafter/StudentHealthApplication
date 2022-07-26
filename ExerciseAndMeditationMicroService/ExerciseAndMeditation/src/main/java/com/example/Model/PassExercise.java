@@ -21,9 +21,7 @@ public class PassExercise {
     //@Column(name = "username", nullable=false)
     private String username;
     //@Column(name = "startedat", nullable=false)
-    private String startedat;
-    //@Column(name = "exercisename", nullable=false)
-    private String endedat;
+    private String dateof;
     //@Column(name = "totaltime", nullable=false)
     private int totaltime;
     //@Column(name = "caloriesburned", nullable=false)
@@ -37,12 +35,8 @@ public class PassExercise {
         return username;
     }
 
-    public String getStartedat(){
-        return startedat;
-    }
-
-    public String getEndedat(){
-        return endedat;
+    public String getDateof(){
+        return dateof;
     }
 
     public int getTotaltime(){

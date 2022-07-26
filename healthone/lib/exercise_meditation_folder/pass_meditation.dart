@@ -2,8 +2,7 @@ class PassMeditation {
   final int passmeditationid;
   final String meditationname;
   final String username;
-  final String startedat;
-  final String endedat;
+  final String dateof;
   final int totaltime;
   final String soundused;
 
@@ -11,8 +10,7 @@ class PassMeditation {
     required this.passmeditationid,
     required this.meditationname,
     required this.username,
-    required this.startedat,
-    required this.endedat,
+    required this.dateof,
     required this.totaltime,
     required this.soundused,
   });
@@ -22,8 +20,7 @@ class PassMeditation {
       passmeditationid: studentMeditatingMap['passmeditationid'],
       meditationname: studentMeditatingMap['meditationname'],
       username: studentMeditatingMap['username'],
-      startedat: studentMeditatingMap['startedat'],
-      endedat: studentMeditatingMap['endedat'],
+      dateof: studentMeditatingMap['dateof'],
       totaltime: studentMeditatingMap['totaltime'],
       soundused: studentMeditatingMap['soundused'],
     );

@@ -167,7 +167,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
             Provider.of<MeditationData>(context, listen: false)
                 .addStudentMeditating(widget.meditationname, Provider
                 .of<MeditationData>(context, listen: false)
-                .students[0].username, start, end, totalTime, widget.audiolink);
+                .students[0].username, end, totalTime, widget.audiolink);
           }
         }//if
 

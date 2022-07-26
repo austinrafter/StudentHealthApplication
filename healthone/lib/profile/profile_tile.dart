@@ -35,8 +35,8 @@ class ProfileTile extends StatelessWidget{
                   style: TextStyle(fontStyle: FontStyle.italic,
                       color: Colors.white,),
                 ),
-                trailing: Text(
-                  student.weight.toString(),
+                trailing: Text(' WEIGHT:\n ${
+                  student.weight.toString()} lbs',
                   style: TextStyle(fontStyle: FontStyle.italic,
                       color: Colors.white,),
                 ),//Text

@@ -18,8 +18,8 @@ class ExerciseData extends ChangeNotifier{
     notifyListeners();
   }
 
-  void addStudentExercising(String exercisename, String username,DateTime startedat, DateTime endedat, int totaltime, double caloriesburned) async {
-    PassExercise studentExercising = await DbThings.addStudentExercising(exercisename,username,startedat,endedat, totaltime, caloriesburned);
+  void addStudentExercising(String exercisename, String username,DateTime dateof, int totaltime, double caloriesburned) async {
+    PassExercise studentExercising = await DbThings.addStudentExercising(exercisename,username,dateof, totaltime, caloriesburned);
     passExercises.add(studentExercising);
     notifyListeners();
   }

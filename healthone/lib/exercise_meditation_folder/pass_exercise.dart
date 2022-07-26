@@ -2,8 +2,7 @@ class PassExercise {
   final int passexerciseid;
   final String exercisename;
   final String username;
-  final String startedat;
-  final String endedat;
+  final String dateof;
   final int totaltime;
   final double caloriesburned;
 
@@ -11,8 +10,7 @@ class PassExercise {
     required this.passexerciseid,
     required this.exercisename,
     required this.username,
-    required this.startedat,
-    required this.endedat,
+    required this.dateof,
     required this.totaltime,
     required this.caloriesburned,
   });
@@ -22,8 +20,7 @@ class PassExercise {
       passexerciseid: studentExercisingMap['passexerciseid'],
       exercisename: studentExercisingMap['exercisename'],
       username: studentExercisingMap['username'],
-      startedat: studentExercisingMap['startedat'],
-      endedat: studentExercisingMap['endedat'],
+      dateof: studentExercisingMap['dateof'],
       totaltime: studentExercisingMap['totaltime'],
       caloriesburned: studentExercisingMap['caloriesburned'],
     );

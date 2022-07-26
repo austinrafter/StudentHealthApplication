@@ -80,8 +80,7 @@ CREATE TABLE IF NOT EXISTS passexercise (
 	passexerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	exercisename VARCHAR(256),
 	username VARCHAR(256),
-	startedat VARCHAR(256),
-	endedat VARCHAR(256),
+	dateof VARCHAR(256),
 	totaltime int,
 	caloriesburned DOUBLE
 );
@@ -90,8 +89,7 @@ CREATE TABLE IF NOT EXISTS passmeditation (
 	massmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	meditationname VARCHAR(256),
 	username VARCHAR(256),
-	startedat VARCHAR(256),
-	endedat VARCHAR(256),
+	dateof VARCHAR(256),
 	totaltime int,
 	soundused VARCHAR(256)
 );
