@@ -17,6 +17,13 @@ class PhysicalPage extends StatelessWidget{
    NutritionPage(),
  ];
 
+ final images =[
+   "https://media.giphy.com/media/TF6FLfa5NryGdEJcfY/giphy.gif",
+   "https://media.giphy.com/media/iLBQAlaft9NU4/giphy.gif",
+   "https://media.giphy.com/media/kIRicSBQwa23pYExQT/giphy.gif",
+   "https://media.giphy.com/media/t9811uoqdhx9pQZx3z/giphy.gif",
+ ];
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -46,18 +53,12 @@ class PhysicalPage extends StatelessWidget{
                     width: double.maxFinite,
                   child: Card(
                     elevation: 5,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            width: 2.0,
-                          ),
-                        ),
-
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(0),
-                        child: GestureDetector(
+                    color: Colors.teal[900],
+                      //child: Padding(
+                        //padding: EdgeInsets.all(0),
+                    //child: Column(
+                        //children: [
+                          child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
@@ -66,19 +67,21 @@ class PhysicalPage extends StatelessWidget{
                           },
                           child:Card(
                             color: Colors.teal[700],
-                            child: Stack(
+                            child: Column(
                               children: <Widget>[
-                                Center(
-                                  child: Container(
-                                    color: Colors.teal[700],
-                                    width: 200,
-                                    height: 500,
+                                //Center(
+                                  //child:
+                                  Container(
                                     alignment: Alignment.center,
-                                    child: Container(
-                                          child:  PhysicalItemPageName(physicalData[index]),
-                                    ),//Column
+                                    child:  PhysicalItemPageName(physicalData[index]),
                                   ),//Container
-                                ),//Center
+                                //),//Center
+                                Image.network(
+                                  '${images[index]}',
+                                  width: double.infinity,
+                                  height: 120,
+                                  //fit: Boxfit.cover
+                                )//image.network
                               ],//children
                             ),//Stack
                             shape: RoundedRectangleBorder(
@@ -91,8 +94,8 @@ class PhysicalPage extends StatelessWidget{
                             margin: EdgeInsets.all(4.0),
                           ),//child: Card
                         ),//child: GestureDetector
-                      ),// child: Padding
-                    ),//child: Container
+                    //],
+                     // ),// child: Padding
                   ),//child: Card
                   );//Container
                 },//itemBuilder

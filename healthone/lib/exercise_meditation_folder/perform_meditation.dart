@@ -146,7 +146,8 @@ class _PerformMeditationState extends State<PerformMeditation>{
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.teal[900],
-      title: Text(""),
+      title: Text("${widget.meditationname}"),
+      centerTitle: true,
       leading: GestureDetector(
         onTap: (
             ) { Navigator.pop(context);
@@ -158,10 +159,6 @@ class _PerformMeditationState extends State<PerformMeditation>{
         }
         print(totalTime);
         end = DateTime.now();
-        print(start);
-        print(end);
-        print(widget.meditationname);
-        print(widget.imagelink);
         if(students?.length != 0){
           if(totalTime > 0) {
             Provider.of<MeditationData>(context, listen: false)
@@ -182,87 +179,112 @@ class _PerformMeditationState extends State<PerformMeditation>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: widget.imagelink == null ? Image.network(
-                'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif',
-              width: double.infinity,
-              height: 350,
-              //fit: Boxfit.cover
-              )//image.network
-              : Image.network(
-      '${widget.imagelink}',
-      width: double.infinity,
-        height: 350,
-        //fit: Boxfit.cover
-      ),//image.network
-    ),//ClipRRect
+    buildImage(),
     const SizedBox(height: 32),
     buildName(),
-    Slider(
-    min: 0,
-    value: (_position != null &&
-        _duration != null &&
-        _position!.inMilliseconds > 0 &&
-        _position!.inMilliseconds < _duration!.inMilliseconds)
-        ? _position!.inMilliseconds / _duration!.inMilliseconds
-        : 0.0,
-    onChanged: (value) async {
-      //final position = Duration(seconds: value.toInt());
-      //await audioPlayer.seek(position);
-      final duration = _duration;
-      if (duration == null) {
-        return;
-      }
-      final position = value * duration.inMilliseconds;
-        audioPlayer.seek(Duration(milliseconds: position.round()));
-
-      //await audioPlayer.resume();
-    },
-    ),//slider
-            Text(
-              _position != null
-                  ? '$_positionText / $_durationText'
-                  : _duration != null
-                  ? _durationText
-                  : 'farts',
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            Text('State: $_audioPlayerState'),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children:[
-      Text(//formatTime(position),
-        _positionText,
-      ),
-      Text(
-        //formatTime(duration - position),
-          _durationText,
-      ),
-    ],//children
-    ), //row
-    CircleAvatar(
-    radius: 35,
-    child: IconButton(
-    icon: Icon(
-    _isPlaying ? Icons.pause : Icons.play_arrow,
-    ),//Icon
-    iconSize: 50,
-    onPressed: () async {
-      if(_isPlaying){
-        print("gets here: audio player test pause");
-        _pause();
-    }else{
-        print("gets here: audio player test resume");
-        _play();
-    }
-    },//onPressed
-    ),//Iconbutton
-    ),//circleavatar
+    buildSlider(),
+    buildText(),
+    buildButton(),
           ],//children
       ),//column
       ),//padding
     );// widget build scaffold
+
+  Widget buildText(){
+    return Column(
+      children:[
+        Text(
+          _position != null
+              ? '$_positionText / $_durationText'
+              : _duration != null
+              ? _durationText
+              : 'farts',
+          style: const TextStyle(fontSize: 16.0),
+        ),
+        Text('State: $_audioPlayerState'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:[
+            Text(//formatTime(position),
+              _positionText,
+            ),
+            Text(
+              //formatTime(duration - position),
+              _durationText,
+            ),
+          ],//children
+        ), //row
+      ],//children
+    );//Column
+  }
+
+  Widget buildButton(){
+    return  CircleAvatar(
+      radius: 35,
+      child: IconButton(
+        icon: Icon(
+          _isPlaying ? Icons.pause : Icons.play_arrow,
+        ),//Icon
+        iconSize: 50,
+        onPressed: () async {
+          if(_isPlaying){
+            print("gets here: audio player test pause");
+            _pause();
+          }else{
+            print("gets here: audio player test resume");
+            _play();
+          }
+        },//onPressed
+      ),//Iconbutton
+    );//circleavatar
+  }
+
+  Widget buildSlider(){
+    return Slider(
+      min: 0,
+      value: (_position != null &&
+          _duration != null &&
+          _position!.inMilliseconds > 0 &&
+          _position!.inMilliseconds < _duration!.inMilliseconds)
+          ? _position!.inMilliseconds / _duration!.inMilliseconds
+          : 0.0,
+      onChanged: (value) async {
+        //final position = Duration(seconds: value.toInt());
+        //await audioPlayer.seek(position);
+        final duration = _duration;
+        if (duration == null) {
+          return;
+        }
+        final position = value * duration.inMilliseconds;
+        audioPlayer.seek(Duration(milliseconds: position.round()));
+
+        //await audioPlayer.resume();
+      },
+    );//slider
+  }
+
+
+  Widget buildImage(){
+    return Column(
+      children:[
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: widget.imagelink == null ? Image.network(
+            'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif',
+            width: double.infinity,
+            height: 350,
+            //fit: Boxfit.cover
+          )//image.network
+              : Image.network(
+            '${widget.imagelink}',
+            width: double.infinity,
+            height: 350,
+            //fit: Boxfit.cover
+          ),//image.network
+        ),//ClipRRect
+      ],
+    );
+  }
 
   Widget buildName(){
     return Column(
