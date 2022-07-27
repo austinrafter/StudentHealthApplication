@@ -39,6 +39,28 @@ class ExerciseTile extends StatelessWidget{
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),//roundedrectangleborder
       child: ListTile(
+        leading: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 46,
+            minHeight: 46,
+            maxWidth: 66,
+            maxHeight: 66,
+          ),
+          child:
+          exercise.exerciseimage == null ?
+          Image.network(
+            'https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif',
+            width: double.infinity,
+            height: 350,
+            //fit: Boxfit.cover
+          )//image.network
+              : Image.network(
+            '${exercise.exerciseimage}',
+            width: double.infinity,
+            height: 350,
+            //fit: Boxfit.cover
+          ),//image.network
+        ),//ConstrainedBox
       title: Text(
       exercise.exercisename,
         style: TextStyle(

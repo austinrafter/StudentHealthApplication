@@ -107,4 +107,48 @@ public class ExerciseController {
     }
 
 
+    @PostMapping("/getTotalExerciseTimeForDay")
+    public int getTotalExerciseTimeForDay(@PathVariable String date){
+        int totalTime = 0;
+        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
+        for(PassExercise passExercise: passExerciseList){
+            totalTime += passExercise.getTotaltime();
+        }
+        return totalTime;
+    }
+    /*
+    @PostMapping("/getTotalExerciseTimeBeforeStudying")
+    public int getTotalExerciseTimeBeforeStudying(@PathVariable String date){
+        int totalTime = 0;
+        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
+        List<PassExercise> passExerciseList1 = new List<PassExercise>();
+
+        for(PassExercise passExercise: passExerciseList){
+
+            if(passExercise.getDateof() <= date){
+                passExerciseList1.add(passExercise);
+            }
+        }
+        for(PassExercise passExercise: passExerciseList1){
+            totalTime += passExercise.getTotaltime();
+        }
+        return totalTime;
+    }
+
+     */
+
+    /*
+    @PostMapping("/getFinalExerciseTime")
+    public String getFinalExerciseTime(@PathVariable String date){
+        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
+
+        String[] dateAndTime = passExerciseList[passExerciseList.size() - 1].split("T", 0);
+
+        return dateAndTime[1];
+
+    }
+
+     */
+
+
 }

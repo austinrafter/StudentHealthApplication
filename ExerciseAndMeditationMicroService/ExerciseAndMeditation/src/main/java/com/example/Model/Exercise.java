@@ -15,6 +15,7 @@ public class Exercise {
     @Column(name = "exercisename",unique=true, nullable=false) private String exercisename;
     @Column(name = "exercisetype",nullable=false) private String exercisetype;
     @Column(name = "metabolicequivalentscore",nullable=false) private double metabolicequivalentscore;
+    @Column(name = "exerciseimage") private String exerciseimage;
 
     @OneToMany(mappedBy = "exercise")
     Set<UserExercising> exercises;
@@ -45,6 +46,14 @@ public class Exercise {
 
     public int getExercise_id(){
         return exerciseid;
+    }
+
+    public String getExerciseimage(){
+        return exerciseimage;
+    }
+
+    public void setExerciseimage(String imagelink){
+        this.exerciseimage = exerciseimage;
     }
 
 }

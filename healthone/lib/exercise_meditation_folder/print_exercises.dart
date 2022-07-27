@@ -22,6 +22,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
   String exercisename = "";
   String exercisetype = "";
   double metabolicequivalentscore = 0;
+  String exerciseimage = "";
 
   getExercises()async{
     exercises = await DbThings.getExercises();
@@ -170,6 +171,25 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                           return null;
                         },//validator
                       ),//TextFormField
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.person),
+                          hintText: 'Provide a link to an online .gif or .jpg that matches your entered exercise to be shown.',
+                          labelText: 'Exercise Image Link *',
+                        ),
+                        onChanged: (String value) {
+                          // This optional block of code can be used to run
+                          // code when the user saves the form.
+                          exerciseimage = value;
+                          print(exerciseimage);
+                        },//onSaved
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a link to an online .gif or .jpg that matches your entered exercise';
+                          }
+                          return null;
+                        },//validator
+                      ),//TextFormField
                       const SizedBox(
                         height: 20,
                       ),
@@ -180,9 +200,9 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                         textColor: Colors.white,
                         color: Colors.teal[400],
                         onPressed: () {
-                          if (exercisename.isNotEmpty && exercisetype.isNotEmpty && (metabolicequivalentscore > 0)) {
+                          if (exercisename.isNotEmpty && exercisetype.isNotEmpty && (metabolicequivalentscore > 0) && exerciseimage.isNotEmpty) {
                             Provider.of<ExerciseData>(context, listen: false)
-                                .addExercise(exercisename,exercisetype,metabolicequivalentscore);
+                                .addExercise(exercisename,exercisetype,metabolicequivalentscore, exerciseimage);
                           }
                           sleep(Duration(seconds:1));
                           setState(() => {});

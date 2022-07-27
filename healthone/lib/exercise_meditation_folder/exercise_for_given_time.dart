@@ -145,6 +145,31 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
     ),//Center
   );//Scaffold
 
+Widget buildImage(){
+  return Column(
+      children:[
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child:
+          widget.exercise.exerciseimage == null ?
+          Image.network(
+            'https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif',
+            width: double.infinity,
+            height: 200,
+            //fit: Boxfit.cover
+          )//image.network
+              : Image.network(
+            '${widget.exercise.exerciseimage}',
+            //'https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif',
+            width: double.infinity,
+            height: 200,
+            //fit: Boxfit.cover
+          ),//image.network
+        ),//ClipRRect
+      ],
+  );
+}
+
 Widget buildTime(){
   String twoDigits(int n) => n.toString().padLeft(2, '0');
   final hours = twoDigits(duration.inHours);
@@ -191,13 +216,14 @@ Widget buildTime(){
             fontWeight: FontWeight.bold,
               fontSize: 25,),
         ),//Text
-          const SizedBox(height: 24,),
+          //const SizedBox(height: 24,),
         Text('${widget.exercisetype}',
           style: const TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 25),
         ),//Text
-          const SizedBox(height: 24),
+          //const SizedBox(height: 24),
+          buildImage(),
         ],//children
 
       ),//Column

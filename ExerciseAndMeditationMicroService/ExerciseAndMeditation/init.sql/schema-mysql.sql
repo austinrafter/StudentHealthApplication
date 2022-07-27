@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS exercise (
 	exerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	exercisename VARCHAR(256) UNIQUE,
 	exercisetype VARCHAR(128),
-	metabolicequivalentscore DOUBLE
+	metabolicequivalentscore DOUBLE,
+	exerciseimage VARCHAR(256)
 );
 
 CREATE TABLE IF NOT EXISTS meditation (
@@ -32,26 +33,26 @@ CREATE TABLE IF NOT EXISTS student (
 );
 
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Slow Walking (1 to 2 mph)', 'Anaerobic', 2);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Slow Walking (1 to 2 mph)', 'Anaerobic', 2, 'https://media.giphy.com/media/UvvK8rOSHPxgjo9ryD/giphy-downsized-large.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Brisk Walking (3.5 to 4 mph)', 'Aerobic', 5);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Brisk Walking (3.5 to 4 mph)', 'Aerobic', 5, 'https://media.giphy.com/media/hkTXRkfarShjLBQH0v/giphy.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Fast Walking (4.5 to 5 mph)', 'Aerobic', 6.3);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Fast Walking (4.5 to 5 mph)', 'Aerobic', 6.3, 'https://media.giphy.com/media/wcQ5FnY6P0Juo/giphy.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Running (7 mph)', 'Aerobic', 11.5);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Running (7 mph)', 'Aerobic', 11.5, 'https://media.giphy.com/media/QKUTD5lAgpgrSHpbMB/giphy.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Light Weight Lifting', 'Anaerobic', 3.5);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Light Weight Lifting', 'Anaerobic', 3.5, 'https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Heavy Weight Lifting', 'Anaerobic', 5);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Heavy Weight Lifting', 'Anaerobic', 5, 'https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif');
 
-INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore)
-VALUES ('Soccer', 'Aerobic', 10);
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Soccer', 'Aerobic', 10, 'https://media.giphy.com/media/Vx8MSphrScTAc/giphy.gif');
 
 CREATE TABLE IF NOT EXISTS userexercising (
 	userexercisingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,

@@ -12,8 +12,8 @@ class ExerciseData extends ChangeNotifier{
   List<Student> students = [];
   List<PassExercise> passExercises = [];
 
-  void addExercise(String exercisename, String exercisetype,double metabolicequivalentscore) async {
-    Exercise exercise = await DbThings.addExercise(exercisename,exercisetype,metabolicequivalentscore);
+  void addExercise(String exercisename, String exercisetype,double metabolicequivalentscore, String exerciseimage) async {
+    Exercise exercise = await DbThings.addExercise(exercisename,exercisetype,metabolicequivalentscore, exerciseimage);
     exercises.add(exercise);
     notifyListeners();
   }

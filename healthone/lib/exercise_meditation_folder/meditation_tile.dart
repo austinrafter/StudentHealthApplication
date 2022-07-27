@@ -58,7 +58,7 @@ class MeditationTile extends StatelessWidget{
                     height: 350,
                     //fit: Boxfit.cover
                   ),//image.network
-                ),
+                ),//ConstrainedBox
                 title: Text(
                   meditation.meditationname,
                   style: TextStyle(

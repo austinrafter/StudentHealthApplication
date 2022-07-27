@@ -9,11 +9,12 @@ import 'pass_exercise.dart';
 import 'pass_meditation.dart';
 
 class DbThings{
-  static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore) async{
+  static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore, String exerciseimage) async{
     Map data = {
       "exercisename" : exercisename,
       "exercisetype" : exercisetype,
       "metabolicequivalentscore" : metabolicequivalentscore,
+      "exerciseimage" : exerciseimage
     };
 
     var body = json.encode(data);
