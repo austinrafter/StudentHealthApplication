@@ -9,19 +9,15 @@ import '../exercise_meditation_folder/exercise_for_given_time.dart';
 
 
 class ExerciseTypePage extends StatelessWidget {
-  const ExerciseTypePage({Key? key}) : super(key: key);
+  const ExerciseTypePage({Key? key, required this.exercisetype}) : super(key: key);
+  final String exercisetype;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ExerciseData>(
       create: (context) => ExerciseData(),
-      child: MaterialApp(
-        title: "HealthOne",
-        theme: ThemeData(
-          primaryColor: Colors.teal[400],
-        ),//ThemeData
-        debugShowCheckedModeBanner: false,
-        home: PrintExercises(),
+      child: Container(
+        child: PrintExercises(exerciser: exercisetype),
       ),//MaterialApp
     );//ChangeNotifierProvider
   }//build

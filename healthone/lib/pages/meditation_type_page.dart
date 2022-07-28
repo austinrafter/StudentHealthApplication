@@ -9,20 +9,15 @@ import '../exercise_meditation_folder/perform_meditation.dart';
 
 
 class MeditationTypePage extends StatelessWidget {
-  const MeditationTypePage({Key? key}) : super(key: key);
+  const MeditationTypePage({Key? key, required this.meditationtype}) : super(key: key);
+  final String meditationtype;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MeditationData>(
       create: (context) => MeditationData(),
-      child: MaterialApp(
-        title: "HealthOne",
-
-        theme: ThemeData(
-          primaryColor: Colors.teal[400],
-        ),
-        debugShowCheckedModeBanner: false,
-        home: PrintMeditations(),
+      child: Container(
+        child: PrintMeditations(meditater: meditationtype),
       ),
 
     );

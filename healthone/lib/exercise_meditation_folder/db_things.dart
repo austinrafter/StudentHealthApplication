@@ -173,4 +173,63 @@ class DbThings{
     return studentMeditating;
   }
 
+  static Future<List<Exercise>> getExercisesByType(String exercisetype) async{
+
+    Map data = {
+      "exercisename" : "exercise",
+      "exercisetype" : exercisetype,
+      "metabolicequivalentscore" : 1,
+      "exerciseimage" : "image"
+    };
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(exerciseUrl + '/getExercisesByType');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<Exercise> exercises = [];
+    for(Map exerciseMap in responseList){
+      Exercise exercise = Exercise.fromMap(exerciseMap);
+      exercises.add(exercise);
+    }
+    return exercises;
+  }
+
+
+  static Future<List<Meditation>> getMeditationsByType(String meditationtype) async{
+    Map data = {
+      "meditationname" : "meditation",
+      "meditationtype" : meditationtype + " meditation",
+      "audiolink" : "link",
+      "imagelink" : "link",
+    };
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(meditationUrl + '/getMeditationsByType');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<Meditation> meditations = [];
+    for(Map meditationMap in responseList){
+      Meditation meditation = Meditation.fromMap(meditationMap);
+      meditations.add(meditation);
+    }
+    return meditations;
+  }
+
+
 }

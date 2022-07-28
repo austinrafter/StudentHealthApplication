@@ -8,4 +8,5 @@ public interface MeditationRepository extends JpaRepository<Meditation, Long>{
     List<Meditation> findByMeditationname(String meditationName);
     List<Meditation> findByMeditationtype(String meditationType);
     Meditation getByMeditationid(long meditationId);
+    //List<Meditation> findByMeditationtype(String meditationtype);
 }

@@ -150,5 +150,10 @@ public class ExerciseController {
 
      */
 
+    @PostMapping("/getExercisesByType")
+    public List<Exercise> getExercisesByType(@RequestBody Exercise exercise){
+        return exerciseRepository.findByExercisetype(exercise.getExercisetype());
+    }
+
 
 }

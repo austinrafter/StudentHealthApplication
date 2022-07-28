@@ -11,7 +11,8 @@ import '../profile/profile_db_services.dart';
 
 
 class PrintExercises extends StatefulWidget{
-  const PrintExercises({Key? key}) : super(key : key);
+  const PrintExercises({Key? key, required this.exerciser}) : super(key : key);
+  final String exerciser;
 
   @override
   _ExerciseTypePageState createState() => _ExerciseTypePageState();
@@ -25,7 +26,8 @@ class _ExerciseTypePageState extends State<PrintExercises>{
   String exerciseimage = "";
 
   getExercises()async{
-    exercises = await DbThings.getExercises();
+    //exercises = await DbThings.getExercises();
+    exercises = await DbThings.getExercisesByType(widget.exerciser);
     Provider.of<ExerciseData>(context, listen: false).exercises = exercises!;
     setState(() {});
   }
@@ -58,6 +60,16 @@ class _ExerciseTypePageState extends State<PrintExercises>{
           '${Provider.of<ExerciseData>(context).exercises.length} exercises to choose from',
         ),
         centerTitle: true,
+        /*leading: GestureDetector(
+          onTap: (
+              ) { Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_circle_left,
+          ),//Icon
+        ),//leading
+
+         */
       ),
       body: Stack(
         children: [Container(
@@ -134,25 +146,6 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                       ),//TextFormField
                       TextFormField(
                         decoration: const InputDecoration(
-                          icon: Icon(Icons.email),
-                          hintText: 'What is the exercise type?',
-                          labelText: 'Exercise Type *',
-                        ),
-                        onChanged: (String value) {
-                          // This optional block of code can be used to run
-                          // code when the user saves the form.
-                          print(value);
-                          exercisetype = value;
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter the exercise type';
-                          }
-                          return null;
-                        },
-                      ),//TextFormField
-                      TextFormField(
-                        decoration: const InputDecoration(
                           icon: Icon(Icons.add_chart_outlined),
                           hintText: 'What is the projected MET of this exercise?',
                           labelText: 'MET *',
@@ -200,9 +193,9 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                         textColor: Colors.white,
                         color: Colors.teal[400],
                         onPressed: () {
-                          if (exercisename.isNotEmpty && exercisetype.isNotEmpty && (metabolicequivalentscore > 0) && exerciseimage.isNotEmpty) {
+                          if (exercisename.isNotEmpty  && (metabolicequivalentscore > 0) && exerciseimage.isNotEmpty) {
                             Provider.of<ExerciseData>(context, listen: false)
-                                .addExercise(exercisename,exercisetype,metabolicequivalentscore, exerciseimage);
+                                .addExercise(exercisename,widget.exerciser,metabolicequivalentscore, exerciseimage);
                           }
                           sleep(Duration(seconds:1));
                           setState(() => {});

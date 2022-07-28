@@ -3,6 +3,8 @@ import 'exercise_type_page.dart';
 import 'nutrition_page.dart';
 import 'sleep_page.dart';
 import 'meditation_type_page.dart';
+import '../exercise_meditation_folder/exercise_types.dart';
+import '../exercise_meditation_folder/meditation_types.dart';
 
 import 'physical_page_data.dart';
 
@@ -11,8 +13,8 @@ class PhysicalPage extends StatelessWidget{
   //const PhysicalPage({Key? key}) : super(key: key);
 
  final pages = [
-   ExerciseTypePage(),
-   MeditationTypePage(),
+   ExerciseTypes(),
+   MeditationTypes(),
    SleepPage(),
    NutritionPage(),
  ];

@@ -8,12 +8,12 @@ class PhysicalData {
   static final getData = [
   {
   'name': 'Exercise',
-  'page': ExerciseTypePage(),
+  'page': ExerciseTypePage(exercisetype: "Aerobic"),
 
 },
 {
   'name': 'Meditation',
-  'page': MeditationTypePage(),
+  'page': MeditationTypePage(meditationtype: "Guided"),
 },
     {
       'name': 'Sleep',

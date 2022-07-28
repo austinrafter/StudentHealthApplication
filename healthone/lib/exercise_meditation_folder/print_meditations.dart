@@ -7,8 +7,8 @@ import 'meditation_data.dart';
 
 
 class PrintMeditations extends StatefulWidget{
-  const PrintMeditations({Key? key}) : super(key : key);
-
+  const PrintMeditations({Key? key, required this.meditater}) : super(key : key);
+  final String meditater;
   @override
   _MeditationTypePageState createState() => _MeditationTypePageState();
 }
@@ -17,7 +17,8 @@ class _MeditationTypePageState extends State<PrintMeditations>{
   List<Meditation>? meditations;
 
   getMeditations()async{
-    meditations = await DbThings.getMeditations();
+    //meditations = await DbThings.getMeditations();
+    meditations = await DbThings.getMeditationsByType(widget.meditater);
     Provider.of<MeditationData>(context, listen: false).meditations = meditations!;
     setState(() {});
   }

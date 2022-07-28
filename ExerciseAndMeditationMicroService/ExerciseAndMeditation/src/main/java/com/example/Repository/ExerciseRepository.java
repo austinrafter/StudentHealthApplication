@@ -9,4 +9,5 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long>{
     //List<Exercise> findByExercise_type(String exercise_type);
     //List<Exercise> findByMetabolic_equivalent_score(int metabolicEquivalentScore);
     //Exercise findByExercise_id(long exerciseId);
+    List<Exercise> findByExercisetype(String exercisetype);
 }

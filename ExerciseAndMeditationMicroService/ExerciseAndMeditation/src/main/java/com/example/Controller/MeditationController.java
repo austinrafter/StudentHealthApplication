@@ -77,4 +77,9 @@ public class MeditationController {
         }
         return new ResponseEntity<>("Exercise did not exist for user", HttpStatus.BAD_REQUEST);
     }
+
+    @PostMapping("/getMeditationsByType")
+    public List<Meditation> getMeditationsByType(@RequestBody Meditation meditation){
+        return meditationRepository.findByMeditationtype(meditation.getMeditationtype());
+    }
 }
