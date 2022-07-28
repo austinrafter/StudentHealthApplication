@@ -30,7 +30,7 @@ class MeditationTypes extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.teal[900],
       appBar: AppBar(
-        title: const Text("Physical Health"),
+        title: const Text("Meditation Types"),
         centerTitle: true,
       ),
 

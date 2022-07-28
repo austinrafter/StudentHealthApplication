@@ -30,7 +30,7 @@ class ExerciseTypes extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.teal[900],
       appBar: AppBar(
-        title: const Text("Physical Health"),
+        title: const Text("Exercise Types"),
         centerTitle: true,
       ),
 
