@@ -79,7 +79,7 @@ class ExerciseTypes extends StatelessWidget{
                               Image.network(
                                 '${images[index]}',
                                 width: double.infinity,
-                                height: 120,
+                                height: 140,
                                 //fit: Boxfit.cover
                               )//image.network
                             ],//children

@@ -41,7 +41,7 @@ class _MeditationTypePageState extends State<PrintMeditations>{
       appBar: AppBar(
         backgroundColor: Colors.teal[900],
         title: Text(
-          '${Provider.of<MeditationData>(context).meditations.length} ${widget.meditater} meditations to choose',
+          '${Provider.of<MeditationData>(context).meditations.length} ${widget.meditater} meditations',
         ),//title
         centerTitle: true,
       ),//appbar

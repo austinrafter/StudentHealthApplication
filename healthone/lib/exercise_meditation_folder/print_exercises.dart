@@ -57,7 +57,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
       appBar: AppBar(
         backgroundColor: Colors.teal[900],
         title: Text(
-          '${Provider.of<ExerciseData>(context).exercises.length} ${widget.exerciser} exercises to choose',
+          '${Provider.of<ExerciseData>(context).exercises.length} ${widget.exerciser} exercises',
         ),
         centerTitle: true,
         /*leading: GestureDetector(
