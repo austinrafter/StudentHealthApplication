@@ -333,9 +333,7 @@ Widget buildButtons(){
         "Choose the number of minutes to do a ${widget.exercisename} for:",
         style: TextStyle(
           color: Colors.white,
-          decoration: TextDecoration.underline,
-          decorationColor: Colors.red,
-          decorationStyle: TextDecorationStyle.wavy,
+            fontSize: 18,
         ),
       ),
       buildDropDownTimeChooser(),
@@ -399,12 +397,17 @@ Widget buildDropDownTimeChooser(){
         Icons.arrow_downward,
         color: Colors.white
     ),
-    elevation: 0,
-    style: const TextStyle(color: Colors.black),
+    elevation: 20,
+    style: const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+        fontSize: 24,
+    ),
     underline: Container(
       height: 2,
       color: Colors.white,
     ),
+    dropdownColor: Colors.teal[900],
     isExpanded: true,
     alignment: Alignment.center,
     onChanged: (String? newValue) {
