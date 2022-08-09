@@ -17,6 +17,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/exercises")
@@ -154,6 +155,52 @@ public class ExerciseController {
     public List<Exercise> getExercisesByType(@RequestBody Exercise exercise){
         return exerciseRepository.findByExercisetype(exercise.getExercisetype());
     }
+
+    @PostMapping("/getExercisesByDate")
+    public List<PassExercise> getExercisesByDate(@RequestBody PassExercise passExercise){
+        System.out.println(passExercise.getDateof());
+        return passExerciseRepository.findByDateofContaining(passExercise.getDateof());
+    }
+
+    @PostMapping("/getFavoriteExerciseForDate")
+    public PassExercise getFavoriteExerciseForDate(@RequestBody PassExercise passExercise){
+        //System.out.println(passExercise.getDateof());
+        int max = 0;
+        String exercisename1 = "";
+        Map<String, Integer> maxExerciseName = new HashMap<String, Integer>();
+        HashSet<String> exerciseNames = new HashSet<String>();
+
+        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(passExercise.getDateof());
+        PassExercise passExercise1 = passExerciseList.get(0);
+
+        for (PassExercise passExercise2: passExerciseList) {
+            if(!exerciseNames.contains(passExercise2.getExercisename())){
+                exerciseNames.add(passExercise2.getExercisename());
+                maxExerciseName.put(passExercise2.getExercisename(),1);
+            }else{
+                maxExerciseName.put(passExercise2.getExercisename(), maxExerciseName.get(passExercise2.getExercisename()) + 1);
+            }
+        }
+
+        for(String i : maxExerciseName.keySet()){
+            if(maxExerciseName.get(i) > max){
+                max = maxExerciseName.get(i);
+                exercisename1 = i;
+            }
+        }
+
+        for(PassExercise passExercise2: passExerciseList){
+            if(exercisename1 == passExercise2.getExercisename()){
+                passExercise1 = passExercise2;
+                break;
+            }
+        }
+
+        System.out.println(passExercise1.getPassexerciseid());
+        System.out.println(passExercise1.getExercisename());
+        return passExercise1;
+    }
+
 
 
 }

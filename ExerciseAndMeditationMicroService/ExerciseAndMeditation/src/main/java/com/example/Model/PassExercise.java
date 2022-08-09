@@ -27,6 +27,8 @@ public class PassExercise {
     //@Column(name = "caloriesburned", nullable=false)
     private double caloriesburned;
 
+    public int getPassexerciseid(){return passexerciseid;}
+
     public String getExercisename(){
         return exercisename;
     }

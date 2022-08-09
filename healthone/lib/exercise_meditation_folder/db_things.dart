@@ -232,4 +232,62 @@ class DbThings{
   }
 
 
+  static Future<List<PassExercise>> getExercisesByDay(String dateof) async{
+
+    Map data = {
+      "exercisename" : "exercisename",
+      "username" : "username" + dateof,
+      "dateof" : dateof,
+      "totaltime": 1,
+      "caloriesburned" : 1
+    };
+
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(exerciseUrl + '/getExercisesByDate');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<PassExercise> passExercises = [];
+    for(Map passExerciseMap in responseList){
+      PassExercise passExercise = PassExercise.fromMap(passExerciseMap);
+      passExercises.add(passExercise);
+    }
+    return passExercises;
+  }
+
+  static Future<PassExercise> getFavoriteExerciseForDay(String dateof) async{
+    Map data = {
+      "exercisename" : "exercisename",
+      "username" : "username",
+      "dateof" : dateof,
+      "totaltime": 0,
+      "caloriesburned" : 0
+    };
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(exerciseUrl + '/getFavoriteExerciseForDate');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    PassExercise studentExercising = PassExercise.fromMap(responseMap);
+
+    return studentExercising;
+  }
+
+
+
 }

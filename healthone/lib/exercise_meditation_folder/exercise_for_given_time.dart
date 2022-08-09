@@ -80,6 +80,12 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   }
 
   void startTimer({bool resets = true}){
+    var minutes = int.parse(dropdownValue);
+    if(minutes == 1){
+      countDownDuration = Duration(minutes: minutes);
+      print(countDownDuration);
+      isCountdown = true;
+    }
     if(resets){
       reset();
     }
@@ -334,9 +340,9 @@ Widget buildButtons(){
         style: TextStyle(
           color: Colors.white,
             fontSize: 18,
-        ),
-      ),
-      buildDropDownTimeChooser(),
+        ),//TextStyle
+      ),//Text
+      buildDrop(),
       buildStartButton(),
   ],
   );//Row
@@ -390,6 +396,19 @@ Widget buildTextEntry(){
 }
 
 
+Widget buildDrop(){
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 10.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15.0),
+      border: Border.all(
+          color: Colors.white, style: BorderStyle.solid, width: 0.95),
+    ),
+    child: buildDropDownTimeChooser()
+  );
+}
+
+
 Widget buildDropDownTimeChooser(){
   return DropdownButton<String>(
     value: dropdownValue,
@@ -402,10 +421,6 @@ Widget buildDropDownTimeChooser(){
       color: Colors.white,
       fontWeight: FontWeight.bold,
         fontSize: 24,
-    ),
-    underline: Container(
-      height: 2,
-      color: Colors.white,
     ),
     dropdownColor: Colors.teal[900],
     isExpanded: true,

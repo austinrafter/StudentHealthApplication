@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/exercise_type_page.dart';
+import 'daily_exercise_info.dart';
+import '../pages/exercise_info_page.dart';
 
 class ExerciseTypesData {
   static final getData = [
@@ -19,6 +21,10 @@ class ExerciseTypesData {
     {
       'name': 'Flexibility',
       'page': ExerciseTypePage(exercisetype: 'Flexibility'),
+    },
+    {
+      'name': 'Daily Info',
+      'page': ExerciseInfoPage(),
     },
   ];
 }

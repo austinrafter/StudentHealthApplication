@@ -4,6 +4,8 @@ import '../pages/nutrition_page.dart';
 import '../pages/sleep_page.dart';
 import '../pages/meditation_type_page.dart';
 import 'exercise_types_data.dart';
+import 'daily_exercise_info.dart';
+import '../pages/exercise_info_page.dart';
 
 class ExerciseTypes extends StatelessWidget{
   var physicalData = ExerciseTypesData.getData;
@@ -15,6 +17,7 @@ class ExerciseTypes extends StatelessWidget{
     ExerciseTypePage(exercisetype: "Anaerobic"),
     ExerciseTypePage(exercisetype: "Strength Training"),
     ExerciseTypePage(exercisetype: "Flexibility"),
+    ExerciseInfoPage(),
   ];
 
   final images =[
@@ -22,6 +25,7 @@ class ExerciseTypes extends StatelessWidget{
     "https://media.giphy.com/media/6V0gq34gTrTcA/giphy.gif",
     "https://media.giphy.com/media/xT0xeNRxjPDexpjO9O/giphy.gif",
     "https://media.giphy.com/media/1sU6gMLrfd14s/giphy.gif",
+    "https://media.giphy.com/media/l0Ex0vixCGSTGS0ec/giphy.gif",
   ];
 
   // This widget is the root of your application.
