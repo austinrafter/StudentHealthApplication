@@ -31,7 +31,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
   getExercisesForDay()async{
     passExercises = await DbThings.getExercisesByDay(formattedDate);
     Provider.of<ExerciseData>(context, listen: false).passExercises = passExercises!;
-    //passExercise = await DbThings.getFavoriteExerciseForDay(formattedDate);
+    passExercise = await DbThings.getFavoriteExerciseForDay(formattedDate);
     passExercises?.forEach((item){
       print(item.caloriesburned);
       caloriesForDay = caloriesForDay + item.caloriesburned;
@@ -52,6 +52,14 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     super.dispose();
   }//dispose
 
+  bool _canShowButton = true;
+
+  void hideWidget() {
+    setState(() {
+      _canShowButton = !_canShowButton;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
@@ -63,30 +71,16 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
       child:
           Column(
         children:[
+          buildShowInfoButton(),
           buildCaloriesPrintout(),
           buildLastPerformedExercise(),
-      Align(
-        alignment: Alignment.topLeft,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.all(16.0),
-            primary: Colors.white,
-            textStyle: const TextStyle(fontSize: 18),
-          ),
-          onPressed: () {
-           setState(() => caloriesForDay);
-          },//onPressed
-          child: Text("Reveal daily exercise information"
-          ),//Text
-        ),//ButtonWidget
-      ),//Align
-          //buildFavoriteExercise(),
+          buildFavoriteExercise(),
         ],//children
       ),//Column
     ),//Center
   );//Scaffold
 
-/*
+
  Widget buildFavoriteExercise(){
    return passExercise?.exercisename == null ?
    Container(
@@ -95,7 +89,13 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
      color: Colors.green,
      margin: EdgeInsets.all(20),
      alignment: Alignment.center,
-     child: Text("No favorite exercise for today"),
+     child: Text("Favorite exercise today:",
+       style: TextStyle(
+         color: Colors.white,
+         fontSize: 24,
+         fontWeight: FontWeight.bold,
+       ),//TextStyle
+     ),//Text
    )
        :Container(
      width: 300.0,
@@ -106,10 +106,10 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
      child:Column(
        children:[
          Text(
-           "Favorite exercise for the day: ",
+           "Favorite exercise today:",
            style: TextStyle(
              color: Colors.white,
-             fontSize: 28,
+             fontSize: 24,
              fontWeight: FontWeight.bold,
            ),//TextStyle
          ),//Text
@@ -125,7 +125,24 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
    );//Container
   }
 
- */
+  Widget buildShowInfoButton(){
+    return !_canShowButton
+        ? const SizedBox.shrink()
+        : Align(
+      alignment: Alignment.topLeft,
+      child: RaisedButton(
+        textColor: Colors.white,
+        elevation: 7.0,
+        color: Colors.blue,
+        onPressed: () {
+          setState(() => caloriesForDay);
+          hideWidget();
+        },//onPressed
+        child: Text("Reveal daily exercise information"
+        ),//Text
+      ),//ButtonWidget
+    );//Align
+  }
 
 
   Widget buildLastPerformedExercise(){
