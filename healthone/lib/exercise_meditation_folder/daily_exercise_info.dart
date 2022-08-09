@@ -33,13 +33,16 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     Provider.of<ExerciseData>(context, listen: false).passExercises = passExercises!;
     //passExercise = await DbThings.getFavoriteExerciseForDay(formattedDate);
     passExercises?.forEach((item){
+      print(item.caloriesburned);
       caloriesForDay = caloriesForDay + item.caloriesburned;
     });
+    print(caloriesForDay);
+    //print(caloriesForDay);
   }//getExercisesForDay
 
   @override
   void initState(){
-    print(formattedDate);
+    //print(formattedDate);
     super.initState();
     getExercisesForDay();
   }//initState
@@ -57,10 +60,26 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     ),//AppBar
     backgroundColor: Colors.teal[400],
     body: Center(
-      child: Column(
+      child:
+          Column(
         children:[
           buildCaloriesPrintout(),
           buildLastPerformedExercise(),
+      Align(
+        alignment: Alignment.topLeft,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.all(16.0),
+            primary: Colors.white,
+            textStyle: const TextStyle(fontSize: 18),
+          ),
+          onPressed: () {
+           setState(() => caloriesForDay);
+          },//onPressed
+          child: Text("Reveal daily exercise information"
+          ),//Text
+        ),//ButtonWidget
+      ),//Align
           //buildFavoriteExercise(),
         ],//children
       ),//Column
@@ -117,7 +136,13 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
       color: Colors.green,
       margin: EdgeInsets.all(20),
       alignment: Alignment.center,
-      child: Text("No recent exercise"),
+      child: Text("Most recent exercise: ",
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontWeight: FontWeight.bold
+        ),//TextStyle
+      ),//Text
     )
     :Container(
       width: 300.0,
@@ -147,7 +172,21 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     );//Container
   }
 Widget buildCaloriesPrintout(){
-  return Container(
+  return caloriesForDay == 0 ?
+  Container( width: 300.0,
+    height: 100.0,
+    color: Colors.green,
+    margin: EdgeInsets.all(20),
+    alignment: Alignment.center,
+    child: Text("Calories burned: ",
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold
+      ),//TextStyle
+       ),//Text
+  )
+      : Container(
     width: 300.0,
     height: 100.0,
     color: Colors.green,

@@ -1,4 +1,4 @@
-//targetCompatibility = JavaVersion.VERSION_16//targetCompatibility = JavaVersion.VERSION_16//targetCompatibility = JavaVersion.VERSION_16
+//targetCompatibility = JavaVersion.VERSION_16
 plugins {
     id 'org.springframework.boot' version '2.6.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -21,7 +21,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation ('org.springframework.boot:spring-boot-starter-data-jpa'){
+        exclude group: "org.hibernate", module: "hibernate-core"
+    }
+    implementation "org.hibernate:hibernate-core:5.6.5.Final"
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
