@@ -145,13 +145,29 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
              fontWeight: FontWeight.bold,
            ),//TextStyle
          ),//Text
-         Text(
-           "${passExercise?.exercisename}",
-           style: TextStyle(
-             color: Colors.white,
-             fontSize: 22,
-           ),//TextStyle
-         ),//Text
+         Container(
+           child: Stack(
+             children: [
+               Card(
+                 color: Colors.teal[600],
+                 shape: RoundedRectangleBorder(
+                   side: BorderSide(
+                     color: Colors.teal.shade600,
+                   ),//borderside
+                   borderRadius: const BorderRadius.all(Radius.circular(12)),
+                 ),//roundedrectangleborder
+                 child: ListTile(
+                   title: Text(
+                     "${passExercise?.exercisename}",
+                     style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                       color: Colors.white,),
+                   ),//Text
+                 ),//ListTile
+               ),//Card
+             ],//stack children
+           ),//Stack
+         ),//Container
        ],//children
      ),//Column
    );//Container
@@ -254,6 +270,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
             ),//TextStyle
           ),//Text
           ),//Align
+          /*
           Text(
             "${passExercises?.last.exercisename}",
             style: TextStyle(
@@ -261,6 +278,31 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
               fontSize: 22,
             ),//TextStyle
           ),//Text
+
+           */
+      Container(
+        child: Stack(
+          children: [
+            Card(
+              color: Colors.teal[600],
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.teal.shade600,
+                ),//borderside
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+              ),//roundedrectangleborder
+              child: ListTile(
+                title: Text(
+                  "${passExercises?.last.exercisename}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,),
+                ),//Text
+              ),//ListTile
+            ),//Card
+          ],//stack children
+        ),//Stack
+      ),//Container
         ],//children
       ),//Column
     );//Container
@@ -296,13 +338,29 @@ Widget buildCaloriesPrintout(){
             fontWeight: FontWeight.bold
         ),//TextStyle
       ),//Text
-      Text(
-        "${caloriesForDay}",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 30,
-        ),//TextStyle
-      ),//Text
+      Container(
+        child: Stack(
+          children: [
+            Card(
+              color: Colors.teal[600],
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.teal.shade600,
+                ),//borderside
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+              ),//roundedrectangleborder
+              child: ListTile(
+                title: Text(
+                  "${caloriesForDay}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,),
+                ),//Text
+              ),//ListTile
+            ),//Card
+          ],//stack children
+        ),//Stack
+      ),//Container
     ],
   ),//Column
   );//Container
