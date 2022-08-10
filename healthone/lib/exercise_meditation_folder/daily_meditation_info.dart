@@ -402,7 +402,20 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
                           ),//roundedrectangleborder
                           child: ListTile(
                             title: Text(
-                              "${(timeForDay).toStringAsFixed(3)}",
+                              "${(timeForDay).toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,),
+                            ),//Text
+                            subtitle:(30 - timeForDay) <= 0 ?
+                            Text(
+                              "",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,),
+                            )//Text
+                                : Text(
+                              "${(30 - timeForDay).toStringAsFixed(2)} minutes needed to reach the recommended 30 minutes a day of meditation",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,),

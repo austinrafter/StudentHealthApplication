@@ -397,20 +397,44 @@ Widget buildCaloriesPrintout(){
                 ),//borderside
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),//roundedrectangleborder
-              child: ListTile(
+              child: Column(
+                children:[
+                  ListTile(
                 title: Text(
                   "${caloriesForDay.toStringAsFixed(3)} calories burned",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),
                 ),//Text
-                subtitle:Text(
-                  "${minutes.toStringAsFixed(2)} minutes exercised",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,),
-                ),//Text
               ),//ListTile
+                  const SizedBox(
+                    width: 30.0,
+                    height: 30.0,
+                  ),
+                  ListTile(
+                    title:Text(
+                      "${minutes.toStringAsFixed(2)} minutes exercised",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),//TextStyle
+                    ),//Text
+                    subtitle:(30 - minutes) <= 0 ?
+                    Text(
+                      "",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,),
+                    )//Text
+                    : Text(
+                      "${(30 - minutes).toStringAsFixed(2)} minutes needed to reach the recommended 30 minutes a day of exercise",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,),
+                    ),//Text
+                  ),//ListTile
+      ],
+              ),
             ),//Card
           ],//stack children
         ),//Stack
