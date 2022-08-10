@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/meditations")
@@ -81,5 +82,49 @@ public class MeditationController {
     @PostMapping("/getMeditationsByType")
     public List<Meditation> getMeditationsByType(@RequestBody Meditation meditation){
         return meditationRepository.findByMeditationtype(meditation.getMeditationtype());
+    }
+
+    @PostMapping("/getMeditationsByDate")
+    public List<PassMeditation> getMeditationsByDate(@RequestBody PassMeditation passMeditation){
+        System.out.println(passMeditation.getDateof());
+        return passMeditationRepository.findByDateofContaining(passMeditation.getDateof());
+    }
+
+    @PostMapping("/getFavoriteMeditationForDate")
+    public PassMeditation getFavoriteExerciseForDate(@RequestBody PassMeditation passMeditation){
+        //System.out.println(passExercise.getDateof());
+        int max = 0;
+        String meditationname1 = "";
+        Map<String, Integer> maxMeditationName = new HashMap<String, Integer>();
+        HashSet<String> meditationNames = new HashSet<String>();
+
+        List<PassMeditation> passMeditationList = passMeditationRepository.findByDateofContaining(passMeditation.getDateof());
+        PassMeditation passMeditation1 = passMeditationList.get(0);
+
+        for (PassMeditation passMeditation2: passMeditationList) {
+            if(!meditationNames.contains(passMeditation2.getMeditationname())){
+                meditationNames.add(passMeditation2.getMeditationname());
+                maxMeditationName.put(passMeditation2.getMeditationname(),1);
+            }else{
+                maxMeditationName.put(passMeditation2.getMeditationname(), maxMeditationName.get(passMeditation2.getMeditationname()) + 1);
+            }
+        }
+
+        for(String i : maxMeditationName.keySet()){
+            if(maxMeditationName.get(i) > max){
+                max = maxMeditationName.get(i);
+                meditationname1 = i;
+            }
+        }
+
+        for(PassMeditation passMeditation2: passMeditationList){
+            if(meditationname1 == passMeditation2.getMeditationname()){
+                passMeditation1 = passMeditation2;
+                break;
+            }
+        }
+
+        System.out.println(passMeditation1.getMeditationname());
+        return passMeditation1;
     }
 }

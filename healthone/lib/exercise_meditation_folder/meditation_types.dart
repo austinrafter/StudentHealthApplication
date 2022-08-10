@@ -4,6 +4,8 @@ import '../pages/nutrition_page.dart';
 import '../pages/sleep_page.dart';
 import '../pages/meditation_type_page.dart';
 import 'meditation_types_data.dart';
+import 'daily_meditation_info.dart';
+import '../pages/meditation_info_page.dart';
 
 class MeditationTypes extends StatelessWidget{
   var physicalData = MeditationsTypeData.getData;
@@ -15,13 +17,16 @@ class MeditationTypes extends StatelessWidget{
     MeditationTypePage(meditationtype: "Unguided"),
     MeditationTypePage(meditationtype: "Mindfulness"),
     MeditationTypePage(meditationtype: "Quiet Relaxation"),
+    MeditationInfoPage(),
   ];
+  //https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif
 
   final images =[
     "https://media.giphy.com/media/105D9aefNvprfG/giphy.gif",
     "https://media.giphy.com/media/l4FGDAx6u3hthMhgI/giphy.gif",
     "https://media.giphy.com/media/CSmmKAum8d1gZqwvmo/giphy.gif",
     "https://media.giphy.com/media/llJJsTA7J627AjNdHP/giphy.gif",
+    "https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif",
   ];
 
   // This widget is the root of your application.

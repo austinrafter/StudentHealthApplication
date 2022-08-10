@@ -288,6 +288,59 @@ class DbThings{
     return studentExercising;
   }
 
+  static Future<List<PassMeditation>> getMeditationsByDay(String dateof) async{
+
+    Map data = {
+      "meditationname" : "meditationname",
+      "username" : "username" + dateof,
+      "dateof" : dateof,
+      "totaltime": 1,
+      "soundused" : "sound"
+    };
 
 
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(meditationUrl + '/getMeditationsByDate');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<PassMeditation> passMeditations = [];
+    for(Map passExerciseMap in responseList){
+      PassMeditation passMeditation = PassMeditation.fromMap(passExerciseMap);
+      passMeditations.add(passMeditation);
+    }
+    return passMeditations;
+  }
+
+  static Future<PassMeditation> getFavoriteMeditationForDay(String dateof) async{
+    Map data = {
+      "meditationname" : "meditationname",
+      "username" : "username" + dateof,
+      "dateof" : dateof,
+      "totaltime": 1,
+      "soundused" : "sound"
+    };
+
+    var body = json.encode(data);
+    var addExerciseUrl = Uri.parse(meditationUrl + '/getFavoriteMeditationForDate');
+
+    http.Response response = await http.post(
+        addExerciseUrl,
+        headers: headers,
+        body: body
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    PassMeditation passMeditation = PassMeditation.fromMap(responseMap);
+
+    return passMeditation;
+  }
 }

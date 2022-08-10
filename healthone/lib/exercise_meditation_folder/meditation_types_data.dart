@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/meditation_type_page.dart';
+import 'daily_meditation_info.dart';
+import '../pages/meditation_info_page.dart';
 
 class MeditationsTypeData {
   static final getData = [
@@ -19,6 +21,10 @@ class MeditationsTypeData {
     {
       'name': 'Quiet Relaxation',
       'page': MeditationTypePage(meditationtype: "Quiet Relaxation"),
+    },
+    {
+      'name': 'Daily Info',
+      'page': MeditationInfoPage(),
     },
   ];
 }

@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS passexercise (
 );
 
 CREATE TABLE IF NOT EXISTS passmeditation (
-	massmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	passmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	meditationname VARCHAR(256),
 	username VARCHAR(256),
 	dateof VARCHAR(256),
