@@ -28,6 +28,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
   List<PassExercise>? passExercises;
   double caloriesForDay = 0;
   PassExercise? passExercise;
+  double minutes = 0;
 
   getExercisesForDay()async{
     passExercises = await DbThings.getExercisesByDay(formattedDate);
@@ -35,7 +36,8 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     passExercise = await DbThings.getFavoriteExerciseForDay(formattedDate);
     passExercises?.forEach((item){
       print(item.caloriesburned);
-      caloriesForDay = caloriesForDay + item.caloriesburned;
+      caloriesForDay = caloriesForDay + item.caloriesburned;/**/
+      minutes = minutes + (item.totaltime / 60);
     });
     print(caloriesForDay);
     setState(() {});
@@ -369,7 +371,7 @@ Widget buildCaloriesPrintout(){
     context: context,
     builder: (ctx) => AlertDialog(
     title:Text(
-    "Calories burned: ",
+    "Total Calories and Time: ",
     style: TextStyle(
         color: Colors.black,
         fontSize: 28,
@@ -397,7 +399,13 @@ Widget buildCaloriesPrintout(){
               ),//roundedrectangleborder
               child: ListTile(
                 title: Text(
-                  "${caloriesForDay.toStringAsFixed(3)}",
+                  "${caloriesForDay.toStringAsFixed(3)} calories burned",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,),
+                ),//Text
+                subtitle:Text(
+                  "${minutes.toStringAsFixed(2)} minutes exercised",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),
