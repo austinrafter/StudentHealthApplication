@@ -14,6 +14,7 @@ class ExerciseInfoTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+    var minutes = passExercise.totaltime / 60;
     return Container(
       child: Stack(
           children: [
@@ -33,11 +34,17 @@ class ExerciseInfoTile extends StatelessWidget{
                     color: Colors.white,),
                 ),//Text
                 subtitle: Text(
-                  passExercise.username,
+                  '${passExercise.caloriesburned} calories burned',
                   style: TextStyle(fontStyle: FontStyle.italic,
                     color: Colors.white,
                   ),//TextStyle
                 ),//Text
+                  trailing: Text(
+                    '${minutes} minutes exercised',
+                    style: TextStyle(fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),//TextStyle
+                  ),//Text
               ),//ListTile
             ),//Card
           ],//stack children
