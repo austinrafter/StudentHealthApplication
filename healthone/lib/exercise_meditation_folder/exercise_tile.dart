@@ -45,7 +45,7 @@ class ExerciseTile extends StatelessWidget{
             minHeight: 46,
             maxWidth: 66,
             maxHeight: 66,
-          ),
+          ),//BoxConstraints
           child:
           exercise.exerciseimage == null ?
           Image.network(

@@ -11,6 +11,7 @@ import '../profile/profile_db_services.dart';
 import 'pass_exercise.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'exercise_info_tile.dart';
 
 
 class DailyExerciseInfo extends StatefulWidget{
@@ -37,6 +38,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
       caloriesForDay = caloriesForDay + item.caloriesburned;
     });
     print(caloriesForDay);
+    setState(() {});
     //print(caloriesForDay);
   }//getExercisesForDay
 
@@ -67,17 +69,47 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
       title: Text("Information for ${formattedDate}"),
     ),//AppBar
     backgroundColor: Colors.teal[400],
-    body: Center(
-      child:
+    body:
+    //Center(
+      //child:
           Column(
         children:[
-          buildShowInfoButton(),
+          Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            children: [
           buildCaloriesPrintout(),
+              const SizedBox(
+                width: 20.0,
+                height: 30.0,
+              ),
           buildLastPerformedExercise(),
+              const SizedBox(
+                width: 20.0,
+                height: 30.0,
+              ),
           buildFavoriteExercise(),
+    ],//children
+          ),//Column
+          ),//Container
+          const SizedBox(
+            width: 20.0,
+            height: 30.0,
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Text("Exercises for today:",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),//TextStyle
+            ),//Text
+          ),//Alignment
+          buildDailyExerciseTiles(),
         ],//children
       ),//Column
-    ),//Center
+    //),//Center
   );//Scaffold
 
 
@@ -96,12 +128,12 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
          fontWeight: FontWeight.bold,
        ),//TextStyle
      ),//Text
-   )
-       :Container(
-     width: 300.0,
-     height: 100.0,
-     color: Colors.green,
-     margin: EdgeInsets.all(20),
+   )//Container
+       :Align(
+     //width: 300.0,
+    // height: 100.0,
+     //color: Colors.green,
+     //margin: EdgeInsets.all(20),
      alignment: Alignment.center,
      child:Column(
        children:[
@@ -125,11 +157,53 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
    );//Container
   }
 
+  Widget buildDailyExerciseTiles(){
+   return passExercises == null ? Container(
+       color: Colors.green,
+       margin: EdgeInsets.all(20),
+       alignment: Alignment.center,
+       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+     child: Text("No exercises for today yet",
+       style: TextStyle(
+         color: Colors.white,
+         fontSize: 24,
+         fontWeight: FontWeight.bold,
+       ),//TextStyle
+        ),//Text
+   )//Container
+    :
+   //Container(
+     //color: Colors.green,
+     //margin: EdgeInsets.all(20),
+     //alignment: Alignment.center,
+     //padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+     //child:
+     Container(
+         child: Consumer<ExerciseData>(
+       builder: (context, passexerciseData, child){
+         return ListView.builder(
+             scrollDirection: Axis.vertical,
+             shrinkWrap: true,
+             itemCount: passexerciseData.passExercises.length,
+             itemBuilder: (context, index) {
+               PassExercise passExercise1 = passexerciseData.passExercises[index];
+               return ExerciseInfoTile(
+                   passExercise: passExercise1,
+                   passexerciseData: passexerciseData
+               );//ExerciseTile
+             });//itemBuilder
+
+       },//builder
+     ),//Consumer
+    );//Column
+   //);//Container
+  }
+
   Widget buildShowInfoButton(){
     return !_canShowButton
         ? const SizedBox.shrink()
         : Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.center,
       child: RaisedButton(
         textColor: Colors.white,
         elevation: 7.0,
@@ -161,15 +235,17 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
         ),//TextStyle
       ),//Text
     )
-    :Container(
-      width: 300.0,
-      height: 100.0,
-      color: Colors.green,
-      margin: EdgeInsets.all(20),
+    :Align(
+      //width: 300.0,
+      //height: 100.0,
+      //color: Colors.green,
+      //margin: EdgeInsets.all(20),
       alignment: Alignment.center,
       child:Column(
         children:[
-          Text(
+          Align(
+            alignment: Alignment.center,
+          child: Text(
             "Most recent exercise: ",
             style: TextStyle(
               color: Colors.white,
@@ -177,6 +253,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
                 fontWeight: FontWeight.bold,
             ),//TextStyle
           ),//Text
+          ),//Align
           Text(
             "${passExercises?.last.exercisename}",
             style: TextStyle(
@@ -203,11 +280,11 @@ Widget buildCaloriesPrintout(){
       ),//TextStyle
        ),//Text
   )
-      : Container(
-    width: 300.0,
-    height: 100.0,
-    color: Colors.green,
-    margin: EdgeInsets.all(20),
+      : Align(
+    //width: 300.0,
+    //height: 100.0,
+    //color: Colors.green,
+    //margin: EdgeInsets.all(20),
     alignment: Alignment.center,
     child: Column(
     children:[
