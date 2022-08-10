@@ -34,7 +34,7 @@ class MeditationInfoTile extends StatelessWidget{
                   color: Colors.white,),
               ),//Text
               subtitle: Text(
-                '${minutes} minutes meditated',
+                '${minutes.toStringAsFixed(2)} minutes meditated',
                 style: TextStyle(fontStyle: FontStyle.italic,
                   color: Colors.white,
                 ),//TextStyle

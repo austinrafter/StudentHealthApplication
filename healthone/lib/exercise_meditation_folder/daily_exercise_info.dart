@@ -397,7 +397,7 @@ Widget buildCaloriesPrintout(){
               ),//roundedrectangleborder
               child: ListTile(
                 title: Text(
-                  "${caloriesForDay}",
+                  "${caloriesForDay.toStringAsFixed(3)}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),

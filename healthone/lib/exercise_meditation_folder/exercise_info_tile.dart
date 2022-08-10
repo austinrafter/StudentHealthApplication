@@ -34,13 +34,13 @@ class ExerciseInfoTile extends StatelessWidget{
                     color: Colors.white,),
                 ),//Text
                 subtitle: Text(
-                  '${passExercise.caloriesburned} calories burned',
+                  '${passExercise.caloriesburned.toStringAsFixed(3)} calories burned',
                   style: TextStyle(fontStyle: FontStyle.italic,
                     color: Colors.white,
                   ),//TextStyle
                 ),//Text
                   trailing: Text(
-                    '${minutes} minutes exercised',
+                    '${minutes.toStringAsFixed(2)} minutes exercised',
                     style: TextStyle(fontStyle: FontStyle.italic,
                       color: Colors.white,
                     ),//TextStyle

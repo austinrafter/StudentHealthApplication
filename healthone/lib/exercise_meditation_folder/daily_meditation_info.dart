@@ -358,7 +358,7 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
       color: Colors.green,
       margin: EdgeInsets.all(20),
       alignment: Alignment.center,
-      child: Text("Calories burned: ",
+      child: Text("Minutes Meditated Today: ",
         style: TextStyle(
             color: Colors.white,
             fontSize: 28,
@@ -402,7 +402,7 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
                           ),//roundedrectangleborder
                           child: ListTile(
                             title: Text(
-                              "${timeForDay}",
+                              "${(timeForDay).toStringAsFixed(3)}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,),
