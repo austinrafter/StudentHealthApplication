@@ -3,6 +3,7 @@ import '../exercise_meditation_folder/exercise.dart';
 import '../exercise_meditation_folder/exercise_data.dart';
 import '../exercise_meditation_folder/exercise_for_given_time.dart';
 import '../exercise_meditation_folder/exercise_timer_page.dart';
+import 'weight_lifing_page.dart';
 
 
 
@@ -23,10 +24,17 @@ class ExerciseTile extends StatelessWidget{
         // When the user taps the button, navigate
         // to a named route and provide the arguments
         // as an optional parameter.
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  ExerciseTimerPage(exercise: exercise, exercisename:exercise.exercisename, exercisetype:exercise.exercisetype, metabolicequivalentscore:exercise.metabolicequivalentscore),),
-        );//navigator.push
+        if(exercise.exercisetype != "Strength Training"){
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ExerciseTimerPage(exercise: exercise, exercisename:exercise.exercisename, exercisetype:exercise.exercisetype, metabolicequivalentscore:exercise.metabolicequivalentscore),),
+    );//navigator.push
+    } else {
+    Navigator.push(
+    context,
+      MaterialPageRoute(builder: (context) => WeightLiftingPage(exercise: exercise, exercisename:exercise.exercisename, exercisetype:exercise.exercisetype, metabolicequivalentscore:exercise.metabolicequivalentscore),),
+    );//navigator.push
+    }
       },//onpressed
     child: Stack(
       children: [

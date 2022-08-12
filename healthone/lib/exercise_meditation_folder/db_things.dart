@@ -95,15 +95,16 @@ class DbThings{
     return meditation;
   }
 
-  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime dateof, int totaltime, double caloriesburned) async{
+  static Future<PassExercise> addStudentExercising(String exercisename, String username, DateTime dateof, int totaltime, double caloriesburned, int reps, double weightrepped) async{
     Map data = {
       "exercisename" : exercisename,
       "username" : username,
-      "dateof" : dateof.toIso8601String(),
+      "dateof" : dateof,
       "totaltime": totaltime,
-      "caloriesburned" : caloriesburned
+      "caloriesburned" : caloriesburned,
+      "reps" : reps,
+      "weightrepped" : weightrepped
     };
-
     var body = json.encode(data);
     var addExerciseUrl = Uri.parse(exerciseUrl + '/addtouser');
 
@@ -236,10 +237,12 @@ class DbThings{
 
     Map data = {
       "exercisename" : "exercisename",
-      "username" : "username" + dateof,
+      "username" : "username",
       "dateof" : dateof,
-      "totaltime": 1,
-      "caloriesburned" : 1
+      "totaltime": 0,
+      "caloriesburned" : 0,
+      "reps" : 0,
+      "weightrepped" : 0
     };
 
 
@@ -269,7 +272,9 @@ class DbThings{
       "username" : "username",
       "dateof" : dateof,
       "totaltime": 0,
-      "caloriesburned" : 0
+      "caloriesburned" : 0,
+      "reps" : 0,
+      "weightrepped" : 0
     };
 
     var body = json.encode(data);

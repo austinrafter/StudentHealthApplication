@@ -83,7 +83,9 @@ CREATE TABLE IF NOT EXISTS passexercise (
 	username VARCHAR(256),
 	dateof VARCHAR(256),
 	totaltime int,
-	caloriesburned DOUBLE
+	caloriesburned DOUBLE,
+	reps int,
+	weightrepped DOUBLE
 );
 
 CREATE TABLE IF NOT EXISTS passmeditation (
@@ -106,3 +108,10 @@ VALUES ('Unguided nasa mission', 'Unguided meditation', 'https://luan.xyz/files/
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
 VALUES ('Guided mindfulness', 'Guided meditation', 'audio/Guided_Meditation_for_Deep_Relaxati.mp3', 'https://media.giphy.com/media/9WHE2bo5Na9Gg/giphy.gif');
+
+
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Squats', 'Strength Training', 9, 'https://media.giphy.com/media/3o7btMPzJrsdyWVHeo/giphy.gif');
+
+INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
+VALUES ('Bench Press', 'Strength Training', 8, 'https://media.giphy.com/media/z1Suqc2f0GCPReDgUB/giphy.gif');
