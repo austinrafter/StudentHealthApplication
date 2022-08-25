@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mentalhealth_folder/mental_page.dart';
-import 'pages/physical_page.dart';
-import 'pages/profile_page.dart';
+import 'physicalHealthPages/physical_page.dart';
+import 'physicalHealthPages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());

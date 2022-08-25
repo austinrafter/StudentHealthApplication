@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../pages/exercise_type_page.dart';
+import '../physicalHealthPages/exercise_type_page.dart';
 import 'daily_exercise_info.dart';
-import '../pages/exercise_info_page.dart';
+import '../physicalHealthPages/exercise_info_page.dart';
 
 class ExerciseTypesData {
   static final getData = [

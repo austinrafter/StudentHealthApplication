@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../pages/exercise_type_page.dart';
-import '../pages/nutrition_page.dart';
-import '../pages/sleep_page.dart';
-import '../pages/meditation_type_page.dart';
+import '../physicalHealthPages/exercise_type_page.dart';
+import '../physicalHealthPages/nutrition_page.dart';
+import '../physicalHealthPages/sleep_page.dart';
+import '../physicalHealthPages/meditation_type_page.dart';
 import 'meditation_types_data.dart';
 import 'daily_meditation_info.dart';
-import '../pages/meditation_info_page.dart';
+import '../physicalHealthPages/meditation_info_page.dart';
 
 class MeditationTypes extends StatelessWidget{
   var physicalData = MeditationsTypeData.getData;

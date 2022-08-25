@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../pages/meditation_type_page.dart';
+import '../physicalHealthPages/meditation_type_page.dart';
 import 'daily_meditation_info.dart';
-import '../pages/meditation_info_page.dart';
+import '../physicalHealthPages/meditation_info_page.dart';
 
 class MeditationsTypeData {
   static final getData = [

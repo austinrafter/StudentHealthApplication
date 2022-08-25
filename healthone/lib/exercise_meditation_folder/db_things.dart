@@ -99,7 +99,7 @@ class DbThings{
     Map data = {
       "exercisename" : exercisename,
       "username" : username,
-      "dateof" : dateof,
+      "dateof" : dateof.toIso8601String(),
       "totaltime": totaltime,
       "caloriesburned" : caloriesburned,
       "reps" : reps,
