@@ -6,6 +6,31 @@ import 'package:healthone/mentalhealth_folder/mood.dart';
 import 'mentalglobal.dart';
 
 class DBServices{
+  static Future<Mood> addStressMood(String userName, String mood, String stress, String month, String day, String year) async{
+    Map data = {
+      "userName": userName,
+      "mood": mood,
+      "stress": stress,
+      "month": month,
+      "day": day,
+      "year": year,
+    };
+
+    var body = json.encode(data);
+    var url = Uri.parse(baseUrl + '/stressmood');
+
+    http.Response response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    print(response.body);
+    Map responseMap = jsonDecode(response.body);
+
+    Mood m = Mood.fromMap(responseMap);
+    return m;
+  }
+
   static Future<Mood> addMood(String userName, String mood, String month, String day, String year) async{
     Map data = {
       "userName": userName,

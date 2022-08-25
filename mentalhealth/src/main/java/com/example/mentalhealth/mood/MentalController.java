@@ -12,6 +12,11 @@ public class MentalController {
     @Autowired
     private MentalRepository repo;
 
+    @PostMapping("/stressmood")
+    public MentalHealth addStressMood(@RequestBody MentalHealth mentalHealth){
+        return repo.save(mentalHealth);
+    }
+
     @PostMapping("/updatemood")
     public MentalHealth addMood(@RequestBody MentalHealth mentalHealth){
         return repo.save(mentalHealth);
@@ -46,6 +51,7 @@ public class MentalController {
         }
         return "Not deleted";
     }
+
     @DeleteMapping("/deletemoodall")
     public String deleteMoodAll(){
         repo.deleteAll();
