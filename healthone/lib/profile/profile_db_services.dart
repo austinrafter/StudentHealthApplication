@@ -48,4 +48,29 @@ class ProfileDb{
   }
 
 
+  static Future<Student> getStudentIfPresent(String username) async{
+    Map data = {
+      "username" : username,
+      "email" : "email",
+      "school" : "school",
+      "weight" : 0.0,
+    };
+
+    var body = json.encode(data);
+    var addStudentUrl = Uri.parse(exerciseUrl + '/getStudentIfPresent');
+
+    http.Response response = await http.post(
+      addStudentUrl,
+      headers: headers,
+      body: body,
+    );
+    print(response.body);
+
+    Map responseMap = jsonDecode(response.body);
+    Student student = Student.fromMap(responseMap);
+
+    return student;
+  }
+
+
 }

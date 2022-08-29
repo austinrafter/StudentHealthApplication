@@ -12,5 +12,11 @@ class ProfileData extends ChangeNotifier{
     notifyListeners();
   }
 
+  void getStudentIfPresent(String username) async {
+    Student student = await ProfileDb.getStudentIfPresent(username);
+    students.add(student);
+    notifyListeners();
+  }
+
 
 }

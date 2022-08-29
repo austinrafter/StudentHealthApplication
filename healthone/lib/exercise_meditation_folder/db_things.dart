@@ -149,6 +149,32 @@ class DbThings{
     return students;
   }
 
+  static Future<List<Student>> getStudentIfPresent(String username) async{
+    Map data = {
+      "username" : username,
+      "email" : "email",
+      "school" : "school",
+      "weight" : 0.0,
+    };
+
+    var body = json.encode(data);
+    var addStudentUrl = Uri.parse(exerciseUrl + '/getStudentIfPresent');
+
+    http.Response response = await http.post(
+      addStudentUrl,
+      headers: headers,
+      body: body,
+    );
+    print(response.body);
+    List responseList = jsonDecode(response.body);
+    List<Student> students = [];
+    for(Map studentMap in responseList){
+      Student student = Student.fromMap(studentMap);
+      students.add(student);
+    }
+    return students;
+  }
+
   static Future<PassMeditation> addStudentMeditating(String meditationname, String username, DateTime dateof, int totaltime, String soundused) async{
     Map data = {
       "meditationname" : meditationname,

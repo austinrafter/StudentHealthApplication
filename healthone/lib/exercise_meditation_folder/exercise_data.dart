@@ -31,6 +31,11 @@ class ExerciseData extends ChangeNotifier{
   }
 
 
-  
+  void getStudentIfPresent(String username) async {
+    List<Student> studentsNow = await DbThings.getStudentIfPresent(username);
+    students.add(studentsNow[0]);
+    notifyListeners();
+  }
+
 
 }

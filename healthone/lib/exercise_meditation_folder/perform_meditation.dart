@@ -77,7 +77,7 @@ class _PerformMeditationState extends State<PerformMeditation>{
   //bool isPlaying = false;
 
   getStudents()async{
-    students = await DbThings.getStudents();
+    students = await DbThings.getStudentIfPresent("test");
     Provider.of<MeditationData>(context, listen: false).students = students!;
   }
 

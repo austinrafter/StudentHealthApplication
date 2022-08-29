@@ -24,6 +24,7 @@ class ExerciseCountdown extends StatefulWidget{
 class _ExerciseCountdownState extends State<ExerciseCountdown>{
   var countDownDuration;
   List<Student>? students;
+  Student? student;
   Duration duration = Duration.zero;
   Timer? timer;
   late TextEditingController _controller;
@@ -35,7 +36,8 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
   String dropdownValue = '1';
 
   getStudents()async{
-    students = await DbThings.getStudents();
+    students = await DbThings.getStudentIfPresent("test");
+
     Provider.of<ExerciseData>(context, listen: false).students = students!;
   }
 

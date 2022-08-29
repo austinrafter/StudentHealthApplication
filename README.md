@@ -1,7 +1,7 @@
 # CMPE195A/E: Senior Project HealthOne Code Citation
 
 
-###General Components
+### General Components
 [Alert Dialog Box](https://api.flutter.dev/flutter/material/AlertDialog-class.html) <br />
 
 ## Sophia Yuan

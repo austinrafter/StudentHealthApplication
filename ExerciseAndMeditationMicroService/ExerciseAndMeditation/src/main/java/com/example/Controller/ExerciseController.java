@@ -65,6 +65,43 @@ public class ExerciseController {
         return studentRepository.findAll();
     }
 
+    @PostMapping("/getStudentIfPresent")
+    public List<Student> getStudentIfPresent(@RequestBody Student student){
+        List<Student>  students =  studentRepository.findByUsername(student.getUser_name());
+        if(students != null){
+            return students;
+        }
+        return null;
+    }
+
+    /*
+    @PostMapping("/updateStudentWeight")
+    public Student updateUserWeight(@RequestBody Student student){
+        Student checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
+        if(checkIfStudentPresent != null){
+            if(student.getWeight() != checkIfStudentPresent.getWeight()){
+                checkIfStudentPresent.setWeight(student.getWeight());
+            }
+            return checkIfStudentPresent;
+        }
+        return null;
+    }
+
+    @PostMapping("/updateStudentSchool")
+    public Student updateUserSchool(@RequestBody Student student){
+        Student checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
+        if(checkIfStudentPresent != null){
+            if(student.getSchool() != checkIfStudentPresent.getSchool()){
+                checkIfStudentPresent.setSchool(student.getSchool());
+            }
+            return checkIfStudentPresent;
+        }
+        return null;
+    }
+
+     */
+
+
 
     @PostMapping("/addtouser")
     public PassExercise addUserExercise(@RequestBody PassExercise passExercise){
