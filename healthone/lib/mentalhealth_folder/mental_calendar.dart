@@ -10,6 +10,10 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+
+  List<String> items = ['low', 'regular', 'high'];
+  String? selectedItem = 'regular';
+
   late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
@@ -118,10 +122,32 @@ class _CalendarState extends State<Calendar> {
         onPressed: () => showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text("Type stress levels and select mood"),
-            content: TextFormField(
-              controller: _eventController,
+            title: Text("Select stress level and mood"),
+            // content: TextFormField(
+            //   controller: _eventController,
+            // ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (int i = 0; i < items.length; i++)
+                ListTile(
+                  title: Text(
+                    items[i],
+                    style: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    ?.copyWith(color: Colors.black),
+                    ),
+                    leading: Radio(
+                    value: i,
+                    groupValue: 0,
+                    onChanged: (_) {},
+                    ),
+              ),
+              ],
             ),
+            //   ]
+            // )
             actions: [
               TextButton(
                 child: Text("Cancel"),
