@@ -10,6 +10,9 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+
+  String _stress = 'low';
+
   late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
@@ -118,10 +121,53 @@ class _CalendarState extends State<Calendar> {
         onPressed: () => showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text("Type stress levels and select mood"),
-            content: TextFormField(
-              controller: _eventController,
+            title: Text("Select stress level and mood"),
+            // content: TextFormField(
+            //   controller: _eventController,
+            // ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  title: const Text('low'),
+                  leading: Radio<String>(
+                    value: 'low',
+                    groupValue: _stress,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _stress = value!;
+                      });
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: const Text('regular'),
+                  leading: Radio<String>(
+                    value: 'regular',
+                    groupValue: _stress,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _stress = value!;
+                      });
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: const Text('high'),
+                  leading: Radio<String>(
+                    value: 'high',
+                    groupValue: _stress,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _stress = value!;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
+            //   ]
+            // )
             actions: [
               TextButton(
                 child: Text("Cancel"),
@@ -133,22 +179,19 @@ class _CalendarState extends State<Calendar> {
                 onPressed: () {
                   // _eventController.text = "Negative";
                   print("==========ADD HERE============");
-                  MentalData().addStressMood("tempUserName","Negative", _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
+                  MentalData().addStressMood("tempUserName","negative", _stress, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
                   print("==========FINISHED ADDING============");
-                  if (_eventController.text.isEmpty) {
 
-                  } else {
                     if (selectedEvents[selectedDay] != null) {
                       selectedEvents[selectedDay]!.add(
-                        Event(title: "Stress: " + _eventController.text + ", Mood: negative"),
+                        Event(title: "Stress: " + _stress + " | Mood: negative"),
                       );
                     } else {
                       selectedEvents[selectedDay] = [
-                        Event(title: "Stress: " + _eventController.text + ", Mood: negative")
+                        Event(title: "Stress: " + _stress + " | Mood: negative")
                       ];
                     }
 
-                  }
                   Navigator.pop(context);
                   _eventController.clear();
                   setState((){});
@@ -161,22 +204,19 @@ class _CalendarState extends State<Calendar> {
                 onPressed: () {
                   // _eventController.text = "Neutral";
                   print("==========ADD HERE============");
-                  MentalData().addStressMood("tempUserName", "Neutral", _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
+                  MentalData().addStressMood("tempUserName", "neutral", _stress, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
                   print("==========FINISHED ADDING============");
-                  if (_eventController.text.isEmpty) {
 
-                  } else {
                     if (selectedEvents[selectedDay] != null) {
                       selectedEvents[selectedDay]!.add(
-                        Event(title: "Stress: " + _eventController.text + ", Mood: neutral"),
+                        Event(title: "Stress: " + _stress + " | Mood: neutral"),
                       );
                     } else {
                       selectedEvents[selectedDay] = [
-                        Event(title: "Stress: " + _eventController.text + ", Mood: neutral")
+                        Event(title: "Stress: " + _stress + " | Mood: neutral")
                       ];
                     }
 
-                  }
                   Navigator.pop(context);
                   _eventController.clear();
                   setState((){});
@@ -189,23 +229,19 @@ class _CalendarState extends State<Calendar> {
                 onPressed: () {
                   // _eventController.text = "Positive";
                   print("==========ADD HERE============");
-                  MentalData().addStressMood("tempUserName", "Positive", _eventController.text, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
+                  MentalData().addStressMood("tempUserName", "positive", _stress, selectedDay.month.toString(), selectedDay.day.toString(), selectedDay.year.toString());
                   print("==========FINISHED ADDING============");
                   
-                  if (_eventController.text.isEmpty) {
-
-                  } else {
                     if (selectedEvents[selectedDay] != null) {
                       selectedEvents[selectedDay]!.add(
-                        Event(title: "Stress: " + _eventController.text + ", Mood: positive"),
+                        Event(title: "Stress: " + _stress + " | Mood: positive"),
                       );
                     } else {
                       selectedEvents[selectedDay] = [
-                        Event(title: "Stress: " + _eventController.text + ", Mood: positive")
+                        Event(title: "Stress: " + _stress + " | Mood: positive")
                       ];
                     }
 
-                  }
                   Navigator.pop(context);
                   _eventController.clear();
                   setState((){});

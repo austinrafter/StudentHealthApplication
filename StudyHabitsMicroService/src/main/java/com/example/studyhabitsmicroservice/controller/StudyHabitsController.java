@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 @Controller
 @RequestMapping("/study")
