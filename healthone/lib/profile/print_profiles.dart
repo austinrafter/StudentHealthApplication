@@ -286,12 +286,14 @@ class _ProfileState extends State<PrintProfiles>{
                   const SizedBox(
                     height: 20,
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     //     disabledColor: Colors.red,
                     // disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    textColor: Colors.white,
-                    color: Colors.teal[400],
+                    style: ButtonStyle(
+                      //padding: const EdgeInsets.all(20),
+                      //textColor: Colors.white,
+                      //backgroundColor: Colors.teal[400],
+                    ),
                     onPressed: () {
                       if (userName.isNotEmpty && userEmail.isNotEmpty && userSchool.isNotEmpty && (userWeight > 0)) {
                         Provider.of<ProfileData>(context, listen: false)

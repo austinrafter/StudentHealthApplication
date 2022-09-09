@@ -128,7 +128,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
    )//Container
        :Align(
      alignment: Alignment.bottomLeft,
-     child: RaisedButton(
+     child: ElevatedButton(
        onPressed: () => showDialog<String> (
 
          context: context,
@@ -172,12 +172,14 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
                      ],//stack children
                    ),//Stack
                  ),//Container
-                 RaisedButton(
+                 ElevatedButton(
                    //     disabledColor: Colors.red,
                    // disabledTextColor: Colors.black,
-                   padding: const EdgeInsets.all(20),
-                   textColor: Colors.white,
-                   color: Colors.teal[700],
+                   style: ButtonStyle(
+                     //padding: const EdgeInsets.all(20),
+                     //textColor: Colors.white,
+                     //backgroundColor: Colors.teal[700],
+                   ),
                    onPressed: () {
                      setState(() => {});
                      Navigator.of(ctx).pop();
@@ -191,9 +193,11 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
          ),//AlertDialog
        ),//onPressed
        child: Text("Fav"),
-       color: Colors.teal[700],
-       textColor: Colors.white,
-       elevation: 5,
+       style:ButtonStyle(
+         //backgroundColor: Colors.teal[700],
+         //textColor: Colors.white,
+         //elevation: 5,
+       ),
      ),//RaisedButton
    );//Align
   }
@@ -244,10 +248,12 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
         ? const SizedBox.shrink()
         : Align(
       alignment: Alignment.center,
-      child: RaisedButton(
-        textColor: Colors.white,
-        elevation: 7.0,
-        color: Colors.blue,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          //textColor: Colors.white,
+          //elevation: 7.0,
+          //backgroundColor: Colors.blue,
+        ),
         onPressed: () {
           setState(() => caloriesForDay);
           hideWidget();
@@ -277,7 +283,7 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
     )
     :Align(
       alignment: Alignment.bottomCenter,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () => showDialog<String> (
 
           context: context,
@@ -321,12 +327,14 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
                       ],//stack children
                     ),//Stack
                   ),//Container
-                  RaisedButton(
+                  ElevatedButton(
                     //     disabledColor: Colors.red,
                     // disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    textColor: Colors.white,
-                    color: Colors.teal[400],
+                    style: ButtonStyle(
+                      //padding: const EdgeInsets.all(20),
+                      //textColor: Colors.white,
+                      //backgroundColor: Colors.teal[400],
+                    ),
                     onPressed: () {
                       setState(() => {});
                       Navigator.of(ctx).pop();
@@ -340,9 +348,9 @@ class _DailyExerciseInfoState extends State<DailyExerciseInfo>{
           ),//AlertDialog
         ),//onPressed
         child: Text("Last"),
-        color: Colors.teal[700],
-        textColor: Colors.white,
-        elevation: 5,
+        //backgroundColor: Colors.teal[700],
+        //textColor: Colors.white,
+        //elevation: 5,
       ),//RaisedButton
     );//Align
   }
@@ -365,7 +373,7 @@ Widget buildCaloriesPrintout(){
   )
       : Align(
       alignment: Alignment.bottomRight,
-      child: RaisedButton(
+      child: ElevatedButton(
       onPressed: () => showDialog<String> (
 
     context: context,
@@ -439,12 +447,14 @@ Widget buildCaloriesPrintout(){
           ],//stack children
         ),//Stack
       ),//Container
-  RaisedButton(
+  ElevatedButton(
   //     disabledColor: Colors.red,
   // disabledTextColor: Colors.black,
-  padding: const EdgeInsets.all(20),
-  textColor: Colors.white,
-  color: Colors.teal[400],
+    style: ButtonStyle(
+      //padding: const EdgeInsets.all(20),
+      //textColor: Colors.white,
+      //backgroundColor: Colors.teal[400],
+    ),
   onPressed: () {
   setState(() => {});
   Navigator.of(ctx).pop();
@@ -458,9 +468,11 @@ Widget buildCaloriesPrintout(){
     ),//AlertDialog
       ),//onPressed
         child: Text("Cals"),
-        color: Colors.teal[700],
-        textColor: Colors.white,
-        elevation: 5,
+        style: ButtonStyle(
+          //backgroundColor: Colors.teal[700],
+          //textColor: Colors.white,
+         // elevation: 5,
+        ),
       ),//RaisedButton
   );//Align
 }

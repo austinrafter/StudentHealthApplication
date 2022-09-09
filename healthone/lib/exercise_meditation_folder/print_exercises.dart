@@ -92,7 +92,7 @@ class _ExerciseTypePageState extends State<PrintExercises>{
       ),//Container
           Align(
             alignment: Alignment.bottomLeft,
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () => showDialog<String> (
 
                 context: context,
@@ -100,7 +100,12 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                   title: Text("Metabolic Equivalence"),
                   content: Text("Metabolic Equivalent is the oxygen consumed in your body while performing an exercise. We use this to determine the calories you burn with each exercise. The higher the MET's the more calories you burn per minute."),
                   actions: <Widget>[
-                    FlatButton(
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
                       onPressed: () {
                         Navigator.of(ctx).pop();
                       },//onPressed
@@ -110,14 +115,16 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                 ),//AlertDialog
               ),//onPressed
               child: const Icon(Icons.question_mark),
-              color: Colors.teal[400],
-              textColor: Colors.white,
-              elevation: 5,
+              style: ButtonStyle(
+                //backgroundColor: Colors.teal[400],
+                //textColor: Colors.white,
+                //elevation: 5,
+              ),
             ),//RaisedButton
           ),//Align
           Align(
             alignment: Alignment.bottomRight,
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () => showDialog<String> (
 
                 context: context,
@@ -186,12 +193,15 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                       const SizedBox(
                         height: 20,
                       ),
-                      RaisedButton(
+                      ElevatedButton(
                         //     disabledColor: Colors.red,
                         // disabledTextColor: Colors.black,
-                        padding: const EdgeInsets.all(20),
-                        textColor: Colors.white,
-                        color: Colors.teal[400],
+
+                        style: ButtonStyle(
+                          //padding: const EdgeInsets.all(20),
+                          //textColor: Colors.white,
+                          //backgroundColor: Colors.teal[400],
+                        ),
                         onPressed: () {
                           if (exercisename.isNotEmpty  && (metabolicequivalentscore > 0) && exerciseimage.isNotEmpty) {
                             Provider.of<ExerciseData>(context, listen: false)
@@ -210,9 +220,9 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                 ),//AlertDialog
               ),//onPressed
               child: const Icon(Icons.add_box,),
-              color: Colors.teal[400],
-              textColor: Colors.white,
-              elevation: 5,
+              //backgroundColor: Colors.teal[400],
+              //textColor: Colors.white,
+              //elevation: 5,
             ),//RaisedButton
           ),//Align
     ],//children

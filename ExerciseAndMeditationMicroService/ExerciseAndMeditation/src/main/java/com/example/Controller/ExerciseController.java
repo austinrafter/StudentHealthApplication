@@ -74,13 +74,12 @@ public class ExerciseController {
         return null;
     }
 
-    /*
     @PostMapping("/updateStudentWeight")
-    public Student updateUserWeight(@RequestBody Student student){
-        Student checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
+    public List<Student> updateUserWeight(@RequestBody Student student){
+        List<Student> checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
         if(checkIfStudentPresent != null){
-            if(student.getWeight() != checkIfStudentPresent.getWeight()){
-                checkIfStudentPresent.setWeight(student.getWeight());
+            if(student.getWeight() != checkIfStudentPresent.get(0).getWeight()){
+                checkIfStudentPresent.get(0).setWeight(student.getWeight());
             }
             return checkIfStudentPresent;
         }
@@ -88,19 +87,16 @@ public class ExerciseController {
     }
 
     @PostMapping("/updateStudentSchool")
-    public Student updateUserSchool(@RequestBody Student student){
-        Student checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
+    public List<Student> updateUserSchool(@RequestBody Student student){
+        List<Student> checkIfStudentPresent =  studentRepository.findByUsername(student.getUser_name());
         if(checkIfStudentPresent != null){
-            if(student.getSchool() != checkIfStudentPresent.getSchool()){
-                checkIfStudentPresent.setSchool(student.getSchool());
+            if(student.getSchool() != checkIfStudentPresent.get(0).getSchool()){
+                checkIfStudentPresent.get(0).setSchool(student.getSchool());
             }
             return checkIfStudentPresent;
         }
         return null;
     }
-
-     */
-
 
 
     @PostMapping("/addtouser")

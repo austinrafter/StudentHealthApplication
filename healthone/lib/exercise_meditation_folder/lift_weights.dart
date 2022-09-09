@@ -386,10 +386,12 @@ class _WeightLiftingExerciseState extends State<WeightLiftingExercise>{
 
 
   Widget buildIncreaseButton(){
-    return RaisedButton(
-      color: Colors.teal[700],
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+    return ElevatedButton(
+      style: ButtonStyle(
+        //color: Colors.teal[700],
+        //shape: RoundedRectangleBorder(
+            //borderRadius: BorderRadius.all(Radius.circular(16.0))),
+      ),
       onPressed: () {
         if(totalReps == 0) {
           startTimer();

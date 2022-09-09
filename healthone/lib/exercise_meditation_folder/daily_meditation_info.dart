@@ -129,7 +129,7 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
     )//Container
         :Align(
       alignment: Alignment.bottomLeft,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () => showDialog<String> (
 
           context: context,
@@ -173,12 +173,14 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
                       ],//stack children
                     ),//Stack
                   ),//Container
-                  RaisedButton(
+                  ElevatedButton(
                     //     disabledColor: Colors.red,
                     // disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    textColor: Colors.white,
-                    color: Colors.teal[700],
+                    style: ButtonStyle(
+                      //padding: const EdgeInsets.all(20),
+                      //textColor: Colors.white,
+                      //backgroundColor: Colors.teal[700],
+                    ),
                     onPressed: () {
                       setState(() => {});
                       Navigator.of(ctx).pop();
@@ -192,9 +194,9 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
           ),//AlertDialog
         ),//onPressed
         child: Text("Fav"),
-        color: Colors.teal[700],
-        textColor: Colors.white,
-        elevation: 5,
+        //backgroundColor: Colors.teal[700],
+        //textColor: Colors.white,
+        //elevation: 5,
       ),//RaisedButton
     );//Align
   }
@@ -280,7 +282,7 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
     )
         :Align(
       alignment: Alignment.bottomCenter,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () => showDialog<String> (
 
           context: context,
@@ -324,12 +326,14 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
                       ],//stack children
                     ),//Stack
                   ),//Container
-                  RaisedButton(
+                  ElevatedButton(
                     //     disabledColor: Colors.red,
                     // disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    textColor: Colors.white,
-                    color: Colors.teal[400],
+                    style: ButtonStyle(
+                      //padding: const EdgeInsets.all(20),
+                      //textColor: Colors.white,
+                      //backgroundColor: Colors.teal[400],
+                    ),
                     onPressed: () {
                       setState(() => {});
                       Navigator.of(ctx).pop();
@@ -343,9 +347,9 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
           ),//AlertDialog
         ),//onPressed
         child: Text("Last"),
-        color: Colors.teal[700],
-        textColor: Colors.white,
-        elevation: 5,
+        //backgroundColor: Colors.teal[700],
+        //textColor: Colors.white,
+        //elevation: 5,
       ),//RaisedButton
     );//Align
   }
@@ -368,7 +372,7 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
     )
         : Align(
       alignment: Alignment.bottomRight,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () => showDialog<String> (
 
           context: context,
@@ -425,12 +429,14 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
                       ],//stack children
                     ),//Stack
                   ),//Container
-                  RaisedButton(
+                  ElevatedButton (
                     //     disabledColor: Colors.red,
                     // disabledTextColor: Colors.black,
-                    padding: const EdgeInsets.all(20),
-                    textColor: Colors.white,
-                    color: Colors.teal[400],
+                    style: ButtonStyle(
+                      //padding: const EdgeInsets.all(20),
+                      //textColor: Colors.white,
+                      //backgroundColor: Colors.teal[400],
+                    ),
                     onPressed: () {
                       setState(() => {});
                       Navigator.of(ctx).pop();
@@ -444,9 +450,9 @@ class _DailyMeditatioInfoState extends State<DailyMeditationInfo>{
           ),//AlertDialog
         ),//onPressed
         child: Text("Time"),
-        color: Colors.teal[700],
-        textColor: Colors.white,
-        elevation: 5,
+        //backgroundColor: Colors.teal[700],
+        //textColor: Colors.white,
+        //elevation: 5,
       ),//RaisedButton
     );//Align
   }
