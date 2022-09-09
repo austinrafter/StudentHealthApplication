@@ -1,7 +1,3 @@
-# MongoDB
-mongo-compose:
-    docker-compose -f docker-compose.yaml up
-
 # Gradle
 clean:
 	gradle clean
@@ -27,29 +23,29 @@ docker-build: jar
 	docker images
 
 docker-run: docker-build
-	docker run --network gumball -e "MYSQL_HOST=mysql" --name spring-gumball -td -p 80:8080 spring-gumball
+	docker run --network studyhabits_network -e "MYSQL_HOST=mysql" --name studyhabits -td -p 80:8080 studyhabits
 	docker ps
 
 docker-clean:
-	docker stop spring-gumball
-	docker rm spring-gumball
-	docker rmi spring-gumball
+	docker stop studyhabits
+	docker rm studyhabits
+	docker rmi studyhabits
 
 docker-shell:
-	docker exec -it spring-gumball bash
+	docker exec -it studyhabits bash
 
 docker-push:
 	docker login
-	docker build -t --platform linux/amd64,linux/arm64 lee71559/spring-gumball:v3 -t lee71559/spring-gumball:v3 .
-	docker push lee71559/spring-gumball:v3
+	docker build -t --platform linux/amd64,linux/arm64 lee71559/studyhabits:v1 -t lee71559/studyhabits:v1 .
+	docker push lee71559/studyhabits:v1
 
 docker-push-amd64:
 	docker buildx ls
 	docker buildx create --use
-	docker buildx build --platform linux/amd64,linux/arm64 --push -t lee71559/spring-gumball:v3 .
+	docker buildx build --platform linux/amd64,linux/arm64 --push -t lee71559/studyhabits:v1 .
 
 docker-mysql:
-	docker run --platform linux/x86_64 -d --network gumball --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=cmpe172 mysql:8.0
+	docker run --platform linux/x86_64 -d --network studyhabits_network --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password mysql:8.0
 
 # Compose
 
@@ -57,13 +53,13 @@ network-ls:
 	docker network ls
 
 network-create:
-	docker network create --driver bridge spring-gumball-v2_network
+	docker network create --driver bridge studyhabits_network
 
 network-prune:
 	docker network prune
 
 compose-up:
-	docker-compose up --scale gumball=2 -d
+	docker-compose up --scale studyhabits=1 -d
 
 compose-down:
 	docker-compose down

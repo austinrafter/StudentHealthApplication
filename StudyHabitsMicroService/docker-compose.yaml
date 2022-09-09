@@ -4,15 +4,14 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - /tmp:/tmp
-    networks:
-      - network
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 3306
+      - "3306:3306"
     networks:
-      - network
+      - studyhabits_network
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=studyhabits
     restart: always
   studyhabits:
     image: studyhabits
@@ -21,32 +20,12 @@ services:
     volumes:
       - /tmp:/tmp
     networks:
-      - network
+      - studyhabits_network
     ports:
-      - 8080
+      - "8080:8080"
     environment:
       MYSQL_HOST: "mysql"
     restart: always
-  lb:
-    image: eeacms/haproxy
-    depends_on:
-      - studyhabits
-    ports:
-      - "80:5000"
-      - "1936:1936"
-    environment:
-      BACKENDS: "studyhabits"
-      BACKENDS_PORT: "8080"
-      DNS_ENABLED: "true"
-      COOKIES_ENABLED: "false"
-      LOG_LEVEL: "info"
-    networks:
-      - network
-
-volumes:
-  schemas:
-    external: false
 
 networks:
-  network:
-    driver: bridge
+  exerciseandmeditation-mysql:
