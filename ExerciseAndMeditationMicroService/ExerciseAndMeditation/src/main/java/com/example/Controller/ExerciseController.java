@@ -1,6 +1,8 @@
 package com.example.Controller;
 
 import com.example.Model.Exercise;
+import com.example.Model.ExerciseChartItem;
+import com.example.Model.WeightExerciseChartItem;
 import com.example.Model.PassExercise;
 import com.example.Model.Student;
 import com.example.Model.UserExercising;
@@ -43,6 +45,29 @@ public class ExerciseController {
     @GetMapping("/getUserExercises")
     public List<UserExercising> getUserExercises(){
         return userExercisingRepository.findAll();
+    }
+
+    @GetMapping("/getUserTimedExercises")
+    public List<ExerciseChartItem> getUserExercises(){
+        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>;
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            if(exerciseChartItemArrayList.size() == 0){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }else{
+                for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+                    if(exerciseChartItem.getDate() == exerciseChartItem1.getDate()){
+                        exerciseChartItem.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                    }
+                }
+            }
+        }
+
+        return exerciseChartItemArrayList;
     }
 
     @GetMapping("/getTest")

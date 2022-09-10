@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'mentalhealth_folder/mental_page.dart';
 import 'physicalHealthPages/physical_page.dart';
 import 'physicalHealthPages/profile_page.dart';
+import 'analysis_folder/analysis_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ final screens = [
   PhysicalPage(),
   MentalPage(),
   Center(child: Text('Study', style: TextStyle(fontSize:50))),
-  Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
+  AnalysisPage(),
   ProfilePage(),
 ];
 
