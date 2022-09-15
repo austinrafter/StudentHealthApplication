@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'mentalhealth_folder/mental_page.dart';
 import 'physicalHealthPages/physical_page.dart';
 import 'physicalHealthPages/profile_page.dart';
+import 'study_habits_folder/study_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ int currentIndex = 0;
 final screens = [
   PhysicalPage(),
   MentalPage(),
-  Center(child: Text('Study', style: TextStyle(fontSize:50))),
+  StudyPage(),
   Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
   ProfilePage(),
 ];
@@ -92,7 +93,7 @@ final screens = [
             label: "Mental",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.menu_book),
             label: "Study",
           ),
           BottomNavigationBarItem(
