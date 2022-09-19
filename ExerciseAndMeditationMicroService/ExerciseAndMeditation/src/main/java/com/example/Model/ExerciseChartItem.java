@@ -1,4 +1,9 @@
-
+package com.example.Model;
+import jdk.jfr.DataAmount;
+import javax.persistence.*;
+import java.util.Set;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 public class ExerciseChartItem{
 

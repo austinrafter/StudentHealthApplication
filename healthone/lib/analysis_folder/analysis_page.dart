@@ -14,7 +14,7 @@ class AnalysisPage extends StatelessWidget{
   //const PhysicalPage({Key? key}) : super(key: key);
 
   final pages = [
-    ExerciseTypes(),
+    PhysicalAnalysisPage(),
     MeditationTypes(),
     SleepPage(),
   ];

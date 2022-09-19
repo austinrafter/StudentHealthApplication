@@ -48,8 +48,8 @@ public class ExerciseController {
     }
 
     @GetMapping("/getUserTimedExercises")
-    public List<ExerciseChartItem> getUserExercises(){
-        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>;
+    public List<ExerciseChartItem> getUserTimedExercises(){
+        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>();
         List<PassExercise> passExercises = passExerciseRepository.findAll();
 
         for(PassExercise passExercise: passExercises){

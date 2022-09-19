@@ -19,9 +19,5 @@ class AnalysisPageData {
       'name': 'Study Habits',
       'page': SleepPage(),
     },
-    {
-      'name': 'Nutrition',
-      'page': NutritionPage(),
-    },
   ];
 }

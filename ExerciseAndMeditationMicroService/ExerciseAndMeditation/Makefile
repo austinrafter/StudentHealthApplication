@@ -1,4 +1,8 @@
+all: docker-run
+
 docker-run:
-    ./gradlew clean build && java -jar build/libs/gs-spring-boot-docker-0.1.0.jar
-    docker build --build-arg JAR_FILE=build/libs/\*.jar -t exerciseandmeditationservice .
-    docker-compose up
+	./gradlew clean build && java -jar build/libs/ExerciseAndMeditation-1.0.jar
+
+docker-compose-run:
+	docker build --build-arg JAR_FILE=build/libs/\*.jar -t exerciseandmeditationservice .
+	docker-compose up

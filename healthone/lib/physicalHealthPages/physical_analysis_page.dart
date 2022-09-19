@@ -22,9 +22,9 @@ class PhysicalAnalysisPage extends StatelessWidget{
   ];
 
   final images =[
-    "https://media.giphy.com/media/TF6FLfa5NryGdEJcfY/giphy.gif",
-    "https://media.giphy.com/media/iLBQAlaft9NU4/giphy.gif",
-    "https://media.giphy.com/media/kIRicSBQwa23pYExQT/giphy.gif",
+    "https://media.giphy.com/media/3o7TKKlj7BTQGna32o/giphy.gif",
+    "https://media.giphy.com/media/cgfK6GyhXHpnSqdxc7/giphy.gif",
+    "https://media.giphy.com/media/Jap1tdjahS0rm/giphy.gif",
     "https://media.giphy.com/media/t9811uoqdhx9pQZx3z/giphy.gif",
   ];
 
@@ -34,7 +34,7 @@ class PhysicalAnalysisPage extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.teal[900],
       appBar: AppBar(
-        title: const Text("Physical Health"),
+        title: const Text("Physical Health Analysis"),
         centerTitle: true,
       ),
 
