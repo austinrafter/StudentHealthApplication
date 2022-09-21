@@ -3,29 +3,30 @@ import '../physicalHealthPages/exercise_type_page.dart';
 import '../physicalHealthPages/nutrition_page.dart';
 import '../physicalHealthPages/sleep_page.dart';
 import '../physicalHealthPages/meditation_type_page.dart';
-import '../exercise_meditation_folder/exercise_types.dart';
-import '../exercise_meditation_folder/meditation_types.dart';
-import '../analysis_folder/analysis_page_data.dart';
-import '../physicalHealthPages/physical_analysis_page.dart';
-import '../physicalHealthPages/exercise_analysis_page.dart';
-import '../mentalhealth_folder/mental_analysis_types.dart';
+import '../exercise_meditation_folder/meditation_types_data.dart';
+import '../exercise_meditation_folder/daily_meditation_info.dart';
+import '../physicalHealthPages/meditation_info_page.dart';
 
-class AnalysisPage extends StatelessWidget{
-  var analysisPageData = AnalysisPageData.getData;
+class MentalType extends StatelessWidget{
+  var physicalData = MeditationsTypeData.getData;
   //const PhysicalPage({Key? key}) : super(key: key);
 
+
   final pages = [
-    PhysicalAnalysisPage(),
-    MeditationTypes(),
-    MentalType(),
-    SleepPage(),
+    MeditationTypePage(meditationtype: "Guided"),
+    MeditationTypePage(meditationtype: "Unguided"),
+    MeditationTypePage(meditationtype: "Mindfulness"),
+    MeditationTypePage(meditationtype: "Quiet Relaxation"),
+    MeditationInfoPage(),
   ];
+  //https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif
 
   final images =[
-    "https://media.giphy.com/media/3ornjHnlfyrQclXGZq/giphy.gif",
-    "https://media.giphy.com/media/Yat5wnwisEV2iXbt4x/giphy.gif",
-    "https://media2.giphy.com/media/do6dluZNcoY349BT8r/giphy.gif?cid=ecf05e4705rvgu1e1dujgwa1t9hiemi58908yr9sa7d22u4r&rid=giphy.gif&ct=g",
-    "https://media.giphy.com/media/l2SpXaJA67JaSqSxq/giphy.gif",
+    "https://media.giphy.com/media/105D9aefNvprfG/giphy.gif",
+    "https://media.giphy.com/media/l4FGDAx6u3hthMhgI/giphy.gif",
+    "https://media.giphy.com/media/CSmmKAum8d1gZqwvmo/giphy.gif",
+    "https://media.giphy.com/media/llJJsTA7J627AjNdHP/giphy.gif",
+    "https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif",
   ];
 
   // This widget is the root of your application.
@@ -34,7 +35,7 @@ class AnalysisPage extends StatelessWidget{
     return Scaffold(
       backgroundColor: Colors.teal[900],
       appBar: AppBar(
-        title: const Text("Health Analysis"),
+        title: const Text("Meditation Types"),
         centerTitle: true,
       ),
 
@@ -49,7 +50,7 @@ class AnalysisPage extends StatelessWidget{
           children: <Widget>[
             Expanded(
               child: ListView.builder(
-                itemCount: analysisPageData.length,
+                itemCount: physicalData.length,
                 itemBuilder: (context, index){
                   return Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -77,7 +78,7 @@ class AnalysisPage extends StatelessWidget{
                               //child:
                               Container(
                                 alignment: Alignment.center,
-                                child:  AnalysisItemPageName(analysisPageData[index]),
+                                child:  PhysicalItemPageName(physicalData[index]),
                               ),//Container
                               //),//Center
                               Image.network(
@@ -116,7 +117,7 @@ class AnalysisPage extends StatelessWidget{
 }//class
 
 
-Widget AnalysisItemPageName(data) {
+Widget PhysicalItemPageName(data) {
   return Align(
     alignment: Alignment.center,
     child: RichText(
@@ -129,3 +130,12 @@ Widget AnalysisItemPageName(data) {
     ),
   );
 }
+
+/*
+Widget PhysicalItemPage(data) {
+  return Builder(
+      MaterialPageRoute(builder: (context) =>  data['page']),
+  );
+}
+
+ */
