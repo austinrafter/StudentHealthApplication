@@ -19,11 +19,13 @@ public class StudentClass {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    private String code;
     private String name;
     private Double point;
     private String grade;
 
-    public StudentClass(String name, Double point, String grade){
+    public StudentClass(String code, String name, Double point, String grade){
+        this.code = code;
         this.name = name;
         this.point = point;
         this.grade = grade;

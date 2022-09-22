@@ -38,6 +38,11 @@ public class StudyHabitsController {
         return activity;
     }
 
+    @PutMapping("/activity")
+    public String addActivity(@RequestBody Activity newActivity){
+        return actRepo.save(newActivity);
+    }
+
     @PutMapping("/activity/{id}")
     public String addActivity(@PathVariable Long id, @RequestBody Activity newActivity){
         Activity updatedActivity = actRepo.findById(id) //
@@ -78,6 +83,11 @@ public class StudyHabitsController {
         return studentClass;
     }
 
+    @PutMapping("/class")
+    public String addStudentClass(@RequestBody StudentClass newClass){
+        return stuClassRepo.save(newClass);
+    }
+
     @PutMapping("/class/{id}")
     public String addStudentClass(@PathVariable Long id, @RequestBody StudentClass newClass){
         StudentClass updatedClass = stuClassRepo.findById(id) //
@@ -107,7 +117,7 @@ public class StudyHabitsController {
     }
 
 
-    @GetMapping("/block")
+    @GetMapping("/blocks")
     public List<StudyBlock> allStudyBlocks() {
         List<StudyBlock> blocks = stuBlockRepo.findAll();
         return blocks;
@@ -118,6 +128,11 @@ public class StudyHabitsController {
         StudyBlock block = stuBlockRepo.findById(id) //
                 .orElseThrow(() -> new ActivityNotFoundException(id));
         return block;
+    }
+
+    @PutMapping("/block")
+    public String addStudyBlock(@RequestBody StudyBlock newBlock){
+        return stuBlockRepo.save(newBlock);
     }
 
     @PutMapping("/block/{id}")

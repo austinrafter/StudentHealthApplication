@@ -2,15 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'study_timer_page.dart';
-import 'classes_page.dart';
-import 'study_page_data.dart';
+import 'study_folder/study_timer_page.dart';
+import 'classes_folder/classes_page.dart';
+import 'study_folder/study_page_data.dart';
 
 class StudyPage extends StatelessWidget {
   //const StudyPage({Key? key}) : super(key: key);
   var studyPageData = StudyPageData.getData;
 
-  final pages = [StudyTimerPage(), ClassesPage()];
+  final pages = [const ClassesPage(), StudyTimerPage()];
 
   final images = [
     "https://media.giphy.com/media/yovOUEWBV2R46yrQ0B/giphy.gif",
@@ -26,12 +26,10 @@ class StudyPage extends StatelessWidget {
         title: const Text("Study Habits"),
         centerTitle: true,
       ),
-
       body: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 700,
         width: double.maxFinite,
-
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -47,10 +45,6 @@ class StudyPage extends StatelessWidget {
                     child: Card(
                       elevation: 5,
                       color: Colors.blue[500],
-                      //child: Padding(
-                      //padding: EdgeInsets.all(0),
-                      //child: Column(
-                      //children: [
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -63,43 +57,37 @@ class StudyPage extends StatelessWidget {
                           color: Colors.blue[700],
                           child: Column(
                             children: <Widget>[
-                              //Center(
-                              //child:
                               Container(
                                 alignment: Alignment.center,
                                 child:
                                     PhysicalItemPageName(studyPageData[index]),
-                              ), //Container
-                              //),//Center
+                              ),
                               Image.network(
                                 '${images[index]}',
                                 width: double.infinity,
                                 height: 140,
-                                //fit: Boxfit.cover
-                              ) //image.network
-                            ], //children
-                          ), //Stack
+                              )
+                            ],
+                          ),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               color: Colors.blue.shade900,
                             ),
                             borderRadius: BorderRadius.circular(10.0),
-                          ), //RoundedRectandleBorder
+                          ),
                           elevation: 5,
                           margin: const EdgeInsets.all(4.0),
-                        ), //child: Card
-                      ), //child: GestureDetector
-                      //],
-                      // ),// child: Padding
-                    ), //child: Card
-                  ); //Container
-                }, //itemBuilder
-              ), //child: ListView.builder
-            ), //Expanded
-          ], //children: <Widget>
-        ), //child: Column
-      ), //body: Container
-    ); //Scaffold
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   } //Widget build
 } //class
 
