@@ -383,6 +383,7 @@ class DbThings{
       getExerciseUrl,
       headers: headers,
     );
+    print(response.body);
 
     List responseList = jsonDecode(response.body);
     //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
