@@ -5,11 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:healthone/study_habits_folder/classes_folder/study_class.dart';
 
 class ClassesDBService {
-  static Future<StudyClass> addClass(
-      String code, String name, double point, String grade) async {
+  static Future<StudyClass> addClass(String code, String name, String semester,
+      double point, String grade) async {
     Map data = {
       "code": code,
       "name": name,
+      "semester": semester,
       "point": point,
       "grade": grade,
     };

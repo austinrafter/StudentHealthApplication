@@ -5,9 +5,11 @@ import 'package:healthone/study_habits_folder/classes_folder/study_class.dart';
 class ClassData extends ChangeNotifier {
   List<StudyClass> classes = [];
 
-  void addClass(String code, String name, double point, String grade) async {
+  void addClass(String code, String name, String semester, double point,
+      String grade) async {
     print("============addClass CALLED UP TO HERE============");
-    StudyClass c = await ClassesDBService.addClass(code, name, point, grade);
+    StudyClass c =
+        await ClassesDBService.addClass(code, name, semester, point, grade);
     classes.add(c);
     print(classes);
     print("============addClass THIS IS CALLED============");
