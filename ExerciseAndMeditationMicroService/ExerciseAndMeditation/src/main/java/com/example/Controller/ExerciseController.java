@@ -183,39 +183,7 @@ public class ExerciseController {
         }
         return totalTime;
     }
-    /*
-    @PostMapping("/getTotalExerciseTimeBeforeStudying")
-    public int getTotalExerciseTimeBeforeStudying(@PathVariable String date){
-        int totalTime = 0;
-        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
-        List<PassExercise> passExerciseList1 = new List<PassExercise>();
 
-        for(PassExercise passExercise: passExerciseList){
-
-            if(passExercise.getDateof() <= date){
-                passExerciseList1.add(passExercise);
-            }
-        }
-        for(PassExercise passExercise: passExerciseList1){
-            totalTime += passExercise.getTotaltime();
-        }
-        return totalTime;
-    }
-
-     */
-
-    /*
-    @PostMapping("/getFinalExerciseTime")
-    public String getFinalExerciseTime(@PathVariable String date){
-        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
-
-        String[] dateAndTime = passExerciseList[passExerciseList.size() - 1].split("T", 0);
-
-        return dateAndTime[1];
-
-    }
-
-     */
 
     @PostMapping("/getExercisesByType")
     public List<Exercise> getExercisesByType(@RequestBody Exercise exercise){
@@ -268,5 +236,26 @@ public class ExerciseController {
     }
 
 
+    @GetMapping("/getUserWeightedExercises")
+    public List<WeightExerciseChartItem> getUserWeighedExercises(){
+        List<WeightExerciseChartItem> exerciseChartItemArrayList = new ArrayList<WeightExerciseChartItem>();
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+        boolean datesMatch = false;
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            WeightExerciseChartItem exerciseChartItem = new WeightExerciseChartItem( passExercise.getExercisename(), passExercise.getWeightrepped(), passExercise.getReps() , dateParts[0]);
+            if(exerciseChartItem.getWeight() > 0) {
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+        }
+        for (WeightExerciseChartItem chartItem : exerciseChartItemArrayList){
+            System.out.println(chartItem.getExercise());
+            System.out.println(chartItem.getWeight());
+            System.out.println(chartItem.getDate());
+        }
+        return exerciseChartItemArrayList;
+    }
 
 }

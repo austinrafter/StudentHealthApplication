@@ -6,6 +6,7 @@ import 'student_exercising.dart';
 import '../profile/student.dart';
 import 'pass_exercise.dart';
 import 'timed_exercise_chart.dart';
+import 'weighted_exercise_chart.dart';
 
 class ExerciseData extends ChangeNotifier{
   List<Exercise> exercises = [];
@@ -13,6 +14,7 @@ class ExerciseData extends ChangeNotifier{
   List<Student> students = [];
   List<PassExercise> passExercises = [];
   List<TimedExerciseChart> timedExerciseCharts = [];
+  List<WeightedExerciseChart> weightedExerciseCharts = [];
 
   void addExercise(String exercisename, String exercisetype,double metabolicequivalentscore, String exerciseimage) async {
     Exercise exercise = await DbThings.addExercise(exercisename,exercisetype,metabolicequivalentscore, exerciseimage);

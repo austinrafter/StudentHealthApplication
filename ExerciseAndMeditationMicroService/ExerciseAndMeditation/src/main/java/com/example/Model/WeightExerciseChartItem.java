@@ -10,17 +10,24 @@ public class WeightExerciseChartItem {
 
     private String exercise;
 
-    private int weight;
+    private double weight;
 
     private int reps;
 
     private String date;
 
+    public WeightExerciseChartItem(String exercise, double weight, int reps, String date){
+        this.exercise = exercise;
+        this.weight = weight;
+        this.reps = reps;
+        this.date = date;
+    }
+
     public int getReps() {
         return reps;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

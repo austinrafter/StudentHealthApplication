@@ -9,6 +9,7 @@ import '../profile/student.dart';
 import '../profile/profile_data.dart';
 import '../profile/profile_db_services.dart';
 import 'timed_exercise_chart.dart';
+import 'weighted_exercise_chart.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
 
@@ -21,6 +22,7 @@ class PrintExerciseAnalysisCharts extends StatefulWidget {
 class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisCharts> {
 
   List<TimedExerciseChart>? timedExerciseCharts;
+  List<WeightedExerciseChart>? weightedExerciseCharts;
   //final DateTime now = new DateTime.now();
   //final DateTime date = new DateTime(now.year, now.month, now.day);
   final String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
@@ -29,6 +31,9 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
     //exercises = await DbThings.getExercises();
     timedExerciseCharts = await DbThings.getExercisesForChart();
     Provider.of<ExerciseData>(context, listen: false).timedExerciseCharts = timedExerciseCharts!;
+
+    weightedExerciseCharts = await DbThings.getWeightedExercisesForChart();
+    Provider.of<ExerciseData>(context, listen: false).weightedExerciseCharts = weightedExerciseCharts!;
     setState(() {});
   }
 
@@ -45,12 +50,25 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
       TimedExerciseChart(minutes: 0, date:formattedDate),
     ];
 
+    final List<WeightedExerciseChart> defaultDataWeight = [
+      WeightedExerciseChart(exercise: 'none', reps: 0, weight: 0, date:formattedDate),
+    ];
+
     List<charts.Series<TimedExerciseChart, String>> timeline = [
       charts.Series(
         id: "Exercise",
         data: timedExerciseCharts?? defaultData,
         domainFn: (TimedExerciseChart timeline, _) => timeline.date,
         measureFn: (TimedExerciseChart timeline, _) => timeline.minutes,
+      )
+    ];
+
+    List<charts.Series<WeightedExerciseChart, String>> weightline = [
+      charts.Series(
+        id: "Weight Exercise",
+        data: weightedExerciseCharts?? defaultDataWeight,
+        domainFn: (WeightedExerciseChart weightline, _) => weightline.exercise,
+        measureFn: (WeightedExerciseChart weightline, _) => weightline.weight,
       )
     ];
 
@@ -71,8 +89,14 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
             Expanded(
               child: charts.BarChart(timeline, animate: true),
             ),
-            ],
-          ),
+            Text(
+              "Weight Lifted By Exercise(Temp)",
+            ),
+            Expanded(
+               child: charts.BarChart(weightline, animate: true),
+            ),
+            ],//children
+          ),//Column
         ),
       ),
     )

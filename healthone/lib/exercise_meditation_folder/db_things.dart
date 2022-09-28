@@ -9,6 +9,7 @@ import 'pass_exercise.dart';
 import 'pass_meditation.dart';
 import 'timed_exercise_chart.dart';
 import 'timed_meditation_chart.dart';
+import 'weighted_exercise_chart.dart';
 
 class DbThings{
   static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore, String exerciseimage) async{
@@ -414,5 +415,24 @@ class DbThings{
       timedMeditationCharts.add(timedMeditationChart);
     }
     return timedMeditationCharts;
+  }
+
+  static Future<List<WeightedExerciseChart>> getWeightedExercisesForChart() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/getUserWeightedExercises');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<WeightedExerciseChart> weightedExerciseCharts = [];
+    for(Map weightedExerciseChartMap in responseList){
+      WeightedExerciseChart weightedExerciseChart = WeightedExerciseChart.fromMap(weightedExerciseChartMap);
+      weightedExerciseCharts.add(weightedExerciseChart);
+    }
+    return weightedExerciseCharts;
   }
 }
