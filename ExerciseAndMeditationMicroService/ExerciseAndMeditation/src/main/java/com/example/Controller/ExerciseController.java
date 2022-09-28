@@ -51,6 +51,7 @@ public class ExerciseController {
     public List<ExerciseChartItem> getUserTimedExercises(){
         List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>();
         List<PassExercise> passExercises = passExerciseRepository.findAll();
+        boolean datesMatch = false;
 
         for(PassExercise passExercise: passExercises){
             String date = passExercise.getDateof();
@@ -58,15 +59,22 @@ public class ExerciseController {
             ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
             if(exerciseChartItemArrayList.size() == 0){
                 exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+            for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+               if(exerciseChartItem.getDate() == exerciseChartItem1.getDate()){
+                        exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                        datesMatch = true;
+               }
+           }
+            if(!datesMatch){
+                exerciseChartItemArrayList.add(exerciseChartItem);
             }else{
-                for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
-                    if(exerciseChartItem.getDate() == exerciseChartItem1.getDate()){
-                        exerciseChartItem.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
-                    }
-                }
+                datesMatch = false;
             }
         }
-
+        for (ExerciseChartItem chartItem : exerciseChartItemArrayList){
+            System.out.println(chartItem.getMinutes());
+        }
         return exerciseChartItemArrayList;
     }
 

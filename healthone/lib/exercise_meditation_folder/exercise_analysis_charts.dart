@@ -66,13 +66,10 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
               child: Column(
                   children: <Widget>[
               Text(
-              "Time Exercised Each Day",
+              "Minutes Exercised Each Day",
             ),
             Expanded(
               child: charts.BarChart(timeline, animate: true),
-            ),
-            Text(
-            "Source: Your exercises",
             ),
             ],
           ),
