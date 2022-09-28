@@ -7,6 +7,7 @@ import '../exercise_meditation_folder/exercise_types.dart';
 import '../exercise_meditation_folder/meditation_types.dart';
 import '../physicalHealthPages/physical_analysis_page_data.dart';
 import '../physicalHealthPages/exercise_analysis_page.dart';
+import '../physicalHealthPages/meditation_analysis_page.dart';
 
 import 'physical_page_data.dart';
 
@@ -16,7 +17,7 @@ class PhysicalAnalysisPage extends StatelessWidget{
 
   final pages = [
     ExerciseAnalysisPage(),
-    MeditationTypes(),
+    MeditationAnalysisPage(),
     SleepPage(),
     NutritionPage(),
   ];

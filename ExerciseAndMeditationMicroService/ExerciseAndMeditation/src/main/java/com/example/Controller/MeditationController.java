@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -126,5 +127,38 @@ public class MeditationController {
 
         System.out.println(passMeditation1.getMeditationname());
         return passMeditation1;
+    }
+
+    @GetMapping("/getUserTimedMeditation")
+    public List<MeditationChartItem> getUserTimedExercises(){
+        List<MeditationChartItem> meditationChartItemArrayList = new ArrayList<MeditationChartItem>();
+        List<PassMeditation> passMeditations = passMeditationRepository.findAll();
+        boolean datesMatch = false;
+
+        for(PassMeditation passMeditation: passMeditations){
+            //get datetime
+            String date = passMeditation.getDateof();
+            //split datetime to get only date
+            String[] dateParts = date.split("T");
+            MeditationChartItem meditationChartItem = new MeditationChartItem(((double)passMeditation.getTotaltime()/60) , dateParts[0]);
+            if(meditationChartItemArrayList.size() == 0){
+                meditationChartItemArrayList.add(meditationChartItem);
+            }
+            for(MeditationChartItem meditationChartItem1 : meditationChartItemArrayList){
+                if((meditationChartItem.getDate() == meditationChartItem1.getDate())){
+                    meditationChartItem1.setMinutes(meditationChartItem.getMinutes() + meditationChartItem1.getMinutes());
+                    datesMatch = true;
+                }
+            }
+            if(!datesMatch){
+                meditationChartItemArrayList.add(meditationChartItem);
+            }else{
+                datesMatch = false;
+            }
+        }
+        for (MeditationChartItem chartItem : meditationChartItemArrayList){
+            System.out.println(chartItem.getMinutes());
+        }
+        return meditationChartItemArrayList;
     }
 }

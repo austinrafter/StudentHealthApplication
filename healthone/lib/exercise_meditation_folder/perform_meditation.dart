@@ -1,30 +1,3 @@
-/*import 'package:flutter/material.dart';
-
-class PerformMeditation extends StatelessWidget{
-  const PerformMeditation({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Center(
-          child: Text(
-            "Perform Meditation Page",
-            style: TextStyle(fontSize:50),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
- */
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';

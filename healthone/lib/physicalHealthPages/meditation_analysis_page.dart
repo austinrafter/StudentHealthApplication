@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../exercise_meditation_folder/print_exercises.dart';
+import '../exercise_meditation_folder/exercise_tile.dart';
+import '../exercise_meditation_folder/exercise.dart';
+import '../exercise_meditation_folder/meditation_data.dart';
+import '../exercise_meditation_folder/exercise_for_given_time.dart';
+import '../exercise_meditation_folder/print_exercises.dart';
+import '../exercise_meditation_folder/daily_exercise_info.dart';
+import '../exercise_meditation_folder/meditation_analysis_charts.dart';
+
+
+class MeditationAnalysisPage extends StatelessWidget {
+
+  const MeditationAnalysisPage({Key? key}) : super(key: key);
+  //static const routeName = '/passArguments';
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<MeditationData>(
+      create: (context) => MeditationData(),
+      child: Container(
+        child: PrintMeditationAnalysisCharts(),
+      ),//MaterialApp
+    );//ChangeNotifierProvider
+  }//build
+}
