@@ -9,15 +9,19 @@ import '../analysis_folder/analysis_page_data.dart';
 import '../physicalHealthPages/physical_analysis_page.dart';
 import '../physicalHealthPages/exercise_analysis_page.dart';
 import '../mentalhealth_folder/mental_analysis_types.dart';
+import '../mentalhealth_folder/mental_journal.dart';
 
 class AnalysisPage extends StatelessWidget{
   var analysisPageData = AnalysisPageData.getData;
   //const PhysicalPage({Key? key}) : super(key: key);
 
+  static var seriesList;
+  var animate;
   final pages = [
     PhysicalAnalysisPage(),
     MeditationTypes(),
     MentalType(),
+    JournalPage(),
     SleepPage(),
   ];
 
@@ -25,6 +29,7 @@ class AnalysisPage extends StatelessWidget{
     "https://media.giphy.com/media/3ornjHnlfyrQclXGZq/giphy.gif",
     "https://media.giphy.com/media/Yat5wnwisEV2iXbt4x/giphy.gif",
     "https://media2.giphy.com/media/do6dluZNcoY349BT8r/giphy.gif?cid=ecf05e4705rvgu1e1dujgwa1t9hiemi58908yr9sa7d22u4r&rid=giphy.gif&ct=g",
+    "https://media3.giphy.com/media/VbEuHLBUPQm55MyqJg/giphy.gif?cid=ecf05e4794fzcu77pjeqg79p8gvml548w50los7hrsaki43m&rid=giphy.gif&ct=g",
     "https://media.giphy.com/media/l2SpXaJA67JaSqSxq/giphy.gif",
   ];
 

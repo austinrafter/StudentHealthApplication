@@ -40,7 +40,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mental Health Page"),
+        title: Center(child: Text("Mental Health: Mood and Stress")),
         backgroundColor: Colors.teal[400],
       ),
       body: Column(

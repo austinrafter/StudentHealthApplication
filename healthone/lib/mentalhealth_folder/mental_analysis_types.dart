@@ -1,141 +1,87 @@
 import 'package:flutter/material.dart';
-import '../physicalHealthPages/exercise_type_page.dart';
-import '../physicalHealthPages/nutrition_page.dart';
-import '../physicalHealthPages/sleep_page.dart';
-import '../physicalHealthPages/meditation_type_page.dart';
-import '../exercise_meditation_folder/meditation_types_data.dart';
-import '../exercise_meditation_folder/daily_meditation_info.dart';
-import '../physicalHealthPages/meditation_info_page.dart';
+/// Donut chart with labels example. This is a simple pie chart with a hole in
+/// the middle.
+import 'package:charts_flutter/flutter.dart' as charts;
 
-class MentalType extends StatelessWidget{
-  var physicalData = MeditationsTypeData.getData;
-  //const PhysicalPage({Key? key}) : super(key: key);
+class MentalType extends StatefulWidget{
 
+  @override
+  _ChartTemplateState createState() => _ChartTemplateState();
+}
 
-  final pages = [
-    MeditationTypePage(meditationtype: "Guided"),
-    MeditationTypePage(meditationtype: "Unguided"),
-    MeditationTypePage(meditationtype: "Mindfulness"),
-    MeditationTypePage(meditationtype: "Quiet Relaxation"),
-    MeditationInfoPage(),
-  ];
-  //https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif
+class _ChartTemplateState extends State<MentalType> {
 
-  final images =[
-    "https://media.giphy.com/media/105D9aefNvprfG/giphy.gif",
-    "https://media.giphy.com/media/l4FGDAx6u3hthMhgI/giphy.gif",
-    "https://media.giphy.com/media/CSmmKAum8d1gZqwvmo/giphy.gif",
-    "https://media.giphy.com/media/llJJsTA7J627AjNdHP/giphy.gif",
-    "https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif",
-  ];
+  @override
+  void initState(){
+    super.initState();
+  }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
+    final List<EarningsTimeline> listEarnings = [
+      EarningsTimeline(year: "08", earning: 18.5),
+      EarningsTimeline(year: "09", earning: 21),
+      EarningsTimeline(year: "10", earning: 30),
+      EarningsTimeline(year: "11", earning: 38),
+      EarningsTimeline(year: "12", earning: 42),
+      EarningsTimeline(year: "13", earning: 43.5),
+      EarningsTimeline(year: "14", earning: 73),
+      EarningsTimeline(year: "15", earning: 79.6),
+      EarningsTimeline(year: "16", earning: 82),
+      EarningsTimeline(year: "17", earning: 93),
+      EarningsTimeline(year: "18", earning: 108),
+      EarningsTimeline(year: "19", earning: 109),
+      EarningsTimeline(year: "20", earning: 117),
+    ];
+
+    List<charts.Series<EarningsTimeline, String>> timeline = [
+      charts.Series(
+        id: "Subscribers",
+        data: listEarnings,
+        //the x axis
+        domainFn: (EarningsTimeline timeline, _) => timeline.year,
+        //the y axis
+        measureFn: (EarningsTimeline timeline, _) => timeline.earning,
+      )
+    ];
+
     return Scaffold(
-      backgroundColor: Colors.teal[900],
-      appBar: AppBar(
-        title: const Text("Meditation Types"),
-        centerTitle: true,
+      appBar: AppBar(title: Text("Flutter Charts Sample")),
+      body: Center(
+          child: Container(
+            height: 400,
+            padding: EdgeInsets.all(20),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Chart title",
+                    ),
+                    Expanded(
+                      child: charts.BarChart(timeline, animate: true),
+                    ),
+                    Text(
+                      "Chart Source",
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
       ),
-
-      body: Container(
-        padding: EdgeInsets.fromLTRB(10,10,10,0),
-        height: 700,
-        width: double.maxFinite,
-
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                itemCount: physicalData.length,
-                itemBuilder: (context, index){
-                  return Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 220,
-                    width: double.maxFinite,
-                    child: Card(
-                      elevation: 5,
-                      color: Colors.teal[900],
-                      //child: Padding(
-                      //padding: EdgeInsets.all(0),
-                      //child: Column(
-                      //children: [
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) =>  pages[index]),
-                          );
-                        },
-                        child:Card(
-                          color: Colors.teal[700],
-                          child: Column(
-                            children: <Widget>[
-                              //Center(
-                              //child:
-                              Container(
-                                alignment: Alignment.center,
-                                child:  PhysicalItemPageName(physicalData[index]),
-                              ),//Container
-                              //),//Center
-                              Image.network(
-                                '${images[index]}',
-                                width: double.infinity,
-                                height: 140,
-                                //fit: Boxfit.cover
-                              )//image.network
-                            ],//children
-                          ),//Stack
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              color: Colors.teal.shade900,
-                            ),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),//RoundedRectandleBorder
-                          elevation: 5,
-                          margin: EdgeInsets.all(4.0),
-                        ),//child: Card
-                      ),//child: GestureDetector
-                      //],
-                      // ),// child: Padding
-                    ),//child: Card
-                  );//Container
-                },//itemBuilder
-              ),//child: ListView.builder
-            ),//Expanded
-
-          ],//children: <Widget>
-        ),//child: Column
-
-      ),//body: Container
-
-    );//Scaffold
-  }//Widget build
-}//class
-
-
-Widget PhysicalItemPageName(data) {
-  return Align(
-    alignment: Alignment.center,
-    child: RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        text: '${data['name']}',
-        style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 40),
-      ),
-    ),
-  );
+    );
+  }
 }
 
-/*
-Widget PhysicalItemPage(data) {
-  return Builder(
-      MaterialPageRoute(builder: (context) =>  data['page']),
-  );
-}
+class EarningsTimeline {
+  final String year;
+  final double earning;
 
- */
+  EarningsTimeline({
+    required this.year,
+    required this.earning,
+  });
+}
