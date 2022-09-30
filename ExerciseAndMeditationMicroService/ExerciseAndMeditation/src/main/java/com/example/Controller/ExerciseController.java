@@ -61,7 +61,7 @@ public class ExerciseController {
                 exerciseChartItemArrayList.add(exerciseChartItem);
             }
             for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
-               if(exerciseChartItem.getDate() == exerciseChartItem1.getDate()){
+               if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
                         exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
                         datesMatch = true;
                }

@@ -69,7 +69,13 @@ class _PrintMeditationAnalysisChartsState extends State<PrintMeditationAnalysisC
                       "Minutes Meditated Each Day",
                     ),
                     Expanded(
-                      child: charts.BarChart(timeline, animate: true),
+                      child: charts.BarChart(
+                          timeline,
+                          animate: true,
+                        domainAxis: charts.OrdinalAxisSpec(
+                          renderSpec: charts.SmallTickRendererSpec(labelRotation: 60),
+                        ),
+                      ),
                     ),
                   ],
                 ),

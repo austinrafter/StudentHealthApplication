@@ -87,13 +87,25 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
               "Minutes Exercised Each Day",
             ),
             Expanded(
-              child: charts.BarChart(timeline, animate: true),
+              child: charts.BarChart(
+                  timeline,
+                  animate: true,
+                domainAxis: charts.OrdinalAxisSpec(
+                  renderSpec: charts.SmallTickRendererSpec(labelRotation: 60),
+                ),
+              ),
             ),
             Text(
-              "Weight Lifted By Exercise(Temp)",
+              "Max Weight Lifted By Exercise",
             ),
             Expanded(
-               child: charts.BarChart(weightline, animate: true),
+               child: charts.BarChart(
+                 weightline,
+                 animate: true,
+                 domainAxis: charts.OrdinalAxisSpec(
+                   renderSpec: charts.SmallTickRendererSpec(labelRotation: 60),
+                 ),
+               ),
             ),
             ],//children
           ),//Column

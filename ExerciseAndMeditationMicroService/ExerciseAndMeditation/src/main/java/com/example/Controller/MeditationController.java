@@ -145,7 +145,7 @@ public class MeditationController {
                 meditationChartItemArrayList.add(meditationChartItem);
             }
             for(MeditationChartItem meditationChartItem1 : meditationChartItemArrayList){
-                if((meditationChartItem.getDate() == meditationChartItem1.getDate())){
+                if((meditationChartItem.getDate().equals(meditationChartItem1.getDate()))){
                     meditationChartItem1.setMinutes(meditationChartItem.getMinutes() + meditationChartItem1.getMinutes());
                     datesMatch = true;
                 }

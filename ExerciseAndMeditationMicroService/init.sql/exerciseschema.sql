@@ -115,3 +115,13 @@ VALUES ('Squats', 'Strength Training', 9, 'https://media.giphy.com/media/3o7btMP
 
 INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
 VALUES ('Bench Press', 'Strength Training', 8, 'https://media.giphy.com/media/z1Suqc2f0GCPReDgUB/giphy.gif');
+
+CREATE TABLE IF NOT EXISTS mental_health (
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	user_name VARCHAR(256),
+	mood VARCHAR(256),
+	stress VARCHAR(256),
+	month VARCHAR(256),
+	year VARCHAR(256),
+	day VARCHAR(256)
+);

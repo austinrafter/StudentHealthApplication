@@ -1,11 +1,21 @@
 version: "3"
 services:
   exerciseandmeditation:
-    image: exerciseandmeditationservice
+    image: ./exerciseandmeditationservice
     ports:
       - "8080:8080"
     networks:
-      - exerciseandmeditation-mysql
+      - healthone-project
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/StudentHealth?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    depends_on:
+      - mysqldb
+  mentalhealth:
+    image: ./mentalhealth
+    ports:
+      - "8095:8095"
+    networks:
+      - healthone-project
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/StudentHealth?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
     depends_on:
@@ -14,7 +24,7 @@ services:
   mysqldb:
     image: mysql:latest
     networks:
-      - exerciseandmeditation-mysql
+      - healthone-project
     environment:
       - MYSQL_ROOT_PASSWORD=thisismypassword
       - MYSQL_DATABASE=StudentHealth
@@ -22,4 +32,4 @@ services:
       - ../init.sql:/docker-entrypoint-initdb.d
 
 networks:
-  exerciseandmeditation-mysql:
+  healthone-project:
