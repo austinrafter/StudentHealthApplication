@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:healthone/study_habits_folder/classes_folder/classesdb_services.dart';
+import 'package:healthone/study_habits_folder/classes_folder/classesdb_service.dart';
 import 'package:healthone/study_habits_folder/classes_folder/study_class.dart';
 
 class ClassData extends ChangeNotifier {
@@ -16,8 +16,9 @@ class ClassData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateClass(StudyClass c) {
-    ClassesDBService.updateClass(c.id);
+  void updateClass(int id, String code, String name, String semester,
+      double point, String grade) {
+    ClassesDBService.updateClass(id, code, name, semester, point, grade);
     notifyListeners();
   }
 

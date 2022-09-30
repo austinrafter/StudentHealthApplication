@@ -47,12 +47,23 @@ class ClassesDBService {
     return classes;
   }
 
-  static Future<http.Response> updateClass(int id) async {
+  static Future<http.Response> updateClass(int id, String code, String name,
+      String semester, double point, String grade) async {
+    Map data = {
+      "code": code,
+      "name": name,
+      "semester": semester,
+      "point": point,
+      "grade": grade,
+    };
+
+    var body = json.encode(data);
     var url = Uri.parse(baseUrl + '/class/$id');
 
     http.Response response = await http.put(
       url,
       headers: headers,
+      body: body,
     );
     print(response.body);
     return response;

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:healthone/study_habits_folder/classes_folder/classesdb_services.dart';
+import 'package:healthone/study_habits_folder/classes_folder/classesdb_service.dart';
 import 'package:healthone/study_habits_folder/classes_folder/study_class.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
@@ -342,7 +342,6 @@ class _ClassesState extends State<ClassesInfo> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                print("=========Add Class==========");
                                 switch (_classSem) {
                                   case 'Spring':
                                     _classSem = 'SP$_classYear';
@@ -359,13 +358,26 @@ class _ClassesState extends State<ClassesInfo> {
                                   default:
                                     _classSem = '';
                                 }
-                                ClassData().addClass(
-                                    classCode.text,
-                                    className.text,
-                                    _classSem,
-                                    double.tryParse(classPoint.text)!,
-                                    _classGrade);
-                                print("=========Finish Adding==========");
+                                if (update) {
+                                  print("=========Update Class==========");
+                                  ClassData().updateClass(
+                                      curClassData.id,
+                                      classCode.text,
+                                      className.text,
+                                      _classSem,
+                                      double.tryParse(classPoint.text)!,
+                                      _classGrade);
+                                  print("=========Finish Updating==========");
+                                } else {
+                                  print("=========Add Class==========");
+                                  ClassData().addClass(
+                                      classCode.text,
+                                      className.text,
+                                      _classSem,
+                                      double.tryParse(classPoint.text)!,
+                                      _classGrade);
+                                  print("=========Finish Adding==========");
+                                }
                               }
                             },
                             child: const Text("Submit"),

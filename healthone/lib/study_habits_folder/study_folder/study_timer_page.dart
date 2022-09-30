@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:healthone/study_habits_folder/study_folder/activity_data.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import 'package:healthone/study_habits_folder/classes_folder/classesdb_services.dart';
+import 'package:healthone/study_habits_folder/classes_folder/classesdb_service.dart';
 import 'package:healthone/study_habits_folder/classes_folder/study_class.dart';
 import 'package:healthone/study_habits_folder/classes_folder/class_data.dart';
 
@@ -18,7 +19,7 @@ class _StudyTimerState extends State<StudyTimerPage> {
   List<String>? classesString;
   static const countdownDuration = Duration(minutes: 10);
   Duration duration = Duration();
-  var curClass = null;
+  String _curClass = '';
   Timer? timer;
 
   bool isCountDown = false;
@@ -74,9 +75,49 @@ class _StudyTimerState extends State<StudyTimerPage> {
 
   void stopTimer({bool resets = true}) {
     if (resets) {
+      showAddActivityDialog();
       reset();
     }
     setState(() => timer?.cancel());
+  }
+
+  void showAddActivityDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text("Finish studying?\nAdd this study session:"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Class code: ${_curClass.substring(7)}"),
+                  Text("Semester: ${_curClass.substring(0, 6)}"),
+                  Text("Duration: $duration"),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ButtonWidget(
+                          text: "Add",
+                          color: Colors.black,
+                          backgroundColor: Colors.white,
+                          onClicked: () {
+                            print("=========Add Activity==========");
+                            ActivityData().addActivity(_curClass.substring(7),
+                                _curClass.substring(0, 6), duration.inSeconds);
+                            print("=========Finish Adding==========");
+                          }),
+                      ButtonWidget(
+                          text: "Cancel",
+                          color: Colors.black,
+                          backgroundColor: Colors.white,
+                          onClicked: () {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop('dialog');
+                          }),
+                    ],
+                  )
+                ],
+              ),
+            ));
   }
 
   @override
@@ -164,11 +205,11 @@ class _StudyTimerState extends State<StudyTimerPage> {
               SizedBox(
                 width: 12,
               ),
-              ButtonWidget(text: "CANCEL", onClicked: stopTimer),
+              ButtonWidget(text: "STOP", onClicked: stopTimer),
             ],
           )
         : ButtonWidget(
-            text: "Start Timer!",
+            text: "START",
             color: Colors.black,
             backgroundColor: Colors.white,
             onClicked: () {
@@ -177,7 +218,7 @@ class _StudyTimerState extends State<StudyTimerPage> {
   }
 
   Widget buildClassBox() {
-    curClass = classesString?.first;
+    _curClass = classesString!.first;
     return classesString == null
         ? Container(
             color: Colors.purple[300],
@@ -193,7 +234,7 @@ class _StudyTimerState extends State<StudyTimerPage> {
             ),
           )
         : DropdownButton<String>(
-            value: curClass,
+            value: _curClass,
             icon: const Icon(Icons.expand_more),
             items: classesString?.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -203,7 +244,7 @@ class _StudyTimerState extends State<StudyTimerPage> {
             }).toList(),
             onChanged: (String? value) {
               setState(() {
-                curClass = value;
+                _curClass = value!;
               });
             });
   }
