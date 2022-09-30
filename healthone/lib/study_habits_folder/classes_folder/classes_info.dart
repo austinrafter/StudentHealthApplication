@@ -36,9 +36,9 @@ class _ClassesState extends State<ClassesInfo> {
   ];
   List<String> grades = <String>['A', 'B', 'C', 'D', 'E', 'F'];
 
-  var classCode;
-  var className;
-  var classPoint;
+  var classCode = TextEditingController();
+  var className = TextEditingController();
+  var classPoint = TextEditingController();
   var _classSem = '';
   var _classYear = '';
   var _classGrade = '';
@@ -173,9 +173,9 @@ class _ClassesState extends State<ClassesInfo> {
     var titleText = 'Add Class';
     if (update) {
       titleText = 'Update Class';
-      classCode = Text(curClassData.code);
-      className = Text(curClassData.name);
-      classPoint = Text(curClassData.point.toString());
+      classCode.text = Text(curClassData.code) as String;
+      className.text = Text(curClassData.name) as String;
+      classPoint.text = Text(curClassData.point.toString()) as String;
       _classGrade = Text(curClassData.grade) as String;
       _classYear = curClassData.semester.substring(2);
       switch (curClassData.semester.substring(0, 2)) {
@@ -360,10 +360,10 @@ class _ClassesState extends State<ClassesInfo> {
                                     _classSem = '';
                                 }
                                 ClassData().addClass(
-                                    classCode.toString(),
-                                    className.toString(),
+                                    classCode.text,
+                                    className.text,
                                     _classSem,
-                                    double.tryParse(classPoint.toString())!,
+                                    double.tryParse(classPoint.text)!,
                                     _classGrade);
                                 print("=========Finish Adding==========");
                               }

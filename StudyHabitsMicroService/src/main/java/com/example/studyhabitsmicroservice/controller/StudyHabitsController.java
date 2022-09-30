@@ -38,8 +38,8 @@ public class StudyHabitsController {
         return activity;
     }
 
-    @PutMapping("/activity")
-    public String addActivity(@RequestBody Activity newActivity){
+    @PostMapping("/activity")
+    public Activity addActivity(@RequestBody Activity newActivity){
         return actRepo.save(newActivity);
     }
 
@@ -47,7 +47,9 @@ public class StudyHabitsController {
     public String addActivity(@PathVariable Long id, @RequestBody Activity newActivity){
         Activity updatedActivity = actRepo.findById(id) //
                 .map(activity -> {
-                    activity.setName(newActivity.getName());
+                    activity.setDuration(newActivity.getDuration());
+                    activity.setClassCode(newActivity.getClassCode());
+                    activity.setSemester(newActivity.getSemester());
                     return actRepo.save(activity);
                 }) //
                 .orElseGet(() -> {
@@ -83,8 +85,8 @@ public class StudyHabitsController {
         return studentClass;
     }
 
-    @PutMapping("/class")
-    public String addStudentClass(@RequestBody StudentClass newClass){
+    @PostMapping("/class")
+    public StudentClass addStudentClass(@RequestBody StudentClass newClass){
         return stuClassRepo.save(newClass);
     }
 
@@ -92,7 +94,9 @@ public class StudyHabitsController {
     public String addStudentClass(@PathVariable Long id, @RequestBody StudentClass newClass){
         StudentClass updatedClass = stuClassRepo.findById(id) //
                 .map(studentClass -> {
+                    studentClass.setCode(newClass.getCode());
                     studentClass.setName(newClass.getName());
+                    studentClass.setSemester(newClass.getSemester());
                     studentClass.setPoint(newClass.getPoint());
                     studentClass.setGrade(newClass.getGrade());
                     return stuClassRepo.save(studentClass);
@@ -110,6 +114,7 @@ public class StudyHabitsController {
         stuClassRepo.deleteById(id);
         return "Student class deleted";
     }
+
     @DeleteMapping("/classes")
     public String deleteAllStudentClasses(){
         stuClassRepo.deleteAll();
@@ -130,8 +135,8 @@ public class StudyHabitsController {
         return block;
     }
 
-    @PutMapping("/block")
-    public String addStudyBlock(@RequestBody StudyBlock newBlock){
+    @PostMapping("/block")
+    public StudyBlock addStudyBlock(@RequestBody StudyBlock newBlock){
         return stuBlockRepo.save(newBlock);
     }
 

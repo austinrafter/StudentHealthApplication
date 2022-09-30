@@ -12,7 +12,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=studyhabits
-    restart: always
+
   studyhabits:
     image: studyhabits
     depends_on:
@@ -28,4 +28,4 @@ services:
     restart: always
 
 networks:
-  exerciseandmeditation-mysql:
+  studyhabits_network:

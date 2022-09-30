@@ -27,7 +27,7 @@ public class Activity {
     private String semester;
     private long duration;
 
-    public Activity(String classCode, Stirng semester, long duration){
+    public Activity(String classCode, String semester, long duration){
         this.classCode = classCode;
         this.semester = semester;
         this.duration = duration;
