@@ -25,7 +25,7 @@ docker-run: docker-build
 	docker ps
 
 mysql:
-	docker run -d --network healthone --name mysql-mental -td -p 33060:33060 -e MYSQL_ROOT_PASSWORD=healthone mysql:8.0
+	docker run -d --network healthone --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=healthone mysql:8.0
 
 docker-clean:
 	docker stop mentalhealthe
