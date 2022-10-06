@@ -97,6 +97,8 @@ class _ClassesState extends State<ClassesInfo> {
           )
         : Consumer<ClassData>(builder: (context, classData, chile) {
             return ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
               itemCount: classData.classes.length,
               itemBuilder: (context, index) {
                 StudyClass curClassData = classData.classes[index];
@@ -173,10 +175,10 @@ class _ClassesState extends State<ClassesInfo> {
     var titleText = 'Add Class';
     if (update) {
       titleText = 'Update Class';
-      classCode.text = Text(curClassData.code) as String;
-      className.text = Text(curClassData.name) as String;
-      classPoint.text = Text(curClassData.point.toString()) as String;
-      _classGrade = Text(curClassData.grade) as String;
+      classCode.text = curClassData.code;
+      className.text = curClassData.name;
+      classPoint.text = curClassData.point.toString();
+      _classGrade = curClassData.grade;
       _classYear = curClassData.semester.substring(2);
       switch (curClassData.semester.substring(0, 2)) {
         case 'SP':
@@ -377,6 +379,8 @@ class _ClassesState extends State<ClassesInfo> {
                                       double.tryParse(classPoint.text)!,
                                       _classGrade);
                                   print("=========Finish Adding==========");
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop('dialog');
                                 }
                               }
                             },

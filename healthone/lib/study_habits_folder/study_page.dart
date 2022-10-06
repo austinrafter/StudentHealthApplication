@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'study_folder/study_timer_page.dart';
+import 'study_folder/activity_page.dart';
 import 'classes_folder/classes_page.dart';
 import 'study_folder/study_page_data.dart';
 
@@ -10,7 +10,7 @@ class StudyPage extends StatelessWidget {
   //const StudyPage({Key? key}) : super(key: key);
   var studyPageData = StudyPageData.getData;
 
-  final pages = [const ClassesPage(), StudyTimerPage()];
+  final pages = [const ClassesPage(), const ActivityPage()];
 
   final images = [
     "https://media.giphy.com/media/yovOUEWBV2R46yrQ0B/giphy.gif",
