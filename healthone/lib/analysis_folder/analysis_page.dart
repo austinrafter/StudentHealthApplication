@@ -8,6 +8,7 @@ import '../exercise_meditation_folder/meditation_types.dart';
 import '../analysis_folder/analysis_page_data.dart';
 import '../physicalHealthPages/physical_analysis_page.dart';
 import '../physicalHealthPages/exercise_analysis_page.dart';
+import '../physicalHealthPages/exercise_mental_analysis_page.dart';
 import '../mentalhealth_folder/mental_analysis_types.dart';
 import '../mentalhealth_folder/mental_journal.dart';
 
@@ -19,7 +20,7 @@ class AnalysisPage extends StatelessWidget{
   var animate;
   final pages = [
     PhysicalAnalysisPage(),
-    MeditationTypes(),
+    ExerciseMentalPage(),
     MentalType(),
     JournalPage(),
     SleepPage(),

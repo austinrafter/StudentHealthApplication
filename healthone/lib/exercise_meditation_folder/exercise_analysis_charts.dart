@@ -73,7 +73,7 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Flutter Charts Sample")),
+      appBar: AppBar(title: Text("Exercise Charts"),centerTitle: true,),
       body: Center(
         child: Container(
           height: 400,
