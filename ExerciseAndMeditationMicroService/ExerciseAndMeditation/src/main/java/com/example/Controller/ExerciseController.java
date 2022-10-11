@@ -403,6 +403,8 @@ public class ExerciseController {
         }
         minuteTotal = minuteTotal / dayTotal;;
         moodFinal = moodFinal / dayTotal;
+        System.out.println(minuteTotal);
+        System.out.println(moodFinal);
 
 
         String mood = "";
@@ -415,16 +417,24 @@ public class ExerciseController {
         }
 
         String suggestion = "";
+        Suggestion suggestion1;
         if(minuteTotal < 30 && moodFinal >= 1){
-            suggestion = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + mood + " mood. Exercising for at least 30 minutes a day has been shown to improve mood.";
+            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + mood + " mood. Exercising for at least 30 minutes a day has been shown to improve mood.";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
         }else if(minuteTotal >= 30 && moodFinal >= 1){
-            suggestion = "You daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + mood + " mood.";
+            String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + mood + " mood.";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
         }else if(minuteTotal >= 30 && moodFinal < 1){
-            suggestion = "HUZZAH!!! You're daily exercise times and moods are great!!!";
+            String sug = "HUZZAH!!! You're daily exercise times and moods are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
+        }else{
+            String sug = "You have good mood on average, but you tend to exercise for " + minuteTotal + " on days you enter a mood. Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }
 
-        Suggestion suggestion1 = new Suggestion("Exercise", "Mood", suggestion);
-
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
         return suggestion1;
     }
 
@@ -447,6 +457,8 @@ public class ExerciseController {
         }
         minuteTotal = minuteTotal / dayTotal;
         stressFinal = stressFinal / dayTotal;
+        System.out.println(minuteTotal);
+        System.out.println(stressFinal);
 
         String stress = "";
         if(stressFinal == 2){
@@ -458,15 +470,24 @@ public class ExerciseController {
         }
 
         String suggestion = "";
+        Suggestion suggestion1;
         if(minuteTotal < 30 && stressFinal >= 1){
-            suggestion = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + stress + " stress level. Exercising for at least 30 minutes a day has been shown to improve stress levels.";
+            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + stress + " stress level. Exercising for at least 30 minutes a day has been shown to improve stress levels.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }else if(minuteTotal >= 30 && stressFinal >= 1){
-            suggestion = "You daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + stress + " stress levels.";
+            String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + stress + " stress levels.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }else if(minuteTotal >= 30 && stressFinal < 1){
-            suggestion = "HUZZAH!!! You're daily exercise times and stress levels are great!!!";
+            String sug = "HUZZAH!!! You're daily exercise times and stress levels are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }else{
+            String sug = "You have good stress level on average, but you tend to exercise for " + minuteTotal + " on days you enter your stress level. Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }
 
-        Suggestion suggestion1 = new Suggestion("Exercise", "Stress", suggestion);
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
         return suggestion1;
     }
 

@@ -11,6 +11,7 @@ import 'timed_exercise_chart.dart';
 import 'timed_meditation_chart.dart';
 import 'weighted_exercise_chart.dart';
 import 'exercise_mental_comparison.dart';
+import '../analysis_folder/suggestion.dart';
 
 class DbThings{
   static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore, String exerciseimage) async{
@@ -453,5 +454,34 @@ class DbThings{
       exerciseMentalComparisons.add(exerciseMentalComparison);
     }
     return exerciseMentalComparisons;
+  }
+
+  static Future<Suggestion> getSuggestionForMoodExercise() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseMoodSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    print(responseMap);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStressExercise() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseStressSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
   }
 }

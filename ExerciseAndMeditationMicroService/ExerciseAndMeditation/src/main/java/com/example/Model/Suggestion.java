@@ -29,6 +29,7 @@ public class Suggestion{
 
     public void setSuggestion(String suggestion) {
         this.suggestion = suggestion;
+        System.out.println(suggestion);
     }
 
     public void setFunctionTwo(String functionTwo) {

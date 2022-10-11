@@ -3,15 +3,14 @@ import '../exercise_meditation_folder/exercise_mental_comparison.dart';
 import '../exercise_meditation_folder/exercise_data.dart';
 import '../exercise_meditation_folder/exercise_for_given_time.dart';
 import '../exercise_meditation_folder/exercise_timer_page.dart';
-import 'weight_lifing_page.dart';
+import '../analysis_folder/suggestion.dart';
 
 
 
-class ExerciseMentalTile extends StatelessWidget{
-  final ExerciseMentalComparison exerciseMental;
-  final ExerciseData exerciseData;
+class SuggestionTile extends StatelessWidget{
+  final Suggestion? suggestion;
 
-  const ExerciseMentalTile({Key? key, required this.exerciseMental, required this.exerciseData,}) : super(key: key);
+  const SuggestionTile({Key? key, required this.suggestion}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -34,22 +33,29 @@ class ExerciseMentalTile extends StatelessWidget{
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),//roundedrectangleborder
               child: ListTile(
+                /*
                 leading: Text(
-                  'Date: ${exerciseMental.date}',
+                  'F1:\n${exerciseMental.date}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),
                 ),//Text
 
+                 */
+
                 title: Text(
-                  'Minutes Exercised: ${exerciseMental.minutes}',
+                  'Suggestion: ${suggestion?.suggestion}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),
                 ),//Text
-                subtitle: Text('Mood: ${exerciseMental.mood}\nStress Level: ${exerciseMental.stress}',
+                subtitle: Text(' '),
+                /*
+                Text('F1: ${suggestion?.functionOne}\nF2: ${suggestion?.functionTwo}',
                   style: TextStyle(fontWeight: FontWeight.bold,
                     color: Colors.white,),),
+                    */
+
                 /*
                 trailing: Text(
                   'Stress Level\n${exerciseMental.stress}',
@@ -61,7 +67,7 @@ class ExerciseMentalTile extends StatelessWidget{
                 ),//Text
 
                  */
-                isThreeLine: true,
+                //isThreeLine: true,
               ),//ListTile
             ),//Card
           ],//stack children
@@ -71,4 +77,3 @@ class ExerciseMentalTile extends StatelessWidget{
   }//build
 
 }//class
-

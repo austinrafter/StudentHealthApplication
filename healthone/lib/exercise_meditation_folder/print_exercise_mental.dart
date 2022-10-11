@@ -8,6 +8,8 @@ import 'dart:io';
 import '../profile/student.dart';
 import '../profile/profile_data.dart';
 import '../profile/profile_db_services.dart';
+import '../analysis_folder/suggestion.dart';
+import '../analysis_folder/suggestion_tile.dart';
 
 
 class PrintExerciseMental extends StatefulWidget{
@@ -19,9 +21,13 @@ class PrintExerciseMental extends StatefulWidget{
 
 class _ExerciseMentalPageState extends State<PrintExerciseMental>{
   List<ExerciseMentalComparison>? exerciseMentalComparisons;
+  Suggestion? suggestionOne;
+  Suggestion? suggestionTwo;
 
   getExercises()async{
     exerciseMentalComparisons = await DbThings.getExerciseMental();
+    suggestionOne = await DbThings.getSuggestionForMoodExercise();
+    suggestionTwo = await DbThings.getSuggestionForStressExercise();
     Provider.of<ExerciseData>(context, listen: false).exerciseMentalComparisons = exerciseMentalComparisons!;
     setState(() {});
   }
@@ -65,11 +71,24 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
 
          */
       ),
-      body: Stack(
-        children: [Container(
-          color: Colors.teal[900],
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Consumer<ExerciseData>(
+      body: Container(
+        color: Colors.teal[900],
+        child: Column(
+        children: [
+          Text("Suggestions", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          Column(
+            children:[
+              Container(
+                child: suggestionOne == null? Text('') : SuggestionTile(suggestion: suggestionOne),
+              ),
+              Container(
+                child: suggestionTwo == null? Text('') : SuggestionTile(suggestion: suggestionTwo),
+              ),
+            ],
+          ),
+          Text("Daily Exercise And Mental Health Information", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          Expanded(
+    child: Consumer<ExerciseData>(
             builder: (context, exerciseData, child){
               return ListView.builder(
                   itemCount: exerciseData.exerciseMentalComparisons.length,
@@ -81,12 +100,13 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
                         exerciseData: exerciseData
                     );//ExerciseTile
                   });//itemBuilder
-
             },//builder
           ),//Consumer
-        ),//Container
+          ),//Expanded
+
         ],//children
       ),//Stack
+    ),
     );//Scaffold
   }//build
 }//class
