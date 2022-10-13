@@ -29,6 +29,10 @@
 
 [Journaling/Note app](https://www.youtube.com/watch?v=Qq8vf-_Ls68&ab_channel=vijaycreations) <br />
 
+[Journal current date]( https://stackoverflow.com/questions/34910686/how-can-i-get-the-current-date-w-o-hour-and-minutes) <br />
+
+[Journal date formatter](https://stackoverflow.com/questions/55702224/how-to-remove-time-stamp-or-get-only-date-form-datepicker-in-flutter-default-dat/55702290#55702290) <br />
+
 ## Austin Rafter
 ### Physical Health Components
 

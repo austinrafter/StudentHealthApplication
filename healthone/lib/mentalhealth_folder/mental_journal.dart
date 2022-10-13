@@ -4,13 +4,19 @@ import 'NotePage.dart';
 
 class JournalPage extends StatefulWidget {
   JournalPage({Key? key}) : super(key: key);
-
+  
   @override
   _JournalPageState createState() => _JournalPageState();
 }
 
+  DateTime now = new DateTime.now();
+  DateTime date = new DateTime(now.year, now.month, now.day);
+  var newDate = DateTime.parse(date.toString());
+  var formattedDate = "${newDate.day}-${newDate.month}-${newDate.year}";
+
 class _JournalPageState extends State<JournalPage> {
   var _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -207,7 +213,7 @@ class _JournalPageState extends State<JournalPage> {
                         child: Container(
                           height: double.infinity,
                           child: AutoSizeText(
-                            "${(noteDescription[index])}",
+                            formattedDate.toString() + ": ${(noteDescription[index])}",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
