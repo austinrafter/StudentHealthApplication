@@ -178,7 +178,7 @@ class _JournalPageState extends State<JournalPage> {
           color: noteColor[(index % noteColor.length).floor()],
           borderRadius: BorderRadius.circular(5.5),
         ),
-        height: 100,
+        height: 250,
         child: Center(
           child: Row(
             children: [

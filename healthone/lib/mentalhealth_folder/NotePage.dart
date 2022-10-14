@@ -7,7 +7,7 @@ TextEditingController noteDescriptionController = new TextEditingController();
 FocusNode textSecondFocusNode = new FocusNode();
 
 int notesHeaderMaxLenth = 25;
-int notesDescriptionMaxLines = 10;
+int notesDescriptionMaxLines = 100;
 int notesDescriptionMaxLenth = 0;
 String deletedNoteHeading = "";
 String deletedNoteDescription = "";
