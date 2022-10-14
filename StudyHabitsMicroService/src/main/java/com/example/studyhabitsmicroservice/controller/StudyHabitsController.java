@@ -38,11 +38,18 @@ public class StudyHabitsController {
         return activity;
     }
 
+    @PostMapping("/activity")
+    public Activity addActivity(@RequestBody Activity newActivity){
+        return actRepo.save(newActivity);
+    }
+
     @PutMapping("/activity/{id}")
     public String addActivity(@PathVariable Long id, @RequestBody Activity newActivity){
         Activity updatedActivity = actRepo.findById(id) //
                 .map(activity -> {
-                    activity.setName(newActivity.getName());
+                    activity.setDuration(newActivity.getDuration());
+                    activity.setClassCode(newActivity.getClassCode());
+                    activity.setSemester(newActivity.getSemester());
                     return actRepo.save(activity);
                 }) //
                 .orElseGet(() -> {
@@ -78,11 +85,18 @@ public class StudyHabitsController {
         return studentClass;
     }
 
+    @PostMapping("/class")
+    public StudentClass addStudentClass(@RequestBody StudentClass newClass){
+        return stuClassRepo.save(newClass);
+    }
+
     @PutMapping("/class/{id}")
     public String addStudentClass(@PathVariable Long id, @RequestBody StudentClass newClass){
         StudentClass updatedClass = stuClassRepo.findById(id) //
                 .map(studentClass -> {
+                    studentClass.setCode(newClass.getCode());
                     studentClass.setName(newClass.getName());
+                    studentClass.setSemester(newClass.getSemester());
                     studentClass.setPoint(newClass.getPoint());
                     studentClass.setGrade(newClass.getGrade());
                     return stuClassRepo.save(studentClass);
@@ -100,6 +114,7 @@ public class StudyHabitsController {
         stuClassRepo.deleteById(id);
         return "Student class deleted";
     }
+
     @DeleteMapping("/classes")
     public String deleteAllStudentClasses(){
         stuClassRepo.deleteAll();
@@ -107,7 +122,7 @@ public class StudyHabitsController {
     }
 
 
-    @GetMapping("/block")
+    @GetMapping("/blocks")
     public List<StudyBlock> allStudyBlocks() {
         List<StudyBlock> blocks = stuBlockRepo.findAll();
         return blocks;
@@ -118,6 +133,11 @@ public class StudyHabitsController {
         StudyBlock block = stuBlockRepo.findById(id) //
                 .orElseThrow(() -> new ActivityNotFoundException(id));
         return block;
+    }
+
+    @PostMapping("/block")
+    public StudyBlock addStudyBlock(@RequestBody StudyBlock newBlock){
+        return stuBlockRepo.save(newBlock);
     }
 
     @PutMapping("/block/{id}")

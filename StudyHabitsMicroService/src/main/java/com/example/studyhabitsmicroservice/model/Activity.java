@@ -23,13 +23,13 @@ public class Activity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    @CreatedDate
-    private Date start;
-    @LastModifiedDate
-    private Date end;
+    private String classCode;
+    private String semester;
+    private long duration;
 
-    public Activity(String name){
-        this.name = name;
+    public Activity(String classCode, String semester, long duration){
+        this.classCode = classCode;
+        this.semester = semester;
+        this.duration = duration;
     }
 }

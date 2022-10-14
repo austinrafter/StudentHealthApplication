@@ -40,7 +40,6 @@ class _TimerTemplateState extends State<TimerTemplate>{
     reset();
     _controller = TextEditingController();
     start = DateTime.now();
-
   }
 
   //resets to the set countdown time on cancel of timer
@@ -132,7 +131,6 @@ class _TimerTemplateState extends State<TimerTemplate>{
     final minutes = twoDigits((duration.inMinutes.remainder(60)));
     final seconds = twoDigits((duration.inSeconds.remainder(60)));
 
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -155,7 +153,6 @@ class _TimerTemplateState extends State<TimerTemplate>{
             buildTimeCard(time: minutes, header: 'MINUTES'),
             const SizedBox(width: 8),
             buildTimeCard(time: seconds, header: 'SECONDS'),
-
           ],//children
 
         ),//Row
