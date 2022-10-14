@@ -42,10 +42,10 @@ class _ActivityState extends State<ActivityInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.teal[900],
         title: const Text("Study Activities"),
       ),
-      backgroundColor: Colors.blue[300],
+      backgroundColor: Colors.teal[300],
       body: Column(
         children: [
           buildActivitiesTiles(),
@@ -78,10 +78,10 @@ class _ActivityState extends State<ActivityInfo> {
               itemBuilder: (context, index) {
                 Activity curActivityData = activityData.activities[index];
                 return Card(
-                  color: Colors.blue[600],
+                  color: Colors.teal[600],
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
-                      color: Colors.blue.shade600,
+                      color: Colors.teal.shade600,
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
@@ -124,7 +124,10 @@ class _ActivityState extends State<ActivityInfo> {
         color: Colors.white,
         iconSize: 50.0,
         onPressed: () {
-          const StudyTimerPage();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const StudyTimerPage()),
+          );
         });
   }
 }

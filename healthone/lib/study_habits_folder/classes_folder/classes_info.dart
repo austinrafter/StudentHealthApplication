@@ -67,10 +67,10 @@ class _ClassesState extends State<ClassesInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.teal[900],
         title: const Text("Classes"),
       ),
-      backgroundColor: Colors.blue[300],
+      backgroundColor: Colors.teal[300],
       body: Column(
         children: [
           buildClassesTiles(),
@@ -103,10 +103,10 @@ class _ClassesState extends State<ClassesInfo> {
               itemBuilder: (context, index) {
                 StudyClass curClassData = classData.classes[index];
                 return Card(
-                  color: Colors.blue[600],
+                  color: Colors.teal[600],
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
-                      color: Colors.blue.shade600,
+                      color: Colors.teal.shade600,
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),

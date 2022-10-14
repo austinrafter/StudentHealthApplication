@@ -21,7 +21,7 @@ class StudyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[900],
+      backgroundColor: Colors.teal[900],
       appBar: AppBar(
         title: const Text("Study Habits"),
         centerTitle: true,
@@ -44,7 +44,7 @@ class StudyPage extends StatelessWidget {
                     width: double.maxFinite,
                     child: Card(
                       elevation: 5,
-                      color: Colors.blue[500],
+                      color: Colors.teal[500],
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -54,7 +54,7 @@ class StudyPage extends StatelessWidget {
                           );
                         },
                         child: Card(
-                          color: Colors.blue[700],
+                          color: Colors.teal[700],
                           child: Column(
                             children: <Widget>[
                               Container(
@@ -71,7 +71,7 @@ class StudyPage extends StatelessWidget {
                           ),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
-                              color: Colors.blue.shade900,
+                              color: Colors.teal.shade900,
                             ),
                             borderRadius: BorderRadius.circular(10.0),
                           ),

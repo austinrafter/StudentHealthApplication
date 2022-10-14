@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healthone/study_habits_folder/study_folder/activity_page.dart';
 import '../classes_folder/classes_page.dart';
-import 'study_timer_page.dart';
+import 'study_timer.dart';
 
 class StudyPageData {
   static final getData = [
@@ -9,8 +10,8 @@ class StudyPageData {
       'page': ClassesPage(),
     },
     {
-      'name': 'Study Now',
-      'page': StudyTimerPage(),
+      'name': 'Study Activities',
+      'page': ActivityPage(),
     },
   ];
 }
