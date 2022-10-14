@@ -20,7 +20,15 @@
 [Flutter Calendar](https://pub.dev/packages/table_calendar) <br />
 [Flutter Calendar Youtube Tutorial](https://www.youtube.com/watch?v=KvaKVud0Jx0&ab_channel=ElaiShane) <br />
 [Multiple Choice Selection]( https://material.io/components/dialogs/flutter#dialog-theming) <br />
+[Mood and Stress widget GIF](https://giphy.com/gifs/lazy-corgi-do6dluZNcoY349BT8r) <br />
 
+
+### Mental Health: Mood and Stress Analysis
+
+[Mental Journal widget GIF](https://giphy.com/gifs/creative-thinking-thinker-VbEuHLBUPQm55MyqJg) <br />
+[Journaling/Note app](https://www.youtube.com/watch?v=Qq8vf-_Ls68&ab_channel=vijaycreations) <br />
+[Journal current date]( https://stackoverflow.com/questions/34910686/how-can-i-get-the-current-date-w-o-hour-and-minutes) <br />
+[Journal date formatter](https://stackoverflow.com/questions/55702224/how-to-remove-time-stamp-or-get-only-date-form-datepicker-in-flutter-default-dat/55702290#55702290) <br />
 
 ## Austin Rafter
 ### Physical Health Components

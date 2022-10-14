@@ -3,6 +3,7 @@ import 'mentalhealth_folder/mental_page.dart';
 import 'physicalHealthPages/physical_page.dart';
 import 'physicalHealthPages/profile_page.dart';
 import 'study_habits_folder/study_page.dart';
+import 'analysis_folder/analysis_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,7 @@ final screens = [
   PhysicalPage(),
   MentalPage(),
   StudyPage(),
-  Center(child: Text('Analysis', style: TextStyle(fontSize:50))),
+  AnalysisPage(),
   ProfilePage(),
 ];
 

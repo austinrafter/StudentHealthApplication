@@ -7,6 +7,11 @@ import '../profile/student.dart';
 import 'student_exercising.dart';
 import 'pass_exercise.dart';
 import 'pass_meditation.dart';
+import 'timed_exercise_chart.dart';
+import 'timed_meditation_chart.dart';
+import 'weighted_exercise_chart.dart';
+import 'exercise_mental_comparison.dart';
+import '../analysis_folder/suggestion.dart';
 
 class DbThings{
   static Future<Exercise> addExercise(String exercisename, String exercisetype, double metabolicequivalentscore, String exerciseimage) async{
@@ -373,5 +378,110 @@ class DbThings{
     PassMeditation passMeditation = PassMeditation.fromMap(responseMap);
 
     return passMeditation;
+  }
+
+  static Future<List<TimedExerciseChart>> getExercisesForChart() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/getUserTimedExercises');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<TimedExerciseChart> timedExerciseCharts = [];
+    for(Map timedExerciseChartMap in responseList){
+      TimedExerciseChart timedExerciseChart = TimedExerciseChart.fromMap(timedExerciseChartMap);
+      timedExerciseCharts.add(timedExerciseChart);
+    }
+    return timedExerciseCharts;
+  }
+
+
+  static Future<List<TimedMeditationChart>> getMeditationsForChart() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/getUserTimedMeditation');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<TimedMeditationChart> timedMeditationCharts = [];
+    for(Map timedMeditationChartMap in responseList){
+      TimedMeditationChart timedMeditationChart = TimedMeditationChart.fromMap(timedMeditationChartMap);
+      timedMeditationCharts.add(timedMeditationChart);
+    }
+    return timedMeditationCharts;
+  }
+
+  static Future<List<WeightedExerciseChart>> getWeightedExercisesForChart() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/getUserWeightedExercises');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<WeightedExerciseChart> weightedExerciseCharts = [];
+    for(Map weightedExerciseChartMap in responseList){
+      WeightedExerciseChart weightedExerciseChart = WeightedExerciseChart.fromMap(weightedExerciseChartMap);
+      weightedExerciseCharts.add(weightedExerciseChart);
+    }
+    return weightedExerciseCharts;
+  }
+
+  static Future<List<ExerciseMentalComparison>> getExerciseMental() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/getDailyExerciseMoodStressLevels');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<ExerciseMentalComparison> exerciseMentalComparisons = [];
+    for(Map exerciseMentalMap in responseList){
+      ExerciseMentalComparison exerciseMentalComparison = ExerciseMentalComparison.fromMap(exerciseMentalMap);
+      exerciseMentalComparisons.add(exerciseMentalComparison);
+    }
+    return exerciseMentalComparisons;
+  }
+
+  static Future<Suggestion> getSuggestionForMoodExercise() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseMoodSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    print(responseMap);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStressExercise() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseStressSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
   }
 }

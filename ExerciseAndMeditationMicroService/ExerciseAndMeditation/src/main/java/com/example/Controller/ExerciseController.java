@@ -1,13 +1,22 @@
 package com.example.Controller;
 
 import com.example.Model.Exercise;
+import com.example.Model.ExerciseChartItem;
+import com.example.Model.WeightExerciseChartItem;
 import com.example.Model.PassExercise;
 import com.example.Model.Student;
 import com.example.Model.UserExercising;
+import com.example.Model.MentalRefactor;
+import com.example.Model.ExerciseMentalComparison;
+import com.example.Model.Suggestion;
 import com.example.Repository.ExerciseRepository;
 import com.example.Repository.PassExerciseRepository;
 import com.example.Repository.UserExercisingRepository;
 import com.example.Repository.StudentRepository;
+
+import com.example.MentalHealth.MentalHealth;
+import com.example.MentalHealth.MentalRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +44,11 @@ public class ExerciseController {
     @Autowired
     private PassExerciseRepository passExerciseRepository;
 
+
+    @Autowired
+    private MentalRepository mentalRepository;
+
+
     @GetMapping("/getExercises")
     public List<Exercise> getExercises(){
         return exerciseRepository.findAll();
@@ -43,6 +57,37 @@ public class ExerciseController {
     @GetMapping("/getUserExercises")
     public List<UserExercising> getUserExercises(){
         return userExercisingRepository.findAll();
+    }
+
+    @GetMapping("/getUserTimedExercises")
+    public List<ExerciseChartItem> getUserTimedExercises(){
+        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>();
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+        boolean datesMatch = false;
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            if(exerciseChartItemArrayList.size() == 0){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+            for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+               if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
+                        exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                        datesMatch = true;
+               }
+           }
+            if(!datesMatch){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }else{
+                datesMatch = false;
+            }
+        }
+        for (ExerciseChartItem chartItem : exerciseChartItemArrayList){
+            System.out.println(chartItem.getMinutes());
+        }
+        return exerciseChartItemArrayList;
     }
 
     @GetMapping("/getTest")
@@ -150,39 +195,7 @@ public class ExerciseController {
         }
         return totalTime;
     }
-    /*
-    @PostMapping("/getTotalExerciseTimeBeforeStudying")
-    public int getTotalExerciseTimeBeforeStudying(@PathVariable String date){
-        int totalTime = 0;
-        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
-        List<PassExercise> passExerciseList1 = new List<PassExercise>();
 
-        for(PassExercise passExercise: passExerciseList){
-
-            if(passExercise.getDateof() <= date){
-                passExerciseList1.add(passExercise);
-            }
-        }
-        for(PassExercise passExercise: passExerciseList1){
-            totalTime += passExercise.getTotaltime();
-        }
-        return totalTime;
-    }
-
-     */
-
-    /*
-    @PostMapping("/getFinalExerciseTime")
-    public String getFinalExerciseTime(@PathVariable String date){
-        List<PassExercise> passExerciseList = passExerciseRepository.findByDateofContaining(date);
-
-        String[] dateAndTime = passExerciseList[passExerciseList.size() - 1].split("T", 0);
-
-        return dateAndTime[1];
-
-    }
-
-     */
 
     @PostMapping("/getExercisesByType")
     public List<Exercise> getExercisesByType(@RequestBody Exercise exercise){
@@ -234,6 +247,249 @@ public class ExerciseController {
         return passExercise1;
     }
 
+
+    @GetMapping("/getUserWeightedExercises")
+    public List<WeightExerciseChartItem> getUserWeighedExercises(){
+        List<WeightExerciseChartItem> exerciseChartItemArrayList = new ArrayList<WeightExerciseChartItem>();
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+        boolean datesMatch = false;
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            WeightExerciseChartItem exerciseChartItem = new WeightExerciseChartItem( passExercise.getExercisename(), passExercise.getWeightrepped(), passExercise.getReps() , dateParts[0]);
+            if(exerciseChartItem.getWeight() > 0) {
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+        }
+        for (WeightExerciseChartItem chartItem : exerciseChartItemArrayList){
+            System.out.println(chartItem.getExercise());
+            System.out.println(chartItem.getWeight());
+            System.out.println(chartItem.getDate());
+        }
+        return exerciseChartItemArrayList;
+    }
+
+
+    @GetMapping("/getDailyExerciseMoodStressLevels")
+    public List<ExerciseMentalComparison> getDailyExerciseMoodStressLevels(){
+        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>();
+        List<MentalRefactor> mentalRefactorArrayList = new ArrayList<MentalRefactor>();
+        List<MentalRefactor> mentalRefactorArrayList2 = new ArrayList<MentalRefactor>();
+        List<ExerciseMentalComparison> exerciseMentalComparisonArrayList = new ArrayList<ExerciseMentalComparison>();
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+        List<MentalHealth> mentalHealthList = mentalRepository.findAll();
+        boolean datesMatch = false;
+
+        for(MentalHealth mentalHealth: mentalHealthList){
+            String month = mentalHealth.getMonth();
+            String day = mentalHealth.getDay();
+            if(month.length() < 2){
+                month = "0" + month;
+            }
+
+            if(day.length() < 2){
+                day = "0" + day;
+            }
+            int moodTotal = 0;
+            int stressTotal = 0;
+            if(mentalHealth.getMood().equals("negative")){
+                moodTotal = 2;
+            }else if(mentalHealth.getMood().equals("neutral")){
+                moodTotal = 1;
+            }
+
+            if(mentalHealth.getStress().equals("high")){
+                stressTotal = 2;
+            }else if(mentalHealth.getStress().equals("regular")){
+                stressTotal = 1;
+            }
+            String date = mentalHealth.getYear() + "-" + month + "-" + day;
+            MentalRefactor mentalRefactor = new MentalRefactor(mentalHealth.getMood(), mentalHealth.getStress(), date, moodTotal, stressTotal);
+            mentalRefactorArrayList.add(mentalRefactor);
+        }
+        mentalRefactorArrayList2.add(mentalRefactorArrayList.get(0));
+        for(MentalRefactor mentalRefactor1: mentalRefactorArrayList){
+            boolean dateNotFound = true;
+            for(MentalRefactor mentalRefactor: mentalRefactorArrayList2) {
+                if (mentalRefactor1.getDate().equals(mentalRefactor.getDate())){
+                    mentalRefactor.setMoodTotal(mentalRefactor.getMoodTotal() + mentalRefactor1.getMoodTotal());
+                    mentalRefactor.setStressTotal(mentalRefactor.getStressTotal() + mentalRefactor1.getStressTotal());
+                    mentalRefactor.setDayTotal(mentalRefactor.getDayTotal() + mentalRefactor1.getDayTotal());
+                    dateNotFound = false;
+                }
+            }
+
+            if(dateNotFound){
+                mentalRefactorArrayList2.add(mentalRefactor1);
+            }else{
+                dateNotFound = true;
+            }
+
+        }
+
+        for(MentalRefactor mentalRefactor: mentalRefactorArrayList2) {
+           mentalRefactor.setMoodTotal(mentalRefactor.getMoodTotal() / mentalRefactor.getDayTotal());
+           mentalRefactor.setStressTotal(mentalRefactor.getStressTotal() / mentalRefactor.getDayTotal());
+            if(mentalRefactor.getMoodTotal() == 2){
+                mentalRefactor.setMood("negative");
+            }else if(mentalRefactor.getMoodTotal() == 1){
+                mentalRefactor.setMood("neutral");
+            }else{
+                mentalRefactor.setMood("positive");
+            }
+
+            if(mentalRefactor.getStressTotal() == 2){
+                mentalRefactor.setStress("high");
+            }else if(mentalRefactor.getStressTotal() == 1){
+                mentalRefactor.setStress("regular");
+            }else{
+                mentalRefactor.setStress("low");
+            }
+        }
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            if(exerciseChartItemArrayList.size() == 0){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+            for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+                if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
+                    exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                    datesMatch = true;
+                }
+            }
+            if(!datesMatch){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }else{
+                datesMatch = false;
+            }
+        }
+        for (ExerciseChartItem chartItem : exerciseChartItemArrayList){
+            System.out.println(chartItem.getMinutes());
+        }
+        for(MentalRefactor mentalRefactor: mentalRefactorArrayList2) {
+            for (ExerciseChartItem chartItem : exerciseChartItemArrayList){
+                if(mentalRefactor.getDate().equals(chartItem.getDate())){
+                    ExerciseMentalComparison exerciseMentalComparison = new ExerciseMentalComparison(chartItem.getMinutes(),chartItem.getDate(), mentalRefactor.getMood(), mentalRefactor.getStress());
+                    exerciseMentalComparisonArrayList.add(exerciseMentalComparison);
+                }
+            }
+        }
+        for(ExerciseMentalComparison exerciseMentalComparison: exerciseMentalComparisonArrayList){
+            System.out.println("Minutes: " + exerciseMentalComparison.getMinutes());
+        }
+        return exerciseMentalComparisonArrayList;
+    }
+
+    @GetMapping("/giveExerciseMoodSuggestion")
+    public Suggestion giveExerciseMoodSuggestion(){
+        int dayTotal = 0;
+        double minuteTotal = 0;
+        int moodFinal = 0;
+        List<ExerciseMentalComparison> exerciseMentalComparisonArrayList = getDailyExerciseMoodStressLevels();
+        for(ExerciseMentalComparison exerciseMentalComparison : exerciseMentalComparisonArrayList){
+            int moodTotal = 0;
+            if(exerciseMentalComparison.getMood().equals("negative")){
+                moodTotal = 2;
+            }else if(exerciseMentalComparison.getMood().equals("neutral")){
+                moodTotal = 1;
+            }
+            moodFinal = moodFinal + moodTotal;
+            dayTotal += 1;
+            minuteTotal = minuteTotal + exerciseMentalComparison.getMinutes();
+        }
+        minuteTotal = minuteTotal / dayTotal;;
+        moodFinal = moodFinal / dayTotal;
+        System.out.println(minuteTotal);
+        System.out.println(moodFinal);
+
+
+        String mood = "";
+        if(moodFinal == 2){
+            mood =  "negative";
+        }else if(moodFinal == 1){
+            mood = "neutral";
+        }else{
+            mood = "positive";
+        }
+
+        String suggestion = "";
+        Suggestion suggestion1;
+        if(minuteTotal < 30 && moodFinal >= 1){
+            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + mood + " mood. Exercising for at least 30 minutes a day has been shown to improve mood.";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
+        }else if(minuteTotal >= 30 && moodFinal >= 1){
+            String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + mood + " mood.";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
+        }else if(minuteTotal >= 30 && moodFinal < 1){
+            String sug = "HUZZAH!!! You're daily exercise times and moods are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
+        }else{
+            String sug = "You have good mood on average, but you tend to exercise for " + minuteTotal + " on days you enter a mood. Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }
+
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
+        return suggestion1;
+    }
+
+    @GetMapping("/giveExerciseStressSuggestion")
+    public Suggestion giveExerciseStressSuggestion(){
+        int dayTotal = 0;
+        double minuteTotal = 0;
+        int stressFinal = 0;
+        List<ExerciseMentalComparison> exerciseMentalComparisonArrayList = getDailyExerciseMoodStressLevels();
+        for(ExerciseMentalComparison exerciseMentalComparison : exerciseMentalComparisonArrayList){
+            int stressTotal = 0;
+            if(exerciseMentalComparison.getStress().equals("high")){
+                stressTotal = 2;
+            }else if(exerciseMentalComparison.getStress().equals("regular")){
+                stressTotal = 1;
+            }
+            stressFinal = stressFinal + stressTotal;
+            dayTotal += 1;
+            minuteTotal = minuteTotal + exerciseMentalComparison.getMinutes();
+        }
+        minuteTotal = minuteTotal / dayTotal;
+        stressFinal = stressFinal / dayTotal;
+        System.out.println(minuteTotal);
+        System.out.println(stressFinal);
+
+        String stress = "";
+        if(stressFinal == 2){
+            stress = "high";
+        }else if(stressFinal == 1){
+            stress = "regular";
+        }else{
+            stress = "low";
+        }
+
+        String suggestion = "";
+        Suggestion suggestion1;
+        if(minuteTotal < 30 && stressFinal >= 1){
+            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + stress + " stress level. Exercising for at least 30 minutes a day has been shown to improve stress levels.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }else if(minuteTotal >= 30 && stressFinal >= 1){
+            String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + stress + " stress levels.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }else if(minuteTotal >= 30 && stressFinal < 1){
+            String sug = "HUZZAH!!! You're daily exercise times and stress levels are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }else{
+            String sug = "You have good stress level on average, but you tend to exercise for " + minuteTotal + " on days you enter your stress level. Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+        }
+
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
+        return suggestion1;
+    }
 
 
 }

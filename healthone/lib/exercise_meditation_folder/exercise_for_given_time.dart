@@ -102,10 +102,13 @@ class _ExerciseCountdownState extends State<ExerciseCountdown>{
     setState(() => timer?.cancel());
   }//stopTimer
 
+  /*
   @override
   void dispose(){
     super.dispose();
   }
+
+   */
 
   @override
   Widget build(BuildContext context) => Scaffold(

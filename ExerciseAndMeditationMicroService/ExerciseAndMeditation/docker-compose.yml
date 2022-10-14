@@ -19,7 +19,7 @@ services:
       - MYSQL_ROOT_PASSWORD=thisismypassword
       - MYSQL_DATABASE=StudentHealth
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../init.sql:/docker-entrypoint-initdb.d
 
 networks:
   exerciseandmeditation-mysql:
