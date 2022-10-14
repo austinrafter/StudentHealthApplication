@@ -54,3 +54,12 @@
 [Mindfulness Image](https://media.giphy.com/media/CSmmKAum8d1gZqwvmo/giphy.gif) <br />
 [Quiet Relaxation Image](https://media.giphy.com/media/llJJsTA7J627AjNdHP/giphy.gif) <br />
 [Meditation Daily Info Image](https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif) <br />
+
+## Shan Shan Lee
+### Study Habit Components
+
+[Timer](https://pub.dev/packages/custom_timer) <br />
+
+### Image Citations
+[Classes Page Image](https://media.giphy.com/media/yovOUEWBV2R46yrQ0B/giphy.gif) <br />
+[Study Activities Page Image ](https://media.giphy.com/media/2xnO6tTIYYFE2j3IqQ/giphy.gif) <br />
