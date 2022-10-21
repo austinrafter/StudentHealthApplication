@@ -34,9 +34,9 @@
 
 ## Austin Rafter
 ### Physical Health Components
-
 [Timer](https://www.youtube.com/watch?v=bjAsnIw3VCs) <br />
 [AudioPlayers](https://pub.dev/packages/audioplayers) <br />
+[Flutter Bar Chart](https://www.digitalocean.com/community/tutorials/flutter-bar-charts) <br />
 
 ### Image Citations
 [Exercise Page Image](https://media.giphy.com/media/TF6FLfa5NryGdEJcfY/giphy.gif) <br />
@@ -56,6 +56,27 @@
 [Mindfulness Image](https://media.giphy.com/media/CSmmKAum8d1gZqwvmo/giphy.gif) <br />
 [Quiet Relaxation Image](https://media.giphy.com/media/llJJsTA7J627AjNdHP/giphy.gif) <br />
 [Meditation Daily Info Image](https://media.giphy.com/media/l4pTpY2fLm9eRGHMQ/giphy.gif) <br />
+
+[Slow Walking Image](https://media.giphy.com/media/UvvK8rOSHPxgjo9ryD/giphy-downsized-large.gif) <br />
+[Brisk Walking Image](https://media.giphy.com/media/hkTXRkfarShjLBQH0v/giphy.gif) <br />
+[Fast Walking Image](https://media.giphy.com/media/wcQ5FnY6P0Juo/giphy.gif) <br />
+[Running Image](https://media.giphy.com/media/QKUTD5lAgpgrSHpbMB/giphy.gif) <br />
+[Light Weight Lifitng Image](https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif) <br />
+[Heavy Weight Lifting Image](https://media.giphy.com/media/4bjIKBOWUnVPICCzJc/giphy.gif) <br />
+
+[Soccer Image](https://media.giphy.com/media/Vx8MSphrScTAc/giphy.gif) <br />
+[Unguided Metal Fest Image](https://media.giphy.com/media/1gXJ0MrlsUBSQPq2kV/giphy-downsized-large.gif) <br />
+[Unguided Ambient Noise Image](https://media.giphy.com/media/YhW0qsOoz8vb37vxFO/giphy.gif) <br />
+[Unguided NASA Mission Image](https://media.giphy.com/media/RT3S8fkHUxECJJpwvT/giphy.gif) <br />
+[Guided Minfulness Image](https://media.giphy.com/media/9WHE2bo5Na9Gg/giphy.gif) <br />
+
+[Unguided Metal Fest Audio](https://moria831.bandcamp.com/album/unholy-sessions-demo) <br />
+[Unguided Ambient Noise Audio](https://luan.xyz/files/audio/ambient_c_motion.mp3) <br />
+[Unguided NASA Mission Audio](https://luan.xyz/files/audio/nasa_on_a_mission.mp3) <br />
+[Guided Minfulness Audio](https://www.youtube.com/watch?v=Jyy0ra2WcQQ) <br />
+
+[Squats Image](https://media.giphy.com/media/3o7btMPzJrsdyWVHeo/giphy.gif) <br />
+[Bench Press Image](https://media.giphy.com/media/z1Suqc2f0GCPReDgUB/giphy.gif) <br />
 
 ## Shan Shan Lee
 ### Study Habit Components
