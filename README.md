@@ -28,6 +28,9 @@
 [Journaling/Note app](https://www.youtube.com/watch?v=Qq8vf-_Ls68&ab_channel=vijaycreations) <br />
 [Journal current date]( https://stackoverflow.com/questions/34910686/how-can-i-get-the-current-date-w-o-hour-and-minutes) <br />
 [Journal date formatter](https://stackoverflow.com/questions/55702224/how-to-remove-time-stamp-or-get-only-date-form-datepicker-in-flutter-default-dat/55702290#55702290) <br />
+[Analysis Graph Colors](https://stackoverflow.com/questions/56577613/how-to-custom-the-color-of-each-bar-of-a-bar-chart-in-flutter) <br />
+[Flutter Chart Template (From Austin)](https://github.com/austinrafter/StudentHealthApplication/blob/master/healthone/lib/templates/chart_template_bar.dart) <br />
+[Flutter Chart Template]( https://codingwithdhrumil.com/2021/05/flutter-chart-example-tutorial.html) <br />
 
 ## Austin Rafter
 ### Physical Health Components
