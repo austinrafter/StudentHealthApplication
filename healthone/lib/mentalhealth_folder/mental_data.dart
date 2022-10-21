@@ -32,5 +32,39 @@ List<Mood> moods = [];
     DBServices.deleteMood(m.id);
     notifyListeners();
   }
+//Get functions
+  // String getRegularS(){
+  //   print("THIS IS DB SERVICE REGULAR STRESS");
+  //   notifyListeners();
+  //   print(DBServices.getRegularStress().toString());
+  //   return DBServices.getRegularStress().toString();
+  // }
+
+  // String getHighS(){
+  //   notifyListeners();
+  //   return DBServices.getHighStress().toString();
+  // }
+
+  // Future getLowS(){
+  //   print("getlows called");
+  //   notifyListeners();
+  //   return DBServices.getLowStress();
+  // }
+
+  void getNegativeM(){
+    DBServices.getNegativeMood();
+    notifyListeners();
+  }
+
+  void getNeutralM(){
+    DBServices.getNeutralMood();
+    notifyListeners();
+  }
+
+  void getPositiveM(){
+    DBServices.getPositiveMood();
+    notifyListeners();
+  }
+
 
 }
