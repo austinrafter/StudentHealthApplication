@@ -135,42 +135,40 @@ class DBServices{
   // }
 
 //Getting mood
-  static Future<http.Response> getNegativeMood() async{
+  // static Future<http.Response> getNegativeMood() async{
 
-    var url = Uri.parse(baseUrl + '/getNegativeMood');
-    http.Response response = await http.get(
-      url,
-      headers: headers,
-    );
-    print("YOU ARE PINGING 'GET REGULAR STRESS'");
-    print(response.body);
-    return response;
-  }
+  //   var url = Uri.parse(baseUrl + '/getNegativeMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
 
-  static Future<http.Response> getNeutralMood() async{
+  // static Future<http.Response> getNeutralMood() async{
 
-    var url = Uri.parse(baseUrl + '/getNeutralMood');
-    http.Response response = await http.get(
-      url,
-      headers: headers,
-    );
-    print("YOU ARE PINGING 'GET REGULAR STRESS'");
-    print(response.body);
-    return response;
-  }
+  //   var url = Uri.parse(baseUrl + '/getNeutralMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
 
-  static Future<http.Response> getPositiveMood() async{
+  // static Future<http.Response> getPositiveMood() async{
 
-    var url = Uri.parse(baseUrl + '/getPositiveMood');
-    http.Response response = await http.get(
-      url,
-      headers: headers,
-    );
-    print("YOU ARE PINGING 'GET REGULAR STRESS'");
-    print(response.body);
-    return response;
-  }
-
-
+  //   var url = Uri.parse(baseUrl + '/getPositiveMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
 
 }

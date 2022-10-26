@@ -51,20 +51,20 @@ List<Mood> moods = [];
   //   return DBServices.getLowStress();
   // }
 
-  void getNegativeM(){
-    DBServices.getNegativeMood();
-    notifyListeners();
-  }
+  // void getNegativeM(){
+  //   DBServices.getNegativeMood();
+  //   notifyListeners();
+  // }
 
-  void getNeutralM(){
-    DBServices.getNeutralMood();
-    notifyListeners();
-  }
+  // void getNeutralM(){
+  //   DBServices.getNeutralMood();
+  //   notifyListeners();
+  // }
 
-  void getPositiveM(){
-    DBServices.getPositiveMood();
-    notifyListeners();
-  }
+  // void getPositiveM(){
+  //   DBServices.getPositiveMood();
+  //   notifyListeners();
+  // }
 
 
 }

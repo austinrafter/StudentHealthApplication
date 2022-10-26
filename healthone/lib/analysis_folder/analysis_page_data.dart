@@ -6,6 +6,7 @@ import '../physicalHealthPages/sleep_page.dart';
 import '../physicalHealthPages/nutrition_page.dart';
 import '../mentalhealth_folder/mental_analysis.dart';
 import '../mentalhealth_folder/mental_journal.dart';
+import '../mentalhealth_folder/mental_mood_page.dart';
 
 class AnalysisPageData {
   static final getData = [
@@ -19,10 +20,14 @@ class AnalysisPageData {
       'page': MeditationTypePage(meditationtype: "Guided"),
     },
     {
-      'name': 'Mood and Stress',
+      'name': 'Stress',
       'page': MentalAnalysisPage(),
     },
-        {
+    {
+      'name': 'Mood',
+      'page': MentalMoodPage(),
+    },
+    {
       'name': 'Mental Journal',
       'page': JournalPage(),
     },

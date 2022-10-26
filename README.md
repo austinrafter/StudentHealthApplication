@@ -20,7 +20,8 @@
 [Flutter Calendar](https://pub.dev/packages/table_calendar) <br />
 [Flutter Calendar Youtube Tutorial](https://www.youtube.com/watch?v=KvaKVud0Jx0&ab_channel=ElaiShane) <br />
 [Multiple Choice Selection]( https://material.io/components/dialogs/flutter#dialog-theming) <br />
-[Mood and Stress widget GIF](https://giphy.com/gifs/lazy-corgi-do6dluZNcoY349BT8r) <br />
+[Mood widget GIF](https://giphy.com/gifs/lazy-corgi-do6dluZNcoY349BT8r) <br />
+[Stress widget GIF](https://giphy.com/gifs/ninja-candypiggy-cute-I957LY53G3FEKxFxoB) <br />
 
 
 ### Mental Health: Mood and Stress Analysis
