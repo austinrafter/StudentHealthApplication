@@ -20,9 +20,6 @@
 [Flutter Calendar](https://pub.dev/packages/table_calendar) <br />
 [Flutter Calendar Youtube Tutorial](https://www.youtube.com/watch?v=KvaKVud0Jx0&ab_channel=ElaiShane) <br />
 [Multiple Choice Selection]( https://material.io/components/dialogs/flutter#dialog-theming) <br />
-[Mood widget GIF](https://giphy.com/gifs/lazy-corgi-do6dluZNcoY349BT8r) <br />
-[Stress widget GIF](https://giphy.com/gifs/ninja-candypiggy-cute-I957LY53G3FEKxFxoB) <br />
-
 
 ### Mental Health: Mood and Stress Analysis
 [Mental Journal widget GIF](https://giphy.com/gifs/creative-thinking-thinker-VbEuHLBUPQm55MyqJg) <br />
@@ -32,6 +29,13 @@
 [Analysis Graph Colors](https://stackoverflow.com/questions/56577613/how-to-custom-the-color-of-each-bar-of-a-bar-chart-in-flutter) <br />
 [Flutter Chart Template (From Austin)](https://github.com/austinrafter/StudentHealthApplication/blob/master/healthone/lib/templates/chart_template_bar.dart) <br />
 [Flutter Chart Template]( https://codingwithdhrumil.com/2021/05/flutter-chart-example-tutorial.html) <br />
+[Mood widget GIF](https://giphy.com/gifs/lazy-corgi-do6dluZNcoY349BT8r) <br />
+[Stress widget GIF](https://giphy.com/gifs/ninja-candypiggy-cute-I957LY53G3FEKxFxoB) <br />
+[Mental Analysis GIF](https://giphy.com/gifs/seizetheawkward-mental-health-how-are-you-seize-the-awkward-h2HsBrlSQq8Jfbvzbz) <br />
+[Mental Analysis Text Page Youtube](https://www.youtube.com/watch?v=gtNQMdSAv1A&ab_channel=MayuriRuparelTech) <br />
+[Mental Analysis Github Page](https://www.youtube.com/watch?v=gtNQMdSAv1A&ab_channel=MayuriRuparelTech) <br />
+[Aligning two text widgets](https://stackoverflow.com/questions/53181627/how-to-align-2-text-widgets-in-the-same-row-to-the-start-and-end-of-a-row-in-flu)<br />
+
 
 ## Austin Rafter
 ### Physical Health Components

@@ -103,7 +103,7 @@ class _ChartTemplateState extends State<MoodType> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Mood Analysis")),
+      appBar: AppBar(title: Text("Mood Analysis"), centerTitle: true),
       body: Center(
           child: Container(
             height: 400,

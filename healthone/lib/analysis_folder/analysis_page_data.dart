@@ -7,6 +7,7 @@ import '../physicalHealthPages/nutrition_page.dart';
 import '../mentalhealth_folder/mental_analysis.dart';
 import '../mentalhealth_folder/mental_journal.dart';
 import '../mentalhealth_folder/mental_mood_page.dart';
+import '../mentalhealth_folder/mental_health_page.dart';
 
 class AnalysisPageData {
   static final getData = [
@@ -30,6 +31,10 @@ class AnalysisPageData {
     {
       'name': 'Mental Journal',
       'page': JournalPage(),
+    },
+    {
+      'name': 'Mental Analysis',
+      'page': MentalHealthPage(),
     },
     {
       'name': 'Study Habits',

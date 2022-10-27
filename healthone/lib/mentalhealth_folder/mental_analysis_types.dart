@@ -108,7 +108,7 @@ class _ChartTemplateState extends State<MentalType> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Stress Analysis")),
+      appBar: AppBar(title: Text("Stress Analysis"), centerTitle: true),
       body: Center(
           child: Container(
             height: 400,
