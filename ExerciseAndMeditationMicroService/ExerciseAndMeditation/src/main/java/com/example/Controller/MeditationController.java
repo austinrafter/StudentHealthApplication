@@ -11,7 +11,6 @@ import com.example.Model.ExerciseChartItem;
 import com.example.MentalHealth.MentalHealth;
 import com.example.MentalHealth.MentalRepository;
 
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,11 +18,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.text.DecimalFormat;
 
+import com.example.StudyHabits.Activity;
+import com.example.StudyHabits.ActivityRepo;
+
 @RestController
 @RequestMapping(path = "/meditations")
 public class MeditationController {
 
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    @Autowired
+    private ActivityRepo actRepo;
 
     @Autowired
     private MeditationRepository meditationRepository;
@@ -406,6 +409,74 @@ public class MeditationController {
             String sug = "You have good stress level on average, but you tend to meditate for " + String.format("%.2f", minuteTotal) + " minutes on days you enter your stress level. Meditating at least 30 minutes each day can benefit your health in general.";
             suggestion1 = new Suggestion("Meditation", "Stress", sug);
         }
+
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
+        return suggestion1;
+    }
+
+    @GetMapping("/giveMeditationStudySuggestion")
+    public Suggestion giveMeditationStudySuggestion(){
+        List<PassMeditation> passExercises = passMeditationRepository.findAll();
+        List<MeditationChartItem> exerciseChartItemArrayList = new ArrayList<MeditationChartItem>();
+        int dayTotal = 0;
+        double minuteTotal = 0;
+        int stressFinal = 0;
+        boolean datesMatch = false;
+
+        for(PassMeditation passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            MeditationChartItem exerciseChartItem = new MeditationChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            if(exerciseChartItemArrayList.size() == 0){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+            for(MeditationChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+                if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
+                    exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                    datesMatch = true;
+                }
+            }
+            if(!datesMatch){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }else{
+                datesMatch = false;
+            }
+        }
+
+        for(MeditationChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+            minuteTotal = minuteTotal + exerciseChartItem1.getMinutes();
+            dayTotal = dayTotal + 1;
+        }
+
+        minuteTotal = minuteTotal / dayTotal;
+        List<Activity> activtyList = actRepo.findAll();
+
+        int totalActivities = 0;
+        double activityTotalTime = 0;
+        for(Activity activity: activtyList){
+            activityTotalTime = activityTotalTime + ( (activity.getDuration()) /60 );
+            totalActivities = totalActivities + 1;
+        }
+
+        activityTotalTime = activityTotalTime / 60;
+
+        Suggestion suggestion1;
+        if(minuteTotal < 30 && activityTotalTime >= 20){
+            String sug = "You tend to meditate for " + String.format("%.2f", minuteTotal) + " minutes a day, but only study for  " + String.format("%.2f", activityTotalTime) + " at a time. Exercising for at least 30 minutes a day has been shown to improve concentration.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else if(minuteTotal >= 30 && stressFinal >= 20){
+            String sug = "Your daily meditation times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + String.format("%.2f", activityTotalTime) + " study times.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else if(minuteTotal >= 30 && stressFinal < 20){
+            String sug = "HUZZAH!!! You're daily meditation times and study times are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else{
+            String sug = "You have good study times on average, but you tend to meditate for " + String.format("%.2f", minuteTotal) + ". Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }
+
 
         System.out.println(suggestion1.getFunctionOne());
         System.out.println(suggestion1.getFunctionTwo());

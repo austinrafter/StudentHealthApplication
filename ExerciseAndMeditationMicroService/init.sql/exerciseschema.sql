@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS exercise (
 	exercisename VARCHAR(256) UNIQUE,
 	exercisetype VARCHAR(128),
 	metabolicequivalentscore DOUBLE DEFAULT 5,
-	exerciseimage VARCHAR(256) DEFAULT 'https://media.giphy.com/media/vF25I06jdODgA/giphy.gif'
+	exerciseimage VARCHAR(256) NOT NULL DEFAULT 'https://media.giphy.com/media/vF25I06jdODgA/giphy.gif'
 );
 
 CREATE TABLE IF NOT EXISTS meditation (
@@ -120,3 +120,18 @@ CREATE TABLE IF NOT EXISTS mental_health (
 	year VARCHAR(256),
 	day VARCHAR(256)
 );
+
+CREATE TABLE IF NOT EXISTS activity (
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	class_code VARCHAR(256) DEFAULT 'test',
+	semester VARCHAR(256) DEFAULT 'test',
+	duration INT DEFAULT 0
+);
+
+INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 3600);
+INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 4200);
+INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 720);
+INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 7200);
+INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 3600);
+
+

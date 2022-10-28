@@ -17,10 +17,6 @@ class AnalysisPageData {
 
     },
     {
-      'name': 'Mental Health',
-      'page': MeditationTypePage(meditationtype: "Guided"),
-    },
-    {
       'name': 'Stress',
       'page': MentalAnalysisPage(),
     },
@@ -39,6 +35,10 @@ class AnalysisPageData {
     {
       'name': 'Study Habits',
       'page': SleepPage(),
+    },
+    {
+      'name': 'Suggestions',
+      'page': MeditationTypePage(meditationtype: "Guided"),
     },
   ];
 }

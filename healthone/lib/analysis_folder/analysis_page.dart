@@ -22,22 +22,22 @@ class AnalysisPage extends StatelessWidget{
   var animate;
   final pages = [
     PhysicalAnalysisPage(),
-    ExerciseMentalPage(),
     MentalType(),
     MoodType(),
     JournalPage(),
     MentalHealthPage(),
     SleepPage(),
+    ExerciseMentalPage(),
   ];
 
   final images =[
     "https://media.giphy.com/media/3ornjHnlfyrQclXGZq/giphy.gif",
-    "https://media.giphy.com/media/Yat5wnwisEV2iXbt4x/giphy.gif",
     "https://media2.giphy.com/media/do6dluZNcoY349BT8r/giphy.gif?cid=ecf05e4705rvgu1e1dujgwa1t9hiemi58908yr9sa7d22u4r&rid=giphy.gif&ct=g",
     "https://media3.giphy.com/media/I957LY53G3FEKxFxoB/giphy.gif?cid=ecf05e47kqovmiabdlu7dzx4nidjfutkkuj6zso3amz6aawq&rid=giphy.gif&ct=g",
     "https://media3.giphy.com/media/VbEuHLBUPQm55MyqJg/giphy.gif?cid=ecf05e4794fzcu77pjeqg79p8gvml548w50los7hrsaki43m&rid=giphy.gif&ct=g",
     "https://media1.giphy.com/media/h2HsBrlSQq8Jfbvzbz/giphy.gif?cid=ecf05e47qtxdj9x4t48asxokucr6tujqjbbu1hrlgpv5msn8&rid=giphy.gif&ct=g",
     "https://media.giphy.com/media/l2SpXaJA67JaSqSxq/giphy.gif",
+    "https://media.giphy.com/media/Yat5wnwisEV2iXbt4x/giphy.gif",
   ];
 
   // This widget is the root of your application.

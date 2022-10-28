@@ -28,12 +28,18 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
   Suggestion? suggestionThree;
   Suggestion? suggestionFour;
 
+  Suggestion? suggestionFive;
+  Suggestion? suggestionSix;
+
+
   getExercises()async{
     exerciseMentalComparisons = await DbThings.getExerciseMental();
     suggestionOne = await DbThings.getSuggestionForMoodExercise();
     suggestionTwo = await DbThings.getSuggestionForStressExercise();
     suggestionThree = await DbThings.getSuggestionForMoodMeditation();
     suggestionFour = await DbThings.getSuggestionForStressMeditation();
+    suggestionFive = await DbThings.getSuggestionForStudyMeditation();
+    suggestionSix = await DbThings.getSuggestionForStudyExercise();
     Provider.of<ExerciseData>(context, listen: false).exerciseMentalComparisons = exerciseMentalComparisons!;
     setState(() {});
   }
@@ -77,36 +83,42 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
 
          */
       ),
-      body: Container(
-        color: Colors.teal[900],
-        child: Column(
-        children: [
-          Text("Exercise", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-          Column(
-            children:[
+      body: ListView(
+    children: <Widget>[
+      Container(
+        color: Colors.amber[600],
+      child:
+          Text("Exercise", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 20, ),),
+      ),
+
               Container(
                 child: suggestionOne == null? Text('') : SuggestionTile(suggestion: suggestionOne),
               ),
               Container(
                 child: suggestionTwo == null? Text('') : SuggestionTile(suggestion: suggestionTwo),
               ),
-            ],
-          ),
-            Text("Meditation", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-            Column(
-              children:[
+              Container(
+                child: suggestionSix == null? Text('') : SuggestionTile(suggestion: suggestionSix),
+              ),
+            Container(
+              color: Colors.amber[600],
+              child:
+            Text("Meditation", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
+            ),
+
                 Container(
                   child: suggestionThree == null? Text('') : SuggestionTile(suggestion: suggestionThree),
                 ),
                 Container(
                   child: suggestionFour == null? Text('') : SuggestionTile(suggestion: suggestionFour),
                 ),
-            ],
-          ),
+                Container(
+                  child: suggestionFive == null? Text('') : SuggestionTile(suggestion: suggestionFive),
+                ),
+
 
         ],//children
       ),//Stack
-    ),
     );//Scaffold
   }//build
 }//class
