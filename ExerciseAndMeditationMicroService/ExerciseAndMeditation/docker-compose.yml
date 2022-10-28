@@ -7,19 +7,20 @@ services:
     networks:
       - exerciseandmeditation-mysql
     environment:
+      MYSQL_HOST: "mysqldb"
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/StudentHealth?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
     depends_on:
       - mysqldb
 
   mysqldb:
     image: mysql:latest
+    ports:
+    - 3306
     networks:
       - exerciseandmeditation-mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=thisismypassword
-      - MYSQL_DATABASE=StudentHealth
-    volumes:
-      - ../init.sql:/docker-entrypoint-initdb.d
+      MYSQL_ROOT_PASSWORD: thisismypassword
+      MYSQL_DATABASE: StudentHealth
 
 networks:
   exerciseandmeditation-mysql:

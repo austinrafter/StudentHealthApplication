@@ -484,4 +484,33 @@ class DbThings{
 
     return suggestion;
   }
+
+  static Future<Suggestion> getSuggestionForMoodMeditation() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/giveMeditationMoodSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    print(responseMap);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStressMeditation() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/giveMeditationStressSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
 }

@@ -9,28 +9,28 @@ grant all on StudentHealth.* to 'root'@'%';
 use StudentHealth;
 
 CREATE TABLE IF NOT EXISTS exercise (
-	exerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	exercisename VARCHAR(256) UNIQUE,
-	exercisetype VARCHAR(128),
-	metabolicequivalentscore DOUBLE,
-	exerciseimage VARCHAR(256)
-);
+                                        exerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                        exercisename VARCHAR(256) UNIQUE,
+    exercisetype VARCHAR(128),
+    metabolicequivalentscore DOUBLE,
+    exerciseimage VARCHAR(256)
+    );
 
 CREATE TABLE IF NOT EXISTS meditation (
-	meditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	meditationname VARCHAR(256) UNIQUE,
-	meditationtype VARCHAR(128),
-	audiolink VARCHAR(256) UNIQUE,
-	imagelink VARCHAR(256)
-);
+                                          meditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                          meditationname VARCHAR(256) UNIQUE,
+    meditationtype VARCHAR(128),
+    audiolink VARCHAR(256) UNIQUE,
+    imagelink VARCHAR(256)
+    );
 
 CREATE TABLE IF NOT EXISTS student (
-	studentid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	username VARCHAR(256) UNIQUE,
-	email VARCHAR(256) UNIQUE,
-	school VARCHAR(256),
-	weight DOUBLE
-);
+                                       studentid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                       username VARCHAR(256) UNIQUE,
+    email VARCHAR(256) UNIQUE,
+    school VARCHAR(256),
+    weight DOUBLE
+    );
 
 
 INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exerciseimage)
@@ -55,47 +55,47 @@ INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exer
 VALUES ('Soccer', 'Aerobic', 10, 'https://media.giphy.com/media/Vx8MSphrScTAc/giphy.gif');
 
 CREATE TABLE IF NOT EXISTS userexercising (
-	userexercisingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	studentid int,
-    FOREIGN KEY (studentid) REFERENCES student(studentid),
-	exerciseid int,
+                                              userexercisingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                              studentid int,
+                                              FOREIGN KEY (studentid) REFERENCES student(studentid),
+    exerciseid int,
     FOREIGN KEY (exerciseid) REFERENCES exercise(exerciseid),
-	startedat DATETIME,
-	endedat DATETIME,
-	totaltime int,
-	caloriesburned DOUBLE
-);
+    startedat DATETIME,
+    endedat DATETIME,
+    totaltime int,
+    caloriesburned DOUBLE
+    );
 
 CREATE TABLE IF NOT EXISTS usermeditating (
-	usermeditatingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	studentid int,
-    FOREIGN KEY (studentid) REFERENCES student(studentid),
-	meditationid int,
+                                              usermeditatingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                              studentid int,
+                                              FOREIGN KEY (studentid) REFERENCES student(studentid),
+    meditationid int,
     FOREIGN KEY (meditationid) REFERENCES meditation(meditationid),
-	startedat DATETIME,
-	endedat DATETIME,
-	totaltime int
-);
+    startedat DATETIME,
+    endedat DATETIME,
+    totaltime int
+    );
 
 CREATE TABLE IF NOT EXISTS passexercise (
-	passexerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	exercisename VARCHAR(256),
-	username VARCHAR(256),
-	dateof VARCHAR(256),
-	totaltime int,
-	caloriesburned DOUBLE,
-	reps int,
-	weightrepped DOUBLE
-);
+                                            passexerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                            exercisename VARCHAR(256),
+    username VARCHAR(256),
+    dateof VARCHAR(256),
+    totaltime int,
+    caloriesburned DOUBLE,
+    reps int,
+    weightrepped DOUBLE
+    );
 
 CREATE TABLE IF NOT EXISTS passmeditation (
-	passmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	meditationname VARCHAR(256),
-	username VARCHAR(256),
-	dateof VARCHAR(256),
-	totaltime int,
-	soundused VARCHAR(256)
-);
+                                              passmeditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                              meditationname VARCHAR(256),
+    username VARCHAR(256),
+    dateof VARCHAR(256),
+    totaltime int,
+    soundused VARCHAR(256)
+    );
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
 VALUES ('Unguided metal fest', 'Unguided meditation', 'audio/MoriaSuffer.mp3', 'https://media.giphy.com/media/1gXJ0MrlsUBSQPq2kV/giphy-downsized-large.gif');
@@ -117,11 +117,11 @@ INSERT INTO exercise (exercisename, exercisetype, metabolicequivalentscore, exer
 VALUES ('Bench Press', 'Strength Training', 8, 'https://media.giphy.com/media/z1Suqc2f0GCPReDgUB/giphy.gif');
 
 CREATE TABLE IF NOT EXISTS mental_health (
-	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	user_name VARCHAR(256),
-	mood VARCHAR(256),
-	stress VARCHAR(256),
-	month VARCHAR(256),
-	year VARCHAR(256),
-	day VARCHAR(256)
-);
+                                             id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                             user_name VARCHAR(256),
+    mood VARCHAR(256),
+    stress VARCHAR(256),
+    month VARCHAR(256),
+    year VARCHAR(256),
+    day VARCHAR(256)
+    );

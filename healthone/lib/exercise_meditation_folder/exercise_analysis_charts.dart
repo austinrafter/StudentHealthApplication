@@ -47,7 +47,7 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
   @override
   Widget build(BuildContext context) {
     final List<TimedExerciseChart> defaultData = [
-      TimedExerciseChart(minutes: 0, date:formattedDate),
+      TimedExerciseChart(minutes: 0, date:formattedDate, calories: 0),
     ];
 
     final List<WeightedExerciseChart> defaultDataWeight = [
@@ -69,6 +69,15 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
         data: weightedExerciseCharts?? defaultDataWeight,
         domainFn: (WeightedExerciseChart weightline, _) => weightline.exercise,
         measureFn: (WeightedExerciseChart weightline, _) => weightline.weight,
+      )
+    ];
+
+    List<charts.Series<TimedExerciseChart, String>> calorieLine = [
+      charts.Series(
+        id: "Exercise",
+        data: timedExerciseCharts?? defaultData,
+        domainFn: (TimedExerciseChart timeline, _) => timeline.date,
+        measureFn: (TimedExerciseChart timeline, _) => timeline.calories,
       )
     ];
 
@@ -96,16 +105,28 @@ class _PrintExerciseAnalysisChartsState extends State<PrintExerciseAnalysisChart
               ),
             ),
             Text(
-              "Max Weight Lifted By Exercise",
+              "Calories burned each day",
             ),
             Expanded(
                child: charts.BarChart(
-                 weightline,
+                 calorieLine,
                  animate: true,
                  domainAxis: charts.OrdinalAxisSpec(
                    renderSpec: charts.SmallTickRendererSpec(labelRotation: 60),
                  ),
                ),
+            ),
+            Text(
+              "Max Weight Lifted By Exercise",
+            ),
+            Expanded(
+              child: charts.BarChart(
+                weightline,
+                animate: true,
+                domainAxis: charts.OrdinalAxisSpec(
+                  renderSpec: charts.SmallTickRendererSpec(labelRotation: 60),
+                ),
+              ),
             ),
             ],//children
           ),//Column

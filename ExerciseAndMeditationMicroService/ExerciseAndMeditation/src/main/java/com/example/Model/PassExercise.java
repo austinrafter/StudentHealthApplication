@@ -24,9 +24,9 @@ public class PassExercise {
     //@Column(name = "totaltime", nullable=false)
     private int totaltime;
     //@Column(name = "caloriesburned", nullable=false)
-    private double caloriesburned;
-    private int reps;
-    private double weightrepped;
+    private double caloriesburned= 0;
+    private int reps= 0;
+    private double weightrepped = 0;
 
     public int getPassexerciseid(){return passexerciseid;}
 

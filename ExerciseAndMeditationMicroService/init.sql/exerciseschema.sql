@@ -1,27 +1,21 @@
 create database if not exists StudentHealth;
 
-drop user 'root'@'%';
-
-create user 'root'@'%' identified by 'thisismypassword';
-
-grant all on StudentHealth.* to 'root'@'%';
-
 use StudentHealth;
 
 CREATE TABLE IF NOT EXISTS exercise (
 	exerciseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	exercisename VARCHAR(256) UNIQUE,
 	exercisetype VARCHAR(128),
-	metabolicequivalentscore DOUBLE,
-	exerciseimage VARCHAR(256)
+	metabolicequivalentscore DOUBLE DEFAULT 5,
+	exerciseimage VARCHAR(256) DEFAULT 'https://media.giphy.com/media/vF25I06jdODgA/giphy.gif'
 );
 
 CREATE TABLE IF NOT EXISTS meditation (
 	meditationid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	meditationname VARCHAR(256) UNIQUE,
 	meditationtype VARCHAR(128),
-	audiolink VARCHAR(256) UNIQUE,
-	imagelink VARCHAR(256)
+	audiolink VARCHAR(256) UNIQUE DEFAULT 'https://luan.xyz/files/audio/ambient_c_motion.mp3',
+	imagelink VARCHAR(256) DEFAULT 'https://media.giphy.com/media/jeCSe7Qqc7NwKUzxH7/giphy.gif'
 );
 
 CREATE TABLE IF NOT EXISTS student (
@@ -83,9 +77,9 @@ CREATE TABLE IF NOT EXISTS passexercise (
 	username VARCHAR(256),
 	dateof VARCHAR(256),
 	totaltime int,
-	caloriesburned DOUBLE,
-	reps int,
-	weightrepped DOUBLE
+	caloriesburned DOUBLE DEFAULT 0,
+	reps int DEFAULT 0,
+	weightrepped DOUBLE DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS passmeditation (
@@ -93,8 +87,8 @@ CREATE TABLE IF NOT EXISTS passmeditation (
 	meditationname VARCHAR(256),
 	username VARCHAR(256),
 	dateof VARCHAR(256),
-	totaltime int,
-	soundused VARCHAR(256)
+	totaltime int DEFAULT 0,
+	soundused VARCHAR(256) DEFAULT 'https://luan.xyz/files/audio/ambient_c_motion.mp3'
 );
 
 INSERT INTO meditation (meditationname, meditationtype, audiolink, imagelink)
@@ -122,6 +116,7 @@ CREATE TABLE IF NOT EXISTS mental_health (
 	mood VARCHAR(256),
 	stress VARCHAR(256),
 	month VARCHAR(256),
+
 	year VARCHAR(256),
 	day VARCHAR(256)
 );

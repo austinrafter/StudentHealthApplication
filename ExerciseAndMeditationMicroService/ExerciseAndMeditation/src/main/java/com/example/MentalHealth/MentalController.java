@@ -1,4 +1,4 @@
-package com.example.mentalhealth;
+package com.example.MentalHealth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class MentalController {
     public List<MentalHealth> getMood(){
         return repo.findAll();
     }
-
+/*
     @PutMapping("/updatemood/{id}")
     public String updateMood(@PathVariable int id, @RequestBody MentalHealth mentalHealth){
         boolean exist = repo.existsById(id);
@@ -42,6 +42,8 @@ public class MentalController {
         }
         return "Not updated";
     }
+
+ */
 
     @DeleteMapping("/deletemood/{id}")
     public String deleteMood(@PathVariable int id){
@@ -208,4 +210,6 @@ public class MentalController {
         }
         return regularStressSum;
     }
+
+
 }

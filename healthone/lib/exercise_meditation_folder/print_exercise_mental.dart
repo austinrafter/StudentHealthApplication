@@ -21,13 +21,19 @@ class PrintExerciseMental extends StatefulWidget{
 
 class _ExerciseMentalPageState extends State<PrintExerciseMental>{
   List<ExerciseMentalComparison>? exerciseMentalComparisons;
+  List<ExerciseMentalComparison>? exerciseMentalComparisons2;
   Suggestion? suggestionOne;
   Suggestion? suggestionTwo;
+
+  Suggestion? suggestionThree;
+  Suggestion? suggestionFour;
 
   getExercises()async{
     exerciseMentalComparisons = await DbThings.getExerciseMental();
     suggestionOne = await DbThings.getSuggestionForMoodExercise();
     suggestionTwo = await DbThings.getSuggestionForStressExercise();
+    suggestionThree = await DbThings.getSuggestionForMoodMeditation();
+    suggestionFour = await DbThings.getSuggestionForStressMeditation();
     Provider.of<ExerciseData>(context, listen: false).exerciseMentalComparisons = exerciseMentalComparisons!;
     setState(() {});
   }
@@ -57,7 +63,7 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
       appBar: AppBar(
         backgroundColor: Colors.teal[900],
         title: Text(
-          'Exercise and Mental Health'
+          'Suggestions'
         ),
         centerTitle: true,
         /*leading: GestureDetector(
@@ -75,7 +81,7 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
         color: Colors.teal[900],
         child: Column(
         children: [
-          Text("Suggestions", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          Text("Exercise", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
           Column(
             children:[
               Container(
@@ -86,23 +92,17 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
               ),
             ],
           ),
-          Text("Daily Exercise And Mental Health Information", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-          Expanded(
-    child: Consumer<ExerciseData>(
-            builder: (context, exerciseData, child){
-              return ListView.builder(
-                  itemCount: exerciseData.exerciseMentalComparisons.length,
-                  //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2),
-                  itemBuilder: (context, index) {
-                    ExerciseMentalComparison exerciseMental = exerciseData.exerciseMentalComparisons[index];
-                    return ExerciseMentalTile(
-                        exerciseMental: exerciseMental,
-                        exerciseData: exerciseData
-                    );//ExerciseTile
-                  });//itemBuilder
-            },//builder
-          ),//Consumer
-          ),//Expanded
+            Text("Meditation", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+            Column(
+              children:[
+                Container(
+                  child: suggestionThree == null? Text('') : SuggestionTile(suggestion: suggestionThree),
+                ),
+                Container(
+                  child: suggestionFour == null? Text('') : SuggestionTile(suggestion: suggestionFour),
+                ),
+            ],
+          ),
 
         ],//children
       ),//Stack
