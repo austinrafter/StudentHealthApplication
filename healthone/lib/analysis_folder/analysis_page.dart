@@ -11,10 +11,11 @@ import '../physicalHealthPages/exercise_analysis_page.dart';
 import '../physicalHealthPages/exercise_mental_analysis_page.dart';
 import '../mentalhealth_folder/mental_analysis_types.dart';
 import '../mentalhealth_folder/mental_journal.dart';
+import '../study_habits_folder/study_habits_analysis_page.dart';
 import '../mentalhealth_folder/mood_type.dart';
 import '../mentalhealth_folder/mental_health_analysis_page.dart';
 
-class AnalysisPage extends StatelessWidget{
+class AnalysisPage extends StatelessWidget {
   var analysisPageData = AnalysisPageData.getData;
   //const PhysicalPage({Key? key}) : super(key: key);
 
@@ -26,11 +27,11 @@ class AnalysisPage extends StatelessWidget{
     MoodType(),
     JournalPage(),
     MentalHealthPage(),
-    SleepPage(),
+    StudyHabitsAnalysisPage(),
     ExerciseMentalPage(),
   ];
 
-  final images =[
+  final images = [
     "https://media.giphy.com/media/3ornjHnlfyrQclXGZq/giphy.gif",
     "https://media2.giphy.com/media/do6dluZNcoY349BT8r/giphy.gif?cid=ecf05e4705rvgu1e1dujgwa1t9hiemi58908yr9sa7d22u4r&rid=giphy.gif&ct=g",
     "https://media3.giphy.com/media/I957LY53G3FEKxFxoB/giphy.gif?cid=ecf05e47kqovmiabdlu7dzx4nidjfutkkuj6zso3amz6aawq&rid=giphy.gif&ct=g",
@@ -51,7 +52,7 @@ class AnalysisPage extends StatelessWidget{
       ),
 
       body: Container(
-        padding: EdgeInsets.fromLTRB(10,10,10,0),
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 700,
         width: double.maxFinite,
 
@@ -62,7 +63,7 @@ class AnalysisPage extends StatelessWidget{
             Expanded(
               child: ListView.builder(
                 itemCount: analysisPageData.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                     height: 220,
@@ -78,10 +79,11 @@ class AnalysisPage extends StatelessWidget{
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) =>  pages[index]),
+                            MaterialPageRoute(
+                                builder: (context) => pages[index]),
                           );
                         },
-                        child:Card(
+                        child: Card(
                           color: Colors.teal[700],
                           child: Column(
                             children: <Widget>[
@@ -89,44 +91,41 @@ class AnalysisPage extends StatelessWidget{
                               //child:
                               Container(
                                 alignment: Alignment.center,
-                                child:  AnalysisItemPageName(analysisPageData[index]),
-                              ),//Container
+                                child: AnalysisItemPageName(
+                                    analysisPageData[index]),
+                              ), //Container
                               //),//Center
                               Image.network(
                                 '${images[index]}',
                                 width: double.infinity,
                                 height: 140,
                                 //fit: Boxfit.cover
-                              )//image.network
-                            ],//children
-                          ),//Stack
+                              ) //image.network
+                            ], //children
+                          ), //Stack
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               color: Colors.teal.shade900,
                             ),
                             borderRadius: BorderRadius.circular(10.0),
-                          ),//RoundedRectandleBorder
+                          ), //RoundedRectandleBorder
                           elevation: 5,
                           margin: EdgeInsets.all(4.0),
-                        ),//child: Card
-                      ),//child: GestureDetector
+                        ), //child: Card
+                      ), //child: GestureDetector
                       //],
                       // ),// child: Padding
-                    ),//child: Card
-                  );//Container
-                },//itemBuilder
-              ),//child: ListView.builder
-            ),//Expanded
-
-          ],//children: <Widget>
-        ),//child: Column
-
-      ),//body: Container
-
-    );//Scaffold
-  }//Widget build
-}//class
-
+                    ), //child: Card
+                  ); //Container
+                }, //itemBuilder
+              ), //child: ListView.builder
+            ), //Expanded
+          ], //children: <Widget>
+        ), //child: Column
+      ), //body: Container
+    ); //Scaffold
+  } //Widget build
+} //class
 
 Widget AnalysisItemPageName(data) {
   return Align(
