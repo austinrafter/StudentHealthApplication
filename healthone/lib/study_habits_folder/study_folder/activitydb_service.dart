@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:healthone/study_habits_folder/study_habits_global.dart';
 import 'package:http/http.dart' as http;
 import 'package:healthone/study_habits_folder/study_folder/activity.dart';
+import 'package:healthone/study_habits_folder/activity_chart.dart';
 
 class ActivityDBService {
   static Future<Activity> addActivity(
@@ -73,5 +74,27 @@ class ActivityDBService {
     );
     print(response.body);
     return response;
+  }
+
+  static Future<List<ActivityChart>> getActvityChartItems() async {
+    var getExerciseUrl = Uri.parse(baseUrl + '/ActivityChartItems');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+    print(response.body);
+
+    List responseList = jsonDecode(response.body);
+    //Map<String, dynamic> responseList = new Map<String, dynamic>.from(json.decode(response['body']));
+    List<ActivityChart> activityChartsList = [];
+    for (Map activityChartMap in responseList) {
+      ActivityChart activityChart = ActivityChart.fromMap(activityChartMap);
+      activityChartsList.add(activityChart);
+    }
+    for (ActivityChart activityChart in activityChartsList) {
+      print(activityChart);
+    }
+    return activityChartsList;
   }
 }
