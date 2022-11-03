@@ -31,7 +31,7 @@ public class MeditationController {
     private StudentRepository studentRepository;
 
     @GetMapping("/getMeditations")
-    public List<Meditation> getMeditations(){
+    public List<Meditation> getMegetUserTimedMeditationditations(){
         System.out.println("gets here: get meditations");
         return meditationRepository.findAll();
     }

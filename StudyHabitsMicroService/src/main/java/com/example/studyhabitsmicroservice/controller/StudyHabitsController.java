@@ -3,11 +3,13 @@ package com.example.studyhabitsmicroservice.controller;
 import com.example.studyhabitsmicroservice.model.Activity;
 import com.example.studyhabitsmicroservice.model.StudentClass;
 import com.example.studyhabitsmicroservice.model.StudyBlock;
+import com.example.studyhabitsmicroservice.model.ActivityChartItem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @Slf4j
@@ -166,5 +168,34 @@ public class StudyHabitsController {
     public String deleteAllStudyBlocks(){
         stuBlockRepo.deleteAll();
         return "All study blocks deleted";
+    }
+
+    @GetMapping("/ActivityChartItems")
+    public List<ActivityChartItem> getUserTimedExercises(){
+        List<ActivityChartItem> activityChartItemArrayList = new ArrayList<>();
+        List<Activity> activities = actRepo.findAll();
+        boolean classCodeMatched = false;
+
+        for(Activity activity: activities){
+            ActivityChartItem item = new ActivityChartItem(((double)activity.getDuration()/60) , activity.getClassCode());
+            if(activityChartItemArrayList.size() == 0){
+                activityChartItemArrayList.add(item);
+            }
+            for(ActivityChartItem curItem : activityChartItemArrayList){
+                if((item.getClassCode().equals(curItem.getClassCode()))){
+                    curItem.setMinutes(item.getMinutes() + curItem.getMinutes());
+                    classCodeMatched = true;
+                }
+            }
+            if(!classCodeMatched){
+                activityChartItemArrayList.add(item);
+            }else{
+                classCodeMatched = false;
+            }
+        }
+        for (ActivityChartItem curItem : activityChartItemArrayList){
+            System.out.println(curItem.getMinutes());
+        }
+        return activityChartItemArrayList;
     }
 }
