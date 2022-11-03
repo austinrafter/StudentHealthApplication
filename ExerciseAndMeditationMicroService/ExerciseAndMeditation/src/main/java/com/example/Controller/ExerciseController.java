@@ -27,10 +27,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
+import java.text.DecimalFormat;
+import com.example.StudyHabits.Activity;
+import com.example.StudyHabits.ActivityRepo;
 
 @RestController
 @RequestMapping(path = "/exercises")
 public class ExerciseController {
+
+    @Autowired
+    private ActivityRepo actRepo;
 
     @Autowired
     private ExerciseRepository exerciseRepository;
@@ -68,13 +74,14 @@ public class ExerciseController {
         for(PassExercise passExercise: passExercises){
             String date = passExercise.getDateof();
             String[] dateParts = date.split("T");
-            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0], passExercise.getCaloriesburned());
             if(exerciseChartItemArrayList.size() == 0){
                 exerciseChartItemArrayList.add(exerciseChartItem);
             }
             for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
                if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
                         exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                        exerciseChartItem1.setCalories(exerciseChartItem.getCalories() + exerciseChartItem1.getCalories());
                         datesMatch = true;
                }
            }
@@ -97,6 +104,7 @@ public class ExerciseController {
 
     @PostMapping("/add")
     public Exercise addExercise(@RequestBody Exercise exercise){
+        exercise.setExerciseimage("https://media.giphy.com/media/vF25I06jdODgA/giphy.gif");
         return exerciseRepository.save(exercise);
     }
 
@@ -351,7 +359,7 @@ public class ExerciseController {
         for(PassExercise passExercise: passExercises){
             String date = passExercise.getDateof();
             String[] dateParts = date.split("T");
-            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0]);
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0], passExercise.getCaloriesburned());
             if(exerciseChartItemArrayList.size() == 0){
                 exerciseChartItemArrayList.add(exerciseChartItem);
             }
@@ -419,7 +427,7 @@ public class ExerciseController {
         String suggestion = "";
         Suggestion suggestion1;
         if(minuteTotal < 30 && moodFinal >= 1){
-            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + mood + " mood. Exercising for at least 30 minutes a day has been shown to improve mood.";
+            String sug = "You tend to exercise for " + String.format("%.2f", minuteTotal) + " minutes a day, and have a " + mood + " mood. Exercising for at least 30 minutes a day has been shown to improve mood.";
             suggestion1 = new Suggestion("Exercise", "Mood", sug);
         }else if(minuteTotal >= 30 && moodFinal >= 1){
             String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + mood + " mood.";
@@ -428,8 +436,8 @@ public class ExerciseController {
             String sug = "HUZZAH!!! You're daily exercise times and moods are great!!!";
             suggestion1 = new Suggestion("Exercise", "Mood", sug);
         }else{
-            String sug = "You have good mood on average, but you tend to exercise for " + minuteTotal + " on days you enter a mood. Exercising at least 30 minutes each day can benefit your health in general.";
-            suggestion1 = new Suggestion("Exercise", "Stress", sug);
+            String sug = "You have good mood on average, but you tend to exercise for " + String.format("%.2f", minuteTotal) + " minutes on days you enter a mood. Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Mood", sug);
         }
 
         System.out.println(suggestion1.getFunctionOne());
@@ -472,7 +480,7 @@ public class ExerciseController {
         String suggestion = "";
         Suggestion suggestion1;
         if(minuteTotal < 30 && stressFinal >= 1){
-            String sug = "You tend to exercise for " + minuteTotal + " minutes a day, and have a " + stress + " stress level. Exercising for at least 30 minutes a day has been shown to improve stress levels.";
+            String sug = "You tend to exercise for " + String.format("%.2f", minuteTotal) + " minutes a day, and have a " + stress + " stress level. Exercising for at least 30 minutes a day has been shown to improve stress levels.";
             suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }else if(minuteTotal >= 30 && stressFinal >= 1){
             String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + stress + " stress levels.";
@@ -481,7 +489,7 @@ public class ExerciseController {
             String sug = "HUZZAH!!! You're daily exercise times and stress levels are great!!!";
             suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }else{
-            String sug = "You have good stress level on average, but you tend to exercise for " + minuteTotal + " on days you enter your stress level. Exercising at least 30 minutes each day can benefit your health in general.";
+            String sug = "You have good stress level on average, but you tend to exercise for " + String.format("%.2f", minuteTotal) + " on days you enter your stress level. Exercising at least 30 minutes each day can benefit your health in general.";
             suggestion1 = new Suggestion("Exercise", "Stress", sug);
         }
 
@@ -490,6 +498,93 @@ public class ExerciseController {
         System.out.println(suggestion1.getSuggestion());
         return suggestion1;
     }
+
+    @GetMapping("/exercise")
+    public int getExerciseTime(){
+        int time = 0;
+        System.out.println("FIRST TEST");
+        Collection<Integer> exerciseTime = passExerciseRepository.findExerciseCount();
+        Object[] thisExerciseAmount = exerciseTime.toArray(new Object[exerciseTime.size()]);
+        int[] intTime = new int[thisExerciseAmount.length];
+        System.out.println("SECOND TEST");
+
+        for(int i = 0; i < thisExerciseAmount.length; i ++){
+            intTime[i] = (Integer) thisExerciseAmount[i];
+            System.out.println(intTime[i]);
+            time += intTime[i];
+        }
+        return time;
+    }
+
+
+    @GetMapping("/giveExerciseStudySuggestion")
+    public Suggestion giveExerciseStudySuggestion(){
+        List<PassExercise> passExercises = passExerciseRepository.findAll();
+        List<ExerciseChartItem> exerciseChartItemArrayList = new ArrayList<ExerciseChartItem>();
+        int dayTotal = 0;
+        double minuteTotal = 0;
+        int stressFinal = 0;
+        boolean datesMatch = false;
+
+        for(PassExercise passExercise: passExercises){
+            String date = passExercise.getDateof();
+            String[] dateParts = date.split("T");
+            ExerciseChartItem exerciseChartItem = new ExerciseChartItem((double)passExercise.getTotaltime()/60 , dateParts[0], passExercise.getCaloriesburned());
+            if(exerciseChartItemArrayList.size() == 0){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }
+            for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+                if(exerciseChartItem.getDate().equals(exerciseChartItem1.getDate())){
+                    exerciseChartItem1.setMinutes(exerciseChartItem.getMinutes() + exerciseChartItem1.getMinutes());
+                    datesMatch = true;
+                }
+            }
+            if(!datesMatch){
+                exerciseChartItemArrayList.add(exerciseChartItem);
+            }else{
+                datesMatch = false;
+            }
+        }
+
+        for(ExerciseChartItem exerciseChartItem1 : exerciseChartItemArrayList){
+            minuteTotal = minuteTotal + exerciseChartItem1.getMinutes();
+            dayTotal = dayTotal + 1;
+        }
+
+       minuteTotal = minuteTotal / dayTotal;
+        List<Activity> activtyList = actRepo.findAll();
+
+        int totalActivities = 0;
+        double activityTotalTime = 0;
+        for(Activity activity: activtyList){
+            activityTotalTime = activityTotalTime + (activity.getDuration()/60);
+            totalActivities = totalActivities + 1;
+        }
+
+        activityTotalTime = activityTotalTime / 60;
+
+        Suggestion suggestion1;
+        if(minuteTotal < 30 && activityTotalTime >= 20){
+            String sug = "You tend to exercise for " + String.format("%.2f", minuteTotal) + " minutes a day, but only study for  " + String.format("%.2f", activityTotalTime) + " at a time. Exercising for at least 30 minutes a day has been shown to improve concentration.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else if(minuteTotal >= 30 && stressFinal >= 20){
+            String sug = "Your daily exercise times meet or exceed the suggested 30 minutes. You may want to check our other suggestions to improve your average " + String.format("%.2f", activityTotalTime) + " study times.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else if(minuteTotal >= 30 && stressFinal < 20){
+            String sug = "HUZZAH!!! You're daily exercise times and study times are great!!!";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }else{
+            String sug = "You have good study times on average, but you tend to exercise for " + String.format("%.2f", minuteTotal) + ". Exercising at least 30 minutes each day can benefit your health in general.";
+            suggestion1 = new Suggestion("Exercise", "Study", sug);
+        }
+
+
+        System.out.println(suggestion1.getFunctionOne());
+        System.out.println(suggestion1.getFunctionTwo());
+        System.out.println(suggestion1.getSuggestion());
+        return suggestion1;
+    }
+
 
 
 }

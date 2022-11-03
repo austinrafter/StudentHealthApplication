@@ -95,4 +95,80 @@ class DBServices{
     print(response.body);
     return response;
   }
+
+//Get stress here
+
+  // static Future<http.Response> getRegularStress() async{
+
+  //   var url = Uri.parse(baseUrl + '/getRegularStress');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
+
+  //   static Future<http.Response> getHighStress() async{
+
+  //   var url = Uri.parse(baseUrl + '/getHighStress');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET HIGH STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
+
+  // static Future<String> getLowStress() async{
+
+  //   var url = Uri.parse(baseUrl + '/getLowStress');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET LOW STRESS'");
+  //   print(response.body);
+  //   return response.body;
+  // }
+
+//Getting mood
+  // static Future<http.Response> getNegativeMood() async{
+
+  //   var url = Uri.parse(baseUrl + '/getNegativeMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
+
+  // static Future<http.Response> getNeutralMood() async{
+
+  //   var url = Uri.parse(baseUrl + '/getNeutralMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
+
+  // static Future<http.Response> getPositiveMood() async{
+
+  //   var url = Uri.parse(baseUrl + '/getPositiveMood');
+  //   http.Response response = await http.get(
+  //     url,
+  //     headers: headers,
+  //   );
+  //   print("YOU ARE PINGING 'GET REGULAR STRESS'");
+  //   print(response.body);
+  //   return response;
+  // }
+
 }

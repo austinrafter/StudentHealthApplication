@@ -1,5 +1,6 @@
-package com.example.Model;
+package com.example.mentalhealth.exercisemental;
 import jdk.jfr.DataAmount;
+//import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 import lombok.Data;
@@ -8,30 +9,26 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "passexercise", schema ="StudentHealth")
+@Table(name = "passmeditation")
 @RequiredArgsConstructor
-public class PassExercise {
+public class PassMeditation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "passexerciseid")
-    private int passexerciseid;
+    @Column(name = "passmeditationid")
+    private int passmeditationid;
     //@Column(name = "exercisename", nullable=false)
-    private String exercisename;
+    private String meditationname = "test";
     //@Column(name = "username", nullable=false)
-    private String username;
+    private String username = "test";
     //@Column(name = "startedat", nullable=false)
-    private String dateof;
+    private String dateof = "test";
     //@Column(name = "totaltime", nullable=false)
     private int totaltime;
     //@Column(name = "caloriesburned", nullable=false)
-    private double caloriesburned= 0;
-    private int reps= 0;
-    private double weightrepped = 0;
+    private String soundused = "test";
 
-    public int getPassexerciseid(){return passexerciseid;}
-
-    public String getExercisename(){
-        return exercisename;
+    public String getMeditationname(){
+        return meditationname;
     }
 
     public String getUsername(){
@@ -46,14 +43,8 @@ public class PassExercise {
         return totaltime;
     }
 
-    public double getCaloriesburned(){
-        return caloriesburned;
+    public String getSoundused(){
+        return soundused;
     }
-
-    public int getReps(){return reps;}
-
-    public double getWeightrepped(){ return weightrepped;}
-
-
 
 }

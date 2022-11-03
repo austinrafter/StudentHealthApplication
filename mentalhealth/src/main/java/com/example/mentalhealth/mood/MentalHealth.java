@@ -16,9 +16,9 @@ public class MentalHealth {
     private int id;
     private String userName;
 
-    //Values: sad, neutral, happy
+    //Values: negative, neutral, positive
     private String mood;
-    //Values: low, medium, high
+    //Values: low, regular, high
     private String stress;
     private String month;
     private String year;

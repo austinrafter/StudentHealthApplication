@@ -44,7 +44,7 @@ class SuggestionTile extends StatelessWidget{
                  */
 
                 title: Text(
-                  'Suggestion: ${suggestion?.suggestion}',
+                  '${suggestion?.suggestion}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,),

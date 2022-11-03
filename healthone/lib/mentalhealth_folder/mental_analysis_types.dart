@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-/// Donut chart with labels example. This is a simple pie chart with a hole in
-/// the middle.
+import 'package:healthone/mentalhealth_folder/mental_data.dart';
+import 'mentalglobal.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:http/http.dart' as http;
 
 class MentalType extends StatefulWidget{
 
@@ -10,44 +11,104 @@ class MentalType extends StatefulWidget{
 }
 
 class _ChartTemplateState extends State<MentalType> {
+  static int lowStress = 0;
+  static int regularStress = 0;
+  static int highStress = 0;
+  
+
+  Future getLowStress() async{
+    print("TESTING");
+    var url = Uri.parse(baseUrl + '/getLowStress');
+    http.Response response = await http.get(
+      url,
+      headers: headers,
+    );
+    print("YOU ARE PINGING 'GET LOW STRESS'");
+    print(response.body);
+    print(response.body.runtimeType);
+    lowStress = int.parse(response.body.toString());
+    print("THIS IS LOW STRESS AS AN INT: ");
+    print(lowStress);
+    print(lowStress.runtimeType);
+    return response.body;
+  }
+
+    Future getRegularStress() async{
+
+    var url = Uri.parse(baseUrl + '/getRegularStress');
+    http.Response response = await http.get(
+      url,
+      headers: headers,
+    );
+    print("YOU ARE PINGING 'GET REGULAR STRESS'");
+    regularStress = int.parse(response.body.toString());
+    print(response.body);
+    return response.body;
+  }
+
+    Future getHighStress() async{
+
+    var url = Uri.parse(baseUrl + '/getHighStress');
+    http.Response response = await http.get(
+      url,
+      headers: headers,
+    );
+    print("YOU ARE PINGING 'GET HIGH STRESS'");
+    highStress = int.parse(response.body.toString());
+    print(response.body);
+    return response.body;
+    }
 
   @override
   void initState(){
-    super.initState();
+  super.initState();
+  getLowStress();
+  getRegularStress();
+  getHighStress();
   }
-
+  
   @override
   Widget build(BuildContext context) {
-    
-    final List<EarningsTimeline> listEarnings = [
-      EarningsTimeline(year: "08", earning: 18.5),
-      EarningsTimeline(year: "09", earning: 21),
-      EarningsTimeline(year: "10", earning: 30),
-      EarningsTimeline(year: "11", earning: 38),
-      EarningsTimeline(year: "12", earning: 42),
-      EarningsTimeline(year: "13", earning: 43.5),
-      EarningsTimeline(year: "14", earning: 73),
-      EarningsTimeline(year: "15", earning: 79.6),
-      EarningsTimeline(year: "16", earning: 82),
-      EarningsTimeline(year: "17", earning: 93),
-      EarningsTimeline(year: "18", earning: 108),
-      EarningsTimeline(year: "19", earning: 109),
-      EarningsTimeline(year: "20", earning: 117),
+    final List<StressTimeline> listStress = [
+      StressTimeline(stress: "Low", stressLevel: lowStress),
+      StressTimeline(stress: "Regular", stressLevel: regularStress),
+      StressTimeline(stress: "High", stressLevel: highStress),
     ];
-
-    List<charts.Series<EarningsTimeline, String>> timeline = [
+    final green = charts.MaterialPalette.green.makeShades(2);
+    final yellow = charts.MaterialPalette.yellow.makeShades(2);
+    final red = charts.MaterialPalette.red.makeShades(2);
+   
+    List<charts.Series<StressTimeline, String>> timeline = [
       charts.Series(
-        id: "Subscribers",
-        data: listEarnings,
+        id: "StressGraph",
+        data: listStress,
         //the x axis
-        domainFn: (EarningsTimeline timeline, _) => timeline.year,
+        domainFn: (StressTimeline timeline, _) => timeline.stress,
         //the y axis
-        measureFn: (EarningsTimeline timeline, _) => timeline.earning,
+        measureFn: (StressTimeline timeline, _) => timeline.stressLevel,
+        colorFn: (StressTimeline timeline, __) {
+          switch (timeline.stress) {
+            case "Low":
+              {
+                return green[1];
+              }
+
+            case "Regular":
+              {
+                return yellow[1];
+              }
+
+            default:
+              {
+                return red[1];
+              }
+          }
+        }
       )
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Flutter Charts Sample")),
+      appBar: AppBar(title: Text("Stress Analysis"), centerTitle: true),
       body: Center(
           child: Container(
             height: 400,
@@ -58,13 +119,13 @@ class _ChartTemplateState extends State<MentalType> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      "Chart title",
+                      "Weekly Stress Count",
                     ),
                     Expanded(
                       child: charts.BarChart(timeline, animate: true),
                     ),
                     Text(
-                      "Chart Source",
+                      "Stress Level",
                     ),
                   ],
                 ),
@@ -76,12 +137,12 @@ class _ChartTemplateState extends State<MentalType> {
   }
 }
 
-class EarningsTimeline {
-  final String year;
-  final double earning;
+class StressTimeline {
+  final String stress;
+  final int stressLevel;
 
-  EarningsTimeline({
-    required this.year,
-    required this.earning,
+  StressTimeline({
+    required this.stress,
+    required this.stressLevel,
   });
 }

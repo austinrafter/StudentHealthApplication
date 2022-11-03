@@ -19,7 +19,7 @@ class DbThings{
       "exercisename" : exercisename,
       "exercisetype" : exercisetype,
       "metabolicequivalentscore" : metabolicequivalentscore,
-      "exerciseimage" : exerciseimage
+      "exerciseimage" : "https://media.giphy.com/media/vF25I06jdODgA/giphy.gif"
     };
 
     var body = json.encode(data);
@@ -473,6 +473,63 @@ class DbThings{
 
   static Future<Suggestion> getSuggestionForStressExercise() async{
     var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseStressSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForMoodMeditation() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/giveMeditationMoodSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    print(responseMap);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStressMeditation() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/giveMeditationStressSuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStudyMeditation() async{
+    var getExerciseUrl = Uri.parse(meditationUrl + '/giveMeditationStudySuggestion');
+
+    http.Response response = await http.get(
+      getExerciseUrl,
+      headers: headers,
+    );
+
+    Map responseMap = jsonDecode(response.body);
+    Suggestion suggestion = Suggestion.fromMap(responseMap);
+
+    return suggestion;
+  }
+
+  static Future<Suggestion> getSuggestionForStudyExercise() async{
+    var getExerciseUrl = Uri.parse(exerciseUrl + '/giveExerciseStudySuggestion');
 
     http.Response response = await http.get(
       getExerciseUrl,

@@ -21,13 +21,25 @@ class PrintExerciseMental extends StatefulWidget{
 
 class _ExerciseMentalPageState extends State<PrintExerciseMental>{
   List<ExerciseMentalComparison>? exerciseMentalComparisons;
+  List<ExerciseMentalComparison>? exerciseMentalComparisons2;
   Suggestion? suggestionOne;
   Suggestion? suggestionTwo;
+
+  Suggestion? suggestionThree;
+  Suggestion? suggestionFour;
+
+  Suggestion? suggestionFive;
+  Suggestion? suggestionSix;
+
 
   getExercises()async{
     exerciseMentalComparisons = await DbThings.getExerciseMental();
     suggestionOne = await DbThings.getSuggestionForMoodExercise();
     suggestionTwo = await DbThings.getSuggestionForStressExercise();
+    suggestionThree = await DbThings.getSuggestionForMoodMeditation();
+    suggestionFour = await DbThings.getSuggestionForStressMeditation();
+    suggestionFive = await DbThings.getSuggestionForStudyMeditation();
+    suggestionSix = await DbThings.getSuggestionForStudyExercise();
     Provider.of<ExerciseData>(context, listen: false).exerciseMentalComparisons = exerciseMentalComparisons!;
     setState(() {});
   }
@@ -57,7 +69,7 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
       appBar: AppBar(
         backgroundColor: Colors.teal[900],
         title: Text(
-          'Exercise and Mental Health'
+          'Suggestions'
         ),
         centerTitle: true,
         /*leading: GestureDetector(
@@ -71,42 +83,42 @@ class _ExerciseMentalPageState extends State<PrintExerciseMental>{
 
          */
       ),
-      body: Container(
-        color: Colors.teal[900],
-        child: Column(
-        children: [
-          Text("Suggestions", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-          Column(
-            children:[
+      body: ListView(
+    children: <Widget>[
+      Container(
+        color: Colors.amber[600],
+      child:
+          Text("Exercise", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 20, ),),
+      ),
+
               Container(
                 child: suggestionOne == null? Text('') : SuggestionTile(suggestion: suggestionOne),
               ),
               Container(
                 child: suggestionTwo == null? Text('') : SuggestionTile(suggestion: suggestionTwo),
               ),
-            ],
-          ),
-          Text("Daily Exercise And Mental Health Information", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-          Expanded(
-    child: Consumer<ExerciseData>(
-            builder: (context, exerciseData, child){
-              return ListView.builder(
-                  itemCount: exerciseData.exerciseMentalComparisons.length,
-                  //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2),
-                  itemBuilder: (context, index) {
-                    ExerciseMentalComparison exerciseMental = exerciseData.exerciseMentalComparisons[index];
-                    return ExerciseMentalTile(
-                        exerciseMental: exerciseMental,
-                        exerciseData: exerciseData
-                    );//ExerciseTile
-                  });//itemBuilder
-            },//builder
-          ),//Consumer
-          ),//Expanded
+              Container(
+                child: suggestionSix == null? Text('') : SuggestionTile(suggestion: suggestionSix),
+              ),
+            Container(
+              color: Colors.amber[600],
+              child:
+            Text("Meditation", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),),
+            ),
+
+                Container(
+                  child: suggestionThree == null? Text('') : SuggestionTile(suggestion: suggestionThree),
+                ),
+                Container(
+                  child: suggestionFour == null? Text('') : SuggestionTile(suggestion: suggestionFour),
+                ),
+                Container(
+                  child: suggestionFive == null? Text('') : SuggestionTile(suggestion: suggestionFive),
+                ),
+
 
         ],//children
       ),//Stack
-    ),
     );//Scaffold
   }//build
 }//class
