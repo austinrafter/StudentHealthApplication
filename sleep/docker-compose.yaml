@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  sleep-db:
+    image: mysql:latest
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - "3306:3306"
+    networks:
+      - sleep-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=sleep
+    restart: always
+
+  sleep-service:
+    image: sleep-service
+    depends_on:
+      - sleep-db
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - sleep-network
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: sleep-db
+
+networks:
+  sleep-network:
