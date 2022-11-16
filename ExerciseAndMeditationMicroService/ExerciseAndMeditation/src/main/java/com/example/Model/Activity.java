@@ -1,4 +1,5 @@
-package com.example.StudyHabits;
+package com.example.Model;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -15,44 +16,20 @@ import java.util.Date;
 @Data
 @Entity
 @RequiredArgsConstructor
-@Table(name = "activity")
+@Table(name = "Activity")
 public class Activity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    private String classCode = "test";
-    private String semester = "test";
+    private String classCode;
+    private String semester;
     private long duration;
 
     public Activity(String classCode, String semester, long duration){
         this.classCode = classCode;
         this.semester = semester;
         this.duration = duration;
-    }
-
-    public long getDuration() {
-        return duration;
-    }
-
-    public String getClassCode() {
-        return classCode;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setClassCode(String classCode) {
-        this.classCode = classCode;
-    }
-
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 }

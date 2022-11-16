@@ -18,8 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.text.DecimalFormat;
 
-import com.example.StudyHabits.Activity;
-import com.example.StudyHabits.ActivityRepo;
+import com.example.Model.*;
 
 @RestController
 @RequestMapping(path = "/meditations")

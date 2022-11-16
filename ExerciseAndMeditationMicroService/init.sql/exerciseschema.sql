@@ -134,4 +134,26 @@ INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall20
 INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 7200);
 INSERT INTO activity (class_code, semester, duration) VALUES ('cmpe172', 'fall2022', 3600);
 
+CREATE TABLE IF NOT EXISTS class (
+id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+code VARCHAR(256),
+name VARCHAR(256),
+semester VARCHAR(256),
+point DOUBLE,
+grade VARCHAR(256)
+);
+
+CREATE TABLE IF NOT EXISTS study_block (
+id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+day VARCHAR(256),
+startime VARCHAR(256),
+endtime VARCHAR(256)
+);
+
+CREATE TABLE IF NOT EXISTS activity_chart_item (
+id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+minutes DOUBLE,
+class_code VARCHAR(256)
+);
+
 

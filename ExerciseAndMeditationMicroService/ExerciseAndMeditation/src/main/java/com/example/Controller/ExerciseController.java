@@ -9,6 +9,7 @@ import com.example.Model.UserExercising;
 import com.example.Model.MentalRefactor;
 import com.example.Model.ExerciseMentalComparison;
 import com.example.Model.Suggestion;
+import com.example.Model.Activity;
 import com.example.Repository.ExerciseRepository;
 import com.example.Repository.PassExerciseRepository;
 import com.example.Repository.UserExercisingRepository;
@@ -28,8 +29,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
 import java.text.DecimalFormat;
-import com.example.StudyHabits.Activity;
-import com.example.StudyHabits.ActivityRepo;
+//import com.example.StudyHabits.Activity;
+//import com.example.StudyHabits.ActivityRepo;
 
 @RestController
 @RequestMapping(path = "/exercises")

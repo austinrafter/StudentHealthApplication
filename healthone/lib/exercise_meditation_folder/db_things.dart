@@ -19,7 +19,7 @@ class DbThings{
       "exercisename" : exercisename,
       "exercisetype" : exercisetype,
       "metabolicequivalentscore" : metabolicequivalentscore,
-      "exerciseimage" : "https://media.giphy.com/media/vF25I06jdODgA/giphy.gif"
+      "exerciseimage" : "farts"
     };
 
     var body = json.encode(data);

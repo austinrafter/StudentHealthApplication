@@ -15,10 +15,8 @@ public class Exercise {
     @Column(name = "exercisename",unique=true, nullable=false) private String exercisename;
     @Column(name = "exercisetype",nullable=false) private String exercisetype;
     @Column(name = "metabolicequivalentscore",nullable=false) private double metabolicequivalentscore;
-    @Column(name = "exerciseimage") private String exerciseimage;
+    @Column(name = "exerciseimage") private String exerciseimage = "https://media.giphy.com/media/vF25I06jdODgA/giphy.gif";
 
-    @OneToMany(mappedBy = "exercise")
-    Set<UserExercising> exercises;
 
     public String getExercise_name(){
         return exercisename;

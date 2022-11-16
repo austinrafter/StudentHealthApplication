@@ -171,25 +171,6 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                           return null;
                         },//validator
                       ),//TextFormField
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.person),
-                          hintText: 'Provide a link to an online .gif or .jpg that matches your entered exercise to be shown.',
-                          labelText: 'Exercise Image Link *',
-                        ),
-                        onChanged: (String value) {
-                          // This optional block of code can be used to run
-                          // code when the user saves the form.
-                          exerciseimage = value;
-                          print(exerciseimage);
-                        },//onSaved
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a link to an online .gif or .jpg that matches your entered exercise';
-                          }
-                          return null;
-                        },//validator
-                      ),//TextFormField
                       const SizedBox(
                         height: 20,
                       ),
@@ -203,9 +184,9 @@ class _ExerciseTypePageState extends State<PrintExercises>{
                           //backgroundColor: Colors.teal[400],
                         ),
                         onPressed: () {
-                          if (exercisename.isNotEmpty  && (metabolicequivalentscore > 0) && exerciseimage.isNotEmpty) {
+                          if (exercisename.isNotEmpty  && (metabolicequivalentscore > 0) ) {
                             Provider.of<ExerciseData>(context, listen: false)
-                                .addExercise(exercisename,widget.exerciser,metabolicequivalentscore, exerciseimage);
+                                .addExercise(exercisename,widget.exerciser,metabolicequivalentscore, "exerciseimage");
                           }
                           sleep(Duration(seconds:1));
                           setState(() => {});
