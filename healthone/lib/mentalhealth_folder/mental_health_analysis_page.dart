@@ -134,7 +134,7 @@ class MentalHealthPage extends StatelessWidget {
 
     Future getStudyDuration() async{
 
-    var url = Uri.parse(baseUrl + '/activitiessummed');
+    var url = Uri.parse(baseUrl + '/activities');
     http.Response response = await http.get(
       url,
       headers: headers,
