@@ -6,7 +6,7 @@ final Uri _sleepArticleUrl = Uri.parse(
     'https://healthysleep.med.harvard.edu/healthy/matters/benefits-of-sleep/learning-memory');
 
 final Uri _sleepDownloadUrl =
-    Uri.parse('https://github.com/austinrafter/StudentHealthApplication');
+    Uri.parse('https://github.com/austinrafter/StudentHealthApplication/blob/sleep/apk/app-arm64-v8a-release.apk');
 
 class SleepPage extends StatelessWidget {
   const SleepPage({Key? key}) : super(key: key);
